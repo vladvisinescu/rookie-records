@@ -1,3 +1,3 @@
 <x-app-layout>
-    <Profile />
+    <p>desktop home</p>
 </x-app-layout>

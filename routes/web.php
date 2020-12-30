@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Desktop\DesktopController;
+use App\Http\Controllers\Desktop\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'desktop'], function () {
+    Route::get('/', [DesktopController::class, 'home']);
+
+    Route::group(['prefix' => 'products'], function () {
+        Route::get('/', [ProductsController::class, 'home']);
+        Route::get('/create', [ProductsController::class, 'create']);
+    });
 });
 
 Route::get('/dashboard', function () {
