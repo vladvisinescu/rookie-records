@@ -17,7 +17,7 @@ const actions = {
     searchRecord({ commit }, term) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/search', { term })
+                .post('/search', { term }, { withCredentials: true })
                 .then(response => {
                     console.log(response)
                 })

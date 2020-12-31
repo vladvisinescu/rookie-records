@@ -1,5 +1,3 @@
-import axios from "axios";
-
 window._ = require('lodash');
 
 /**
@@ -15,7 +13,8 @@ window.axios = axios.create({
     withCredentials: true,
     headers: {
         common: {
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     }
 });

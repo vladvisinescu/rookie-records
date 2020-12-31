@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->post('/search', [DiscogsController::class, 'search']);
+Route::middleware('auth:sanctum')->post('/search', [DiscogsController::class, 'search']);

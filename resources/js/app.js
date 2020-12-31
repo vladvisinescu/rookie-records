@@ -11,7 +11,7 @@ import ProductCreate from './components/Desktop/Products/ProductCreate';
 const app = createApp({})
 
 app.component('profile', Profile);
-app.component('product-list', ProductList); 
+app.component('product-list', ProductList);
 app.component('product-create', ProductCreate);
 
 

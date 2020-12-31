@@ -10,9 +10,11 @@ class DiscogsController extends Controller
 {
 
     public function search(DiscogsSearchRequest $request)
-    {
-        $result = (new DiscogsService)->search($request->input('term'));
+    {$request->input('term'));
+        $result = (new DiscogsService)->search($request->input('term'), [
+            'release'
+        ]);
 
-        dd($result);
+        dd($result->getSearch('release'));
     }
 }
