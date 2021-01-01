@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->post('/search', [DiscogsController::class, 'search']);
+Route::middleware('auth:sanctum')->get('/search/release/{releaseID}', [DiscogsController::class, 'getRecord']);

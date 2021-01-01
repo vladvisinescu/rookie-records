@@ -1,5 +1,9 @@
 <template>
     <div>
+        <DiscogsResultsModal
+            :open="modals.discogsResults"
+            :data="search.results"
+            @closeModal="modals.discogsResults = false" />
         <div class="mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
@@ -14,7 +18,7 @@
                     <form action="#" method="POST">
                         <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="p-6 bg-gray-100">
-                                <input type="text" v-model="searchTerm" placeholder="Search record..." class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input type="text" v-model="search.term" @keydown.enter.prevent="searchDiscogs" placeholder="Search record..." class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
@@ -258,22 +262,36 @@
 </template>
 
 <script>
+
+import DiscogsResultsModal from '@/components/Desktop/Bits/DiscogsResultsModal.vue'
+
 export default {
+
+    components: {
+        DiscogsResultsModal
+    },
 
     data() {
         return {
-            searchTerm: ''
+            record: {
+                title: '',
+
+            },
+            search: {
+                term: '',
+                results: []
+            },
+            modals: {
+                discogsResults: false
+            }
         }
     },
 
-    created () {
-        this.searchDiscogs('3654712')
-    },
-
     methods: {
-        searchDiscogs(term) {
-            this.$store.dispatch('discogs/searchRecord', term).then(response => {
-                console.log(response)
+        searchDiscogs() {
+            this.$store.dispatch('discogs/searchRecord', this.search.term).then(response => {
+                this.modals.discogsResults = true
+                this.search.results = response
             })
         }
     }

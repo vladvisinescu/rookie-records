@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Records;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DiscogsSearchRequest extends FormRequest
+class CreateRecordRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,9 @@ class DiscogsSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'term' => 'required|string',
+            'title' => 'required',
+            'record_id' => 'required',
+            ''
         ];
     }
 }

@@ -17,18 +17,40 @@ const actions = {
     searchRecord({ commit }, term) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/search', { term }, { withCredentials: true })
+                .post('/search', { term: term }, { withCredentials: true })
                 .then(response => {
-                    console.log(response)
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data)
                 })
         })
-    }
+    },
+
+    getRecordByID({ commit }, recordID) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get('/search/release/' + recordID, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data)
+                })
+        })
+    },
+
+
 };
 
 const mutations = {
     setCurrentUser(state, user) {
         state.currentUser = user;
     },
+
+    setConfirmedRecord() {
+
+    }
 };
 
 export default {
