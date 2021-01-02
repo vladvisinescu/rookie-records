@@ -15,7 +15,7 @@ class Artist extends Model
 
     protected $table = 'artists';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     public function vinyls()
     {

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\ProductDetails\Artist;
+use App\Models\ProductDetails\Genre;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -30,6 +32,9 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         $user->assignRole('super_admin');
+
+        Artist::factory()->count(50)->create();
+        Genre::factory()->count(50)->create();
 
         User::factory()
 //            ->has(

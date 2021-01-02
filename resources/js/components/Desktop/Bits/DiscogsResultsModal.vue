@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed z-10 inset-0 overflow-y-auto" v-show="open">
+    <div class="fixed z-50 inset-0 overflow-y-auto" v-show="open">
         <transition
             enter-active-class="ease-out duration-300"
             enter-from-class="opacity-0"
@@ -29,7 +29,6 @@
                             <h2 class="text-lg">Results</h2>
                         </div>
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <!-- This example requires Tailwind CSS v2.0+ -->
                             <fieldset v-if="data.length > 0">
                                 <ul class="space-y-2" role="radiogroup" aria-labelledby="radiogroup-label">
                                     <li
@@ -40,12 +39,12 @@
                                         aria-checked="true"
                                         class="group relative bg-white rounded-lg shadow-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-indigo-500">
                                         <div class="rounded-lg border border-gray-300 bg-white hover:border-gray-400">
-                                            <div class="flex items-center px-4 py-4" @click.prevent="selected = record.id">
+                                            <div class="flex items-center px-4 pt-2 pb-3" @click.prevent="selected = record.id">
                                                 <div class="text-sm">
                                                     <span class="font-bold text-gray-900" v-text="record.title"></span>
                                                 </div>
                                             </div>
-                                            <div class="flex justify-between text-xs text-white bg-gray-600 px-4 py-2 rounded-b overflow-hidden">
+                                            <div class="flex justify-between text-xs px-4 py-2 rounded-b overflow-hidden">
                                                 <div class="">
                                                     <p class="sm:inline" v-text="record.year"></p>
                                                     <span class="hidden sm:inline sm:mx-1" aria-hidden="true">&middot;</span>

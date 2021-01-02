@@ -4,7 +4,7 @@ namespace App\Http\Requests\Records;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRecordRequest extends FormRequest
+class CreateGenreRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,9 +14,7 @@ class CreateRecordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
-            'record_id' => 'required',
-            ''
+            'name' => 'required',
         ];
     }
 }

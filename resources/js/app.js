@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
+import vueDebounce from 'vue-debounce'
 
 import store from './store';
 
@@ -16,5 +17,8 @@ app.component('product-create', ProductCreate);
 
 
 app.use(store);
+app.use(vueDebounce, {
+    listenTo: ['keydown']
+})
 
 app.mount('#app');
