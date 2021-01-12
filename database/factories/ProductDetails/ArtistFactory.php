@@ -27,6 +27,7 @@ class ArtistFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name) . '-' . Str::random(8),
+            'discogs_id' => $this->faker->randomNumber(6),
             'description' => $this->faker->paragraph(rand(3, 6)),
         ];
     }

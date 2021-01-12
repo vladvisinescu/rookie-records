@@ -83,6 +83,7 @@ class CreateProductsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
+            $table->string('discogs_id')->nullable();
             $table->text('description')->nullable();
 
             $table->timestamps();
@@ -95,7 +96,7 @@ class CreateProductsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.W
+     * Reverse the migrations.
      *
      * @return void
      */
@@ -107,7 +108,12 @@ class CreateProductsTable extends Migration
 
         // Details
         Schema::dropIfExists('genres');
+        Schema::dropIfExists('vinyl_genre');
+
         Schema::dropIfExists('labels');
+        Schema::dropIfExists('vinyl_label');
+
         Schema::dropIfExists('artists');
+        Schema::dropIfExists('vinyl_artist');
     }
 }

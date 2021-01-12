@@ -1,7 +1,9 @@
 const state = () => ({
     products: {
 
-    }
+    },
+
+    new: {}
 });
 
 const getters = {
@@ -9,21 +11,18 @@ const getters = {
 };
 
 const actions = {
-    /**
-     * Get the currently logged-in user information
-     * @param {*} Object Vuex
-     */
-    getCurrentUser({ commit }) {
-        return new Promise((resolve, reject) => {
 
-        });
-    }
+
 };
 
 const mutations = {
     setCurrentUser(state, user) {
         state.currentUser = user;
     },
+
+    setConfirmedRecord(state, record) {
+        state.new = record
+    }
 };
 
 export default {

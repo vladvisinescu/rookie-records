@@ -15,7 +15,18 @@ class Artist extends Model
 
     protected $table = 'artists';
 
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'discogs_id', 'description'];
+
+    public function findByNameOrCreate($query = '', $data = []): self
+    {
+        $artist = self::where('name', $query)->first();
+
+        if(! $artist) {
+            $artist = self::create($data);
+        }
+
+        return $artist;
+    }
 
     public function vinyls()
     {

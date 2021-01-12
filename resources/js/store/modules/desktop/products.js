@@ -1,25 +1,48 @@
 const state = () => ({
     products: {
         data: []
-    }
+    },
+
+    errors: [],
+
+    new: {}
 });
 
 const getters = {
-    // currentUser: (state) => state.currentUser,
+    getErrors: state => state.errors,
 };
 
 const actions = {
-    getCurrentUser({ commit }) {
+    setConfirmedRecord({ commit }) {
         return new Promise((resolve, reject) => {
 
         });
-    }
+    },
+
+    saveProduct({ commit }, data) {
+        console.log(555, data)
+        return new Promise((resolve, reject) => {
+            axios
+                .post('/products', data, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    commit('setErrors', error.response.data.errors)
+                    reject(error.response.data.errors)
+                })
+        })
+    },
 };
 
 const mutations = {
-    setCurrentUser(state, user) {
-        state.currentUser = user;
+    setErrors(state, data) {
+        state.errors = data
     },
+
+    setConfirmedRecord(state, data) {
+        state.new = data
+    }
 };
 
 export default {

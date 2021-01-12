@@ -1,6 +1,8 @@
 <template>
     <div>
         <DiscogsResultsModal
+            @close="modals.discogsResults = false"
+            @record-selected="autocompleteRecord"
             :open="modals.discogsResults"
             :data="search.results"
             @closeModal="modals.discogsResults = false" />
@@ -24,7 +26,7 @@
                                 <div class="grid grid-cols-6 gap-6">
 
                                     <div class="col-span-12">
-                                        <label for="product_title" class="block text-sm font-medium text-gray-700">Title</label>
+                                        <label for="product_title" class="block text-sm font-medium text-gray-700">Title <span v-if="errors.title" v-html="errors.title[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                         <input
                                             v-model="record.title"
                                             type="text"
@@ -35,7 +37,7 @@
                                     </div>
 
                                     <div class="col-span-12">
-                                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                                        <label for="description" class="block text-sm font-medium text-gray-700">Description <span v-if="errors.description" v-html="errors.description[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                         <div class="mt-1">
                                             <textarea
                                                 v-model="record.description"
@@ -45,9 +47,10 @@
                                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                                         </div>
                                     </div>
-
-                                    <div class="col-span-12 sm:col-span-4">
-                                        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                                </div>
+                                <div class="flex justify-between gap-4 mt-6">
+                                    <div class="w-full">
+                                        <label for="price" class="block text-sm font-medium text-gray-700">Price <span v-if="errors.price" v-html="errors.price[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                         <input
                                             v-model="record.price"
                                             type="text"
@@ -57,8 +60,8 @@
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     </div>
 
-                                    <div class="col-span-12 sm:col-span-4">
-                                        <label for="grading" class="block text-sm font-medium text-gray-700">Grading</label>
+                                    <div class="w-full">
+                                        <label for="grading" class="block text-sm font-medium text-gray-700">Grading <span v-if="errors.grading" v-html="errors.grading[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                         <input
                                             v-model="record.grading"
                                             type="text"
@@ -68,8 +71,8 @@
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     </div>
 
-                                    <div class="col-span-12 sm:col-span-4">
-                                        <label for="year" class="block text-sm font-medium text-gray-700">Year</label>
+                                    <div class="w-full">
+                                        <label for="year" class="block text-sm font-medium text-gray-700">Year <span v-if="errors.year" v-html="errors.year[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                         <input
                                             v-model="record.year"
                                             type="text"
@@ -81,7 +84,10 @@
                                 </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <button
+                                    @click.prevent="saveRecord"
+                                    type="submit"
+                                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Save
                                 </button>
                             </div>
@@ -99,7 +105,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1 space-y-3">
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Artists</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Artists <span v-if="errors.artists" v-html="errors.artists[0]" class="text-xs font-bold uppercase text-red-400"></span></h3>
                     <p class="my-1 text-sm text-gray-600">
                         This information will be displayed publicly so be careful what you share.
                     </p>
@@ -114,11 +120,11 @@
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
                 <template v-if="artists.selected.length">
-                    <div class="bg-white overflow-hidden">
+                    <div class="bg-white  overflow-hidden shadow rounded-lg">
                         <ul class="divide-y divide-gray-200">
                             <li
                                 v-for="artist in artists.selected"
-                                class="flex justify-between text-sm pr-3 py-2"
+                                class="flex justify-between text-sm px-3 py-2"
                             >
                                 <span class="text-gray-900" v-text="artist.name"></span>
                                 <div class="self-center">
@@ -130,9 +136,6 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="px-4 py-5 sm:p-6">
-
-                        </div>
                     </div>
                 </template>
             </div>
@@ -169,7 +172,7 @@
                                 </template>
                             </nav>
                         </div>
-                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 hidden">
                             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Save
                             </button>
@@ -189,7 +192,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1 space-y-3">
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Genres</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Genres <span v-if="errors.genres" v-html="errors.genres[0]" class="text-xs font-bold uppercase text-red-400"></span></h3>
                     <p class="my-1 text-sm text-gray-600">
                         This information will be displayed publicly so be careful what you share.
                     </p>
@@ -204,11 +207,11 @@
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
                 <template v-if="genres.selected.length">
-                    <div class="bg-white overflow-hidden">
+                    <div class="bg-white overflow-hidden shadow rounded-lg">
                         <ul class="divide-y divide-gray-200">
                             <li
                                 v-for="genre in genres.selected"
-                                class="flex justify-between text-sm pr-3 py-2"
+                                class="flex justify-between text-sm px-3 py-2"
                             >
                                 <span class="text-gray-900" v-text="genre.name"></span>
                                 <div class="self-center">
@@ -220,9 +223,6 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="px-4 py-5 sm:p-6">
-
-                        </div>
                     </div>
                 </template>
             </div>
@@ -259,7 +259,7 @@
                                 </template>
                             </nav>
                         </div>
-                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 hidden">
                             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Save
                             </button>
@@ -297,6 +297,7 @@ export default {
         ...mapGetters({
             allArtists: 'artists/allArtists',
             allGenres: 'genres/allGenres',
+            errors: 'products/getErrors'
         })
     },
 
@@ -344,7 +345,6 @@ export default {
     created() {
         this.$store.dispatch('artists/getArtists');
         this.$store.dispatch('genres/getGenres');
-
     },
 
     methods: {
@@ -352,6 +352,22 @@ export default {
             this.$store.dispatch('discogs/searchRecord', this.search.term).then(response => {
                 this.modals.discogsResults = true
                 this.search.results = response
+            })
+        },
+
+        autocompleteRecord(selected) {
+            this.$store.dispatch('discogs/getRecordByID', selected).then(response => {
+                this.record = response.record
+                this.artists.selected = response.record.artists
+                this.genres.selected = response.record.genres
+            })
+        },
+
+        saveRecord() {
+            this.$store.dispatch('products/saveProduct', {
+                ...this.record,
+                artists: this.artists.selected,
+                genres: this.genres.selected,
             })
         },
 
@@ -386,7 +402,7 @@ export default {
         },
 
         createGenre() {
-            this.$store.dispatch('genres/createGenre', this.genres.new)
+            this.$store.dispatch('genres/createGenre', this.genres.new).then(() => this.genres.new.name = '')
         },
 
         selectGenre(data) {

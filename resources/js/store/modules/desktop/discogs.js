@@ -46,10 +46,6 @@ const actions = {
 const mutations = {
     setCurrentUser(state, user) {
         state.currentUser = user;
-    },
-
-    setConfirmedRecord() {
-
     }
 };
 

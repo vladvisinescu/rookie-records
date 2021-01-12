@@ -15,7 +15,7 @@ class CreateProductRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'string',
             'price' => ['required', 'numeric', 'min:1'],
             'grading' => 'required',
             'year' => ['required', 'numeric'],
@@ -23,6 +23,13 @@ class CreateProductRequest extends FormRequest
             'artists' => ['required', 'array', 'min:1'],
             'labels' => ['required', 'array', 'min:1'],
             'genres' => ['required', 'array', 'min:1']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            '*.required' => 'Required'
         ];
     }
 }

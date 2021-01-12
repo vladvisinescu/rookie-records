@@ -17,6 +17,17 @@ class Genre extends Model
 
     protected $fillable = ['name'];
 
+    public function findByNameOrCreate($query = '', $data = []): self
+    {
+        $genre = self::where('name', $query)->first();
+
+        if(! $genre) {
+            $genre = self::create($data);
+        }
+
+        return $genre;
+    }
+
     public function vinyls()
     {
         return $this->belongsToMany(Vinyl::class, 'vinyl_genre', 'genre_id', 'vinyl_id');
