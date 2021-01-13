@@ -1,7 +1,26 @@
 <template>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias asperiores dignissimos dolorum earum
-        esse excepturi fuga impedit nihil perferendis quae quasi quia quibusdam repudiandae sapiente ullam vitae
-        voluptatibus. Officiis!</p>
+    <div class="bg-white mt-5 shadow overflow-hidden sm:rounded-md">
+        <ul class="divide-y divide-gray-200">
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+            <li class="px-4 py-4 sm:px-6">
+                123
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>

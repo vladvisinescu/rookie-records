@@ -343,6 +343,9 @@ export default {
     },
 
     created() {
+
+        this.autocompleteRecord(window.localStorage.getItem('creating-record-id'))
+
         this.$store.dispatch('artists/getArtists');
         this.$store.dispatch('genres/getGenres');
     },
@@ -356,6 +359,11 @@ export default {
         },
 
         autocompleteRecord(selected) {
+
+            if (!selected) {
+                return;
+            }
+
             this.$store.dispatch('discogs/getRecordByID', selected).then(response => {
                 this.record = response.record
                 this.artists.selected = response.record.artists
@@ -366,8 +374,8 @@ export default {
         saveRecord() {
             this.$store.dispatch('products/saveProduct', {
                 ...this.record,
-                artists: this.artists.selected,
-                genres: this.genres.selected,
+                artists: this.artists.selected.map(artist => artist.id),
+                genres: this.genres.selected.map(genre => genre.id),
             })
         },
 

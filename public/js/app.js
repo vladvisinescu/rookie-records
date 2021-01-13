@@ -16270,6 +16270,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     selectRecord: function selectRecord() {
       this.submitted = true;
+      window.localStorage.setItem('creating-record-id', this.selected);
       this.$emit('record-selected', this.selected);
       this.$emit('close');
     }
@@ -16382,6 +16383,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
+    this.autocompleteRecord(window.localStorage.getItem('creating-record-id'));
     this.$store.dispatch('artists/getArtists');
     this.$store.dispatch('genres/getGenres');
   },
@@ -16397,6 +16399,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     autocompleteRecord: function autocompleteRecord(selected) {
       var _this2 = this;
 
+      if (!selected) {
+        return;
+      }
+
       this.$store.dispatch('discogs/getRecordByID', selected).then(function (response) {
         _this2.record = response.record;
         _this2.artists.selected = response.record.artists;
@@ -16405,8 +16411,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     saveRecord: function saveRecord() {
       this.$store.dispatch('products/saveProduct', _objectSpread(_objectSpread({}, this.record), {}, {
-        artists: this.artists.selected,
-        genres: this.genres.selected
+        artists: this.artists.selected.map(function (artist) {
+          return artist.id;
+        }),
+        genres: this.genres.selected.map(function (genre) {
+          return genre.id;
+        })
       }));
     },
     searchArtists: function searchArtists() {
@@ -17655,8 +17665,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "bg-white mt-5 shadow overflow-hidden sm:rounded-md"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<ul class=\"divide-y divide-gray-200\"><li class=\"px-4 py-4 sm:px-6\"> 123 </li><li class=\"px-4 py-4 sm:px-6\"> 123 </li><li class=\"px-4 py-4 sm:px-6\"> 123 </li><li class=\"px-4 py-4 sm:px-6\"> 123 </li><li class=\"px-4 py-4 sm:px-6\"> 123 </li><li class=\"px-4 py-4 sm:px-6\"> 123 </li></ul>", 1);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias asperiores dignissimos dolorum earum esse excepturi fuga impedit nihil perferendis quae quasi quia quibusdam repudiandae sapiente ullam vitae voluptatibus. Officiis!");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [_hoisted_2]);
 }
 
 /***/ }),
@@ -18058,7 +18074,6 @@ var actions = {
   },
   saveProduct: function saveProduct(_ref2, data) {
     var commit = _ref2.commit;
-    console.log(555, data);
     return new Promise(function (resolve, reject) {
       axios.post('/products', data, {
         withCredentials: true

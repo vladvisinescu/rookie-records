@@ -133,6 +133,8 @@ export default {
         selectRecord() {
             this.submitted = true
 
+            window.localStorage.setItem('creating-record-id', this.selected)
+
             this.$emit('record-selected', this.selected)
             this.$emit('close')
         }

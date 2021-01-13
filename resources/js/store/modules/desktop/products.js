@@ -20,14 +20,12 @@ const actions = {
     },
 
     saveProduct({ commit }, data) {
-        console.log(555, data)
         return new Promise((resolve, reject) => {
             axios
                 .post('/products', data, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
-                })
-                .catch(error => {
+                }).catch(error => {
                     commit('setErrors', error.response.data.errors)
                     reject(error.response.data.errors)
                 })
