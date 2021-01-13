@@ -2,24 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VinylController;
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
-use App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::redirect('/shop', '/shop/vinyl');
 
-Route::get('/', [HomeController::class, 'index']);
+// Public Area
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => 'shop'], function () {
+
+    Route::group(['prefix' => 'vinyl'], function () {
+        Route::get('/', [VinylController::class, 'index'])->name('shop.index');
+    });
+});
+
+// Admin Area
 Route::group(['prefix' => 'desktop'], function () {
+
     Route::get('/', [DesktopController::class, 'home']);
 
     Route::group(['prefix' => 'products'], function () {
