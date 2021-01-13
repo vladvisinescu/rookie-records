@@ -23,24 +23,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rookie-records.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rookie-records.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ProductTypes/Vinyl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductTypes/Vinyl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/Components/AppLayout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/Components/AppLayout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_25_101109_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_101109_create_products_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Desktop/Bits/DiscogsResultsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Desktop/Bits/DiscogsResultsModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductCreate.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Profile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/store/modules/desktop/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/desktop/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/desktop/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/desktop/products/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/desktop/products/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/desktop/products/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +201,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/Desktop" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -246,7 +244,9 @@
       <workItem from="1609685834603" duration="6000" />
       <workItem from="1609841455681" duration="44000" />
       <workItem from="1609841757015" duration="286000" />
-      <workItem from="1610459966074" duration="18708000" />
+      <workItem from="1610459966074" duration="18803000" />
+      <workItem from="1610535883957" duration="2229000" />
+      <workItem from="1610539307775" duration="10375000" />
     </task>
     <servers />
   </component>

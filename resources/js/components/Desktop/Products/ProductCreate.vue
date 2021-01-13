@@ -11,9 +11,23 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Record Basic Info</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            Use a permanent address where you can receive mail.
-                        </p>
+                        <div class="flex items-center mt-6" @click.prevent="record.published = !record.published">
+                            <button
+                                :class="[record.published ? 'bg-indigo-600' : 'bg-gray-200']"
+                                class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                type="button"
+                                aria-pressed="false"
+                                aria-labelledby="toggleLabel">
+                                <span class="sr-only">Use setting</span>
+                                <span
+                                    :class="[record.published ? 'translate-x-5' : 'translate-x-0']"
+                                    class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+                                    aria-hidden="true"></span>
+                            </button>
+                            <span class="ml-3" id="toggleLabel">
+                                <span class="text-sm font-medium text-gray-900">Publish</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
@@ -120,7 +134,7 @@
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
                 <template v-if="artists.selected.length">
-                    <div class="bg-white  overflow-hidden shadow rounded-lg">
+                    <div class="bg-white overflow-hidden shadow rounded-lg">
                         <ul class="divide-y divide-gray-200">
                             <li
                                 v-for="artist in artists.selected"
@@ -305,6 +319,7 @@ export default {
         return {
             record: {
                 title: '',
+                published: false,
                 description: '',
                 price: '',
                 grading: '',

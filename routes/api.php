@@ -23,7 +23,9 @@ Route::middleware('auth:sanctum')->get('/search/release/{releaseID}', [DiscogsCo
 
 Route::group(['prefix' => 'products', 'middleware' => 'auth:sanctum'], function () {
 
+    Route::get('/', [ProductsController::class, 'getAllProducts']);
     Route::post('/', [ProductsController::class, 'saveProduct']);
+    Route::delete('/{product}', [ProductsController::class, 'deleteProduct']);
 });
 
 Route::group(['prefix' => 'artists', 'middleware' => 'auth:sanctum'], function () {

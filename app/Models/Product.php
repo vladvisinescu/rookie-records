@@ -5,12 +5,14 @@ namespace App\Models;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 /**
+ * @property mixed id
  * @property mixed title
  * @property mixed grading
  * @property mixed country
@@ -19,6 +21,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property mixed|string product_type
  * @property mixed price
  * @property mixed|UuidInterface uuid
+ * @property mixed created_at
  *
  * @method  mixed description
  */
@@ -27,9 +30,10 @@ class Product extends Model
     use HasSlug;
     use HasFactory;
     use Searchable;
+    use SoftDeletes;
 
     protected $appends = [
-        'in_cart'
+        'in_cart', 'date_created_human', 'date_created_diff'
     ];
 
     public function user()
@@ -47,13 +51,22 @@ class Product extends Model
         return collect(session()->get('cart'))->only('id')->has($this->getKey());
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
-        $array = $this->toArray();
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+        ];
+    }
 
-        $array->artists = $this->vinyl->first()->artists->map(fn($artist) => $artist->name);
+    public function getDateCreatedHumanAttribute(): string
+    {
+        return $this->created_at->format('d F Y');
+    }
 
-        return $array;
+    public function getDateCreatedDiffAttribute(): string
+    {
+        return $this->created_at->diffForHumans();
     }
 
     public function getSlugOptions(): SlugOptions
