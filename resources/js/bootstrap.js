@@ -9,7 +9,7 @@ window._ = require('lodash');
 window.axios = require('axios');
 
 window.axios = axios.create({
-    baseURL: process.env.MIX_APP_URL + '/api',
+    baseURL: process.env.MIX_APP_URL,
     withCredentials: true,
     headers: {
         common: {

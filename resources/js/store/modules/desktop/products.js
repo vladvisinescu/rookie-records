@@ -14,16 +14,10 @@ const getters = {
 };
 
 const actions = {
-    setConfirmedRecord({ commit }) {
-        return new Promise((resolve, reject) => {
-
-        });
-    },
-
     getAllProducts({ commit }, filters = {}) {
         return new Promise((resolve, reject) => {
             axios
-                .get('/products', { params: { ...filters } })
+                .get('/api/products', { params: { ...filters } })
                 .then(response => {
                     commit('setProductList', response.data)
                     resolve(response.data)
@@ -36,7 +30,7 @@ const actions = {
     saveProduct({ commit }, data) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/products', data, { withCredentials: true })
+                .post('/api/products', data, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 }).catch(error => {
@@ -49,7 +43,7 @@ const actions = {
     deleteProduct({ commit }, productID) {
         return new Promise((resolve, reject) => {
             axios
-                .delete('/products/' + productID, { withCredentials: true })
+                .delete('/api/products/' + productID, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 }).catch(error => {

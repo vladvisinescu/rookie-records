@@ -13,7 +13,7 @@ const actions = {
     getGenres({ commit }, filters = {}) {
         return new Promise((resolve, reject) => {
             axios
-                .get('/genres', {
+                .get('/api/genres', {
                     params: { ...filters }
                 }, { withCredentials: true })
                 .then(response => {
@@ -29,7 +29,7 @@ const actions = {
     createGenre({ commit, dispatch }, data) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/genres', {
+                .post('/api/genres', {
                     ...data
                 }, { withCredentials: true })
                 .then(response => {

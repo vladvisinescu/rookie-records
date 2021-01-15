@@ -42,6 +42,7 @@ class CreateProductsTable extends Migration
             $table->string('country')->nullable();
             $table->string('grading')->nullable();
             $table->text('description')->nullable();
+            $table->text('discogs_image_url')->nullable();
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ const actions = {
     searchRecord({ commit }, term) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/search', { term: term }, { withCredentials: true })
+                .post('/api/search', { term: term }, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 })
@@ -30,7 +30,7 @@ const actions = {
     getRecordByID({ commit }, recordID) {
         return new Promise((resolve, reject) => {
             axios
-                .get('/search/release/' + recordID, { withCredentials: true })
+                .get('/api/search/release/' + recordID, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 })

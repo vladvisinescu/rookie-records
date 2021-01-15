@@ -19,12 +19,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property mixed country
  * @property mixed grading
  * @property mixed description
+ * @property mixed discogs_image_url
+ * @property mixed images
  */
 class Vinyl extends Model
 {
     use HasFactory;
 
     protected $table = 'vinyls';
+
+    public $appends = ['images'];
+
+    public function getImagesAttribute()
+    {
+        return json_decode($this->attributes['images']);
+    }
 
     public function product()
     {

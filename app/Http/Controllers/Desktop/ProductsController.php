@@ -40,6 +40,7 @@ class ProductsController extends Controller
 
     public function saveProduct(CreateProductRequest $request)
     {
+//        return $request->all();
         $product = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
@@ -56,6 +57,8 @@ class ProductsController extends Controller
         $vinyl->country = $request->input('country');
         $vinyl->grading = $request->input('grading');
         $vinyl->description = $request->input('description');
+        $vinyl->discogs_image_url = $request->input('discogs_image_url');
+        $vinyl->images = json_encode($request->input('images'));
 
         $vinyl->product()->associate($product);
         $vinyl->save();

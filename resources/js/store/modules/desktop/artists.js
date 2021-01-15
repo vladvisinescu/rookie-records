@@ -22,7 +22,7 @@ const actions = {
     getArtists({ commit }, filters = {}) {
         return new Promise((resolve, reject) => {
             axios
-                .get('/artists', {
+                .get('/api/artists', {
                     params: { ...filters }
                 }, { withCredentials: true })
                 .then(response => {
@@ -38,7 +38,7 @@ const actions = {
     createArtist({ commit, dispatch }, data) {
         return new Promise((resolve, reject) => {
             axios
-                .post('/artists', {
+                .post('/api/artists', {
                     ...data
                 }, { withCredentials: true })
                 .then(response => {

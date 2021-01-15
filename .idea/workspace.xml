@@ -24,6 +24,29 @@
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Desktop/DiscogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Desktop/DiscogsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProductTypes/Vinyl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductTypes/Vinyl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_25_101109_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_101109_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductCreate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Desktop/Products/ProductCreate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/desktop/artists.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/desktop/artists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/desktop/discogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/desktop/discogs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/desktop/genres.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/desktop/genres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/desktop/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/desktop/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +207,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/Desktop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
@@ -192,13 +215,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl" />
+      <recent name="$PROJECT_DIR$/app/View/Components" />
+      <recent name="$PROJECT_DIR$/resources/views/layouts" />
+      <recent name="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser" />
       <recent name="$PROJECT_DIR$/resources/js/components/Desktop" />
-      <recent name="$PROJECT_DIR$/app/Http/Requests/Records" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers/Desktop" />
-      <recent name="$PROJECT_DIR$/resources/js/store/modules/desktop" />
-      <recent name="$PROJECT_DIR$/database/factories/ProductDetails" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser" />
       <recent name="$PROJECT_DIR$/database/factories/ProductDetails" />
       <recent name="$PROJECT_DIR$/resources/js/store" />
     </key>
@@ -232,6 +256,7 @@
       <workItem from="1610459966074" duration="18803000" />
       <workItem from="1610535883957" duration="2229000" />
       <workItem from="1610539307775" duration="13614000" />
+      <workItem from="1610628516017" duration="24530000" />
     </task>
     <servers />
   </component>

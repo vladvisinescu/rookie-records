@@ -96,6 +96,18 @@
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     </div>
                                 </div>
+                                <div class="flex mt-6">
+                                    <div class="w-full">
+                                        <label for="product_title" class="block text-sm font-medium text-gray-700">Discogs Image URL <span v-if="errors.discogs_image_url" v-html="errors.discogs_image_url[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
+                                        <input
+                                            v-model="record.discogs_image_url"
+                                            type="text"
+                                            name="product_image"
+                                            id="product_image"
+                                            autocomplete="given-product_image"
+                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 <button
@@ -325,6 +337,8 @@ export default {
                 grading: '',
                 year: '',
                 discogs_id: '',
+                discogs_image_url: '',
+                images: '',
                 artists: [],
                 labels: [],
                 genres: []

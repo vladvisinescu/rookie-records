@@ -51,6 +51,8 @@ class DiscogsController extends Controller
                 'artists' => $artists,
                 'genres' => $genres,
                 'labels' => $result['labels'],
+                'discogs_image_url' => $result['thumb'],
+                'images' => $result['images']
             ]
         ];
 

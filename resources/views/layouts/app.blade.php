@@ -27,6 +27,15 @@
                 </div>
             </header>
         @endif
+
+        @if(isset($banner))
+            <header class="mb-5 bg-white shadow">
+                <div class="py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $banner }}
+                </div>
+            </header>
+        @endif
+
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             {{ $slot }}
         </div>
