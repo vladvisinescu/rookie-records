@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div class="w-1/4">
-            <BrowserFilters :filters="filters" />
+            <BrowserFilters @change="getProducts" />
         </div>
         <div class="w-3/4 pl-4">
             <div v-if="products.length" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

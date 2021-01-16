@@ -16,9 +16,16 @@ class VinylController extends Controller
 
     public function getVinyls(Request $request)
     {
-        $products = Product::query()->with([
-            'vinyls', 'vinyls.artists', 'vinyls.genres'
-        ]);
+        $products = Product::query();
+//            ->with([
+//            'vinyls', 'vinyls.artists', 'vinyls.genres'
+//        ]);
+
+        $products = $products->with(['vinyls', 'vinyls.genres' => function ($query) use ($request) {
+            $query->whereIn('id', $request->input('genres') ?? []);
+        }, 'vinyls.artists' => function ($query) use ($request) {
+            $query->whereIn('id', $request->input('artists') ?? []);
+        }]);
 
         if ($request->input('term')) {
             $constraints = $products;

@@ -12,6 +12,7 @@ const getters = {
 
 const actions = {
     getProducts({ commit }, filters = {}) {
+        console.log(555, filters)
         return new Promise((resolve, reject) => {
             axios
                 .get('/shop/vinyl/api', {
