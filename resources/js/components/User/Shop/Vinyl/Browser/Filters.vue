@@ -22,7 +22,7 @@
         <div class="border bg-white rounded-lg overflow-hidden">
             <div class="flex justify-between px-4 py-2">
                 <span class="w-full font-bold text-sm cursor-pointer" @click.prevent="drawers.genres = !drawers.genres">Genres</span>
-                <a @click.prevent="filters.genres = []" href="javascript:;" class="flex items-center text-sm">
+                <a @click.prevent="clearFilters('genres')" href="javascript:;" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -44,7 +44,7 @@
         <div class="border bg-white rounded-lg overflow-hidden">
             <div class="flex justify-between px-4 py-2">
                 <span class="w-full font-bold text-sm cursor-pointer" @click.prevent="drawers.artists = !drawers.artists">Artists</span>
-                <a @click.prevent="filters.artists = []" href="" class="flex items-center text-sm">
+                <a @click.prevent="clearFilters('artists')" href="" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -62,6 +62,50 @@
                 </li>
             </ul>
         </div>
+
+        <div class="border bg-white rounded-lg overflow-hidden">
+            <div class="flex justify-between px-4 py-2">
+                <span class="w-full font-bold text-sm cursor-pointer" @click.prevent="drawers.years = !drawers.years">Year</span>
+                <a @click.prevent="clearFilters('years')" href="" class="flex items-center text-sm">
+                    <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="text-xs">Clear</span>
+                </a>
+            </div>
+            <ul class="border-t overflow-y-scroll max-h-56" v-show="drawers.years">
+                <li
+                    v-for="year in years"
+                    :key="year"
+                    @click.prevent="selectYear(year)"
+                    class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
+                    <span :class="[ filters.years.includes(year) ? 'bg-yellow-500' : 'bg-yellow-200' ]" class="inline-flex mr-4 rounded-full h-3 w-3"></span>
+                    <span class="text-sm text-gray-500" v-text="year"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="border bg-white rounded-lg overflow-hidden">
+            <div class="flex justify-between px-4 py-2">
+                <span class="w-full font-bold text-sm cursor-pointer" @click.prevent="drawers.countries = !drawers.countries">Country</span>
+                <a @click.prevent="clearFilters('countries')" href="" class="flex items-center text-sm">
+                    <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="text-xs">Clear</span>
+                </a>
+            </div>
+            <ul class="border-t overflow-y-scroll max-h-56" v-show="drawers.countries">
+                <li
+                    v-for="country in countries"
+                    :key="country"
+                    @click.prevent="selectCountry(country)"
+                    class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
+                    <span :class="[ filters.countries.includes(country) ? 'bg-yellow-500' : 'bg-yellow-200' ]" class="inline-flex mr-4 rounded-full h-3 w-3"></span>
+                    <span class="text-sm text-gray-500" v-text="country"></span>
+                </li>
+            </ul>
+        </div>
     </nav>
 </template>
 
@@ -74,22 +118,28 @@ export default {
     data() {
         return {
             drawers: {
-                genres: true,
-                artists: true,
+                years: false,
+                genres: false,
+                artists: false,
+                countries: false,
             },
 
             filters: {
                 term: '',
+                years: [],
+                genres: [],
                 artists: [],
-                genres: []
+                countries: [],
             }
         }
     },
 
     computed: {
         ...mapGetters({
-            artists: 'shop/allArtists',
+            years: 'shop/allYears',
             genres: 'shop/allGenres',
+            artists: 'shop/allArtists',
+            countries: 'shop/allCountries',
         })
     },
 
@@ -108,6 +158,21 @@ export default {
             this.filters.artists.includes(artist.id) ? _.pull(this.filters.artists, artist.id) : this.filters.artists.push(artist.id)
             this.$emit('change', this.filters)
         },
+
+        selectYear(year) {
+            this.filters.years.includes(year) ? _.pull(this.filters.years, year) : this.filters.years.push(year)
+            this.$emit('change', this.filters)
+        },
+
+        selectCountry(country) {
+            this.filters.countries.includes(country) ? _.pull(this.filters.countries, country) : this.filters.countries.push(country)
+            this.$emit('change', this.filters)
+        },
+
+        clearFilters(type) {
+            this.filters[type] = []
+            this.$emit('change', this.filters)
+        }
     }
 
 }

@@ -1,18 +1,21 @@
 const state = () => ({
     products: [],
     artists: [],
-    genres: []
+    genres: [],
+    years: [],
+    countries: [],
 });
 
 const getters = {
     allProducts: (state) => state.products,
     allArtists: (state) => state.artists,
     allGenres: (state) => state.genres,
+    allYears: (state) => state.years,
+    allCountries: (state) => state.countries,
 };
 
 const actions = {
     getProducts({ commit }, filters = {}) {
-        console.log(555, filters)
         return new Promise((resolve, reject) => {
             axios
                 .get('/shop/vinyl/api', {
@@ -51,6 +54,8 @@ const mutations = {
     setFilterData(state, data) {
         state.artists = data.artists
         state.genres = data.genres
+        state.years = data.years
+        state.countries = data.countries
     },
 };
 

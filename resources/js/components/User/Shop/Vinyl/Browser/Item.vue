@@ -37,9 +37,6 @@
 
 <script>
 
-// import { mapGetters, mapActions } from 'vuex'
-// import BrowserFilters from './Browser/Filters'
-
 export default {
 
     props: ['product'],

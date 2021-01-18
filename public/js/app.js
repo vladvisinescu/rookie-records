@@ -16574,19 +16574,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       drawers: {
-        genres: true,
-        artists: true
+        years: false,
+        genres: false,
+        artists: false,
+        countries: false
       },
       filters: {
         term: '',
+        years: [],
+        genres: [],
         artists: [],
-        genres: []
+        countries: []
       }
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    years: 'shop/allYears',
+    genres: 'shop/allGenres',
     artists: 'shop/allArtists',
-    genres: 'shop/allGenres'
+    countries: 'shop/allCountries'
   })),
   created: function created() {
     this.$store.dispatch('shop/getFilterData');
@@ -16598,6 +16604,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectArtist: function selectArtist(artist) {
       this.filters.artists.includes(artist.id) ? _.pull(this.filters.artists, artist.id) : this.filters.artists.push(artist.id);
+      this.$emit('change', this.filters);
+    },
+    selectYear: function selectYear(year) {
+      this.filters.years.includes(year) ? _.pull(this.filters.years, year) : this.filters.years.push(year);
+      this.$emit('change', this.filters);
+    },
+    selectCountry: function selectCountry(country) {
+      this.filters.countries.includes(country) ? _.pull(this.filters.countries, country) : this.filters.countries.push(country);
+      this.$emit('change', this.filters);
+    },
+    clearFilters: function clearFilters(type) {
+      this.filters[type] = [];
       this.$emit('change', this.filters);
     }
   }
@@ -16616,8 +16634,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-// import { mapGetters, mapActions } from 'vuex'
-// import BrowserFilters from './Browser/Filters'
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
   data: function data() {
@@ -18186,6 +18202,68 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 var _hoisted_15 = {
   "class": "border-t overflow-y-scroll max-h-56"
 };
+var _hoisted_16 = {
+  "class": "border bg-white rounded-lg overflow-hidden"
+};
+var _hoisted_17 = {
+  "class": "flex justify-between px-4 py-2"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+  "class": "h-3 w-3",
+  xmlns: "http://www.w3.org/2000/svg",
+  fill: "none",
+  viewBox: "0 0 24 24",
+  stroke: "currentColor"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M6 18L18 6M6 6l12 12"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "text-xs"
+}, "Clear", -1
+/* HOISTED */
+);
+
+var _hoisted_20 = {
+  "class": "border-t overflow-y-scroll max-h-56"
+};
+var _hoisted_21 = {
+  "class": "border bg-white rounded-lg overflow-hidden"
+};
+var _hoisted_22 = {
+  "class": "flex justify-between px-4 py-2"
+};
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+  "class": "h-3 w-3",
+  xmlns: "http://www.w3.org/2000/svg",
+  fill: "none",
+  viewBox: "0 0 24 24",
+  stroke: "currentColor"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M6 18L18 6M6 6l12 12"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "text-xs"
+}, "Clear", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  "class": "border-t overflow-y-scroll max-h-56"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" This example requires Tailwind CSS v2.0+ "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -18203,7 +18281,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, "Genres"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $data.filters.genres = [];
+      return $options.clearFilters('genres');
     }, ["prevent"])),
     href: "javascript:;",
     "class": "flex items-center text-sm"
@@ -18237,7 +18315,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, "Artists"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $data.filters.artists = [];
+      return $options.clearFilters('artists');
     }, ["prevent"])),
     href: "",
     "class": "flex items-center text-sm"
@@ -18264,7 +18342,75 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.drawers.artists]])])])], 2112
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.drawers.artists]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+    "class": "w-full font-bold text-sm cursor-pointer",
+    onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $data.drawers.years = !$data.drawers.years;
+    }, ["prevent"]))
+  }, "Year"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.clearFilters('years');
+    }, ["prevent"])),
+    href: "",
+    "class": "flex items-center text-sm"
+  }, [_hoisted_18, _hoisted_19])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_20, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.years, function (year) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
+      key: year,
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.selectYear(year);
+      }, ["prevent"]),
+      "class": "flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      "class": [[$data.filters.years.includes(year) ? 'bg-yellow-500' : 'bg-yellow-200'], "inline-flex mr-4 rounded-full h-3 w-3"]
+    }, null, 2
+    /* CLASS */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      "class": "text-sm text-gray-500",
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year)
+    }, null, 8
+    /* PROPS */
+    , ["textContent"])], 8
+    /* PROPS */
+    , ["onClick"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.drawers.years]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+    "class": "w-full font-bold text-sm cursor-pointer",
+    onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $data.drawers.countries = !$data.drawers.countries;
+    }, ["prevent"]))
+  }, "Country"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.clearFilters('countries');
+    }, ["prevent"])),
+    href: "",
+    "class": "flex items-center text-sm"
+  }, [_hoisted_23, _hoisted_24])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_25, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.countries, function (country) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
+      key: country,
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.selectCountry(country);
+      }, ["prevent"]),
+      "class": "flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      "class": [[$data.filters.countries.includes(country) ? 'bg-yellow-500' : 'bg-yellow-200'], "inline-flex mr-4 rounded-full h-3 w-3"]
+    }, null, 2
+    /* CLASS */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      "class": "text-sm text-gray-500",
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(country)
+    }, null, 8
+    /* PROPS */
+    , ["textContent"])], 8
+    /* PROPS */
+    , ["onClick"]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.drawers.countries]])])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -18908,7 +19054,9 @@ var state = function state() {
   return {
     products: [],
     artists: [],
-    genres: []
+    genres: [],
+    years: [],
+    countries: []
   };
 };
 
@@ -18921,13 +19069,18 @@ var getters = {
   },
   allGenres: function allGenres(state) {
     return state.genres;
+  },
+  allYears: function allYears(state) {
+    return state.years;
+  },
+  allCountries: function allCountries(state) {
+    return state.countries;
   }
 };
 var actions = {
   getProducts: function getProducts(_ref) {
     var commit = _ref.commit;
     var filters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    console.log(555, filters);
     return new Promise(function (resolve, reject) {
       axios.get('/shop/vinyl/api', {
         params: _objectSpread({}, filters)
@@ -18962,6 +19115,8 @@ var mutations = {
   setFilterData: function setFilterData(state, data) {
     state.artists = data.artists;
     state.genres = data.genres;
+    state.years = data.years;
+    state.countries = data.countries;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
