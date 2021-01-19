@@ -24,10 +24,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/MenuCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/MenuCart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +193,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/shop/vinyl" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
@@ -197,11 +201,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/resources/views/shop/vinyl" />
       <recent name="$PROJECT_DIR$/resources/js/store/modules/shop" />
       <recent name="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl" />
       <recent name="$PROJECT_DIR$/app/View/Components" />
-      <recent name="$PROJECT_DIR$/resources/views/layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser" />
@@ -241,7 +245,7 @@
       <workItem from="1610628516017" duration="29663000" />
       <workItem from="1610964687445" duration="227000" />
       <workItem from="1610996805631" duration="6611000" />
-      <workItem from="1611054358156" duration="6221000" />
+      <workItem from="1611054358156" duration="13541000" />
     </task>
     <servers />
   </component>

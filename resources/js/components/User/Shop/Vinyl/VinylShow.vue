@@ -2,7 +2,7 @@
     <div class="flex gap-4">
         <div class="w-2/5">
             <div class="relative shadow" style="padding-bottom: 100%;">
-                <img :src="bigImage.resource_url" class="absolute w-full h-full object-cover object-center shadow-lg">
+                <img :src="bigImage.resource_url" class="absolute z-0 w-full h-full object-cover object-center shadow-lg">
             </div>
         </div>
         <div class="w-3/5">
@@ -21,28 +21,40 @@
                     <div class="w-3/5">
                         <ul class="divide-y">
                             <li class="grid grid-cols-2 gap-4 py-1.5">
-                                <span>Condition</span> <span class="font-bold" v-text="vinyl.grading"></span>
+                                <span class="text-gray-500">Condition</span> <span class="font-bold" v-text="vinyl.grading"></span>
                             </li>
                             <li class="grid grid-cols-2 gap-4 py-1.5">
-                                <span>Year</span> <span class="font-bold" v-text="vinyl.year"></span>
+                                <span class="text-gray-500">Year</span> <span class="font-bold" v-text="vinyl.year"></span>
                             </li>
                             <li class="grid grid-cols-2 gap-4 py-1.5">
-                                <span>Country</span> <span class="font-bold" v-text="vinyl.country"></span>
+                                <span class="text-gray-500">Country</span> <span class="font-bold" v-text="vinyl.country"></span>
                             </li>
                         </ul>
                     </div>
                     <div class="w-2/5">
                         <div class="bg-white overflow-hidden shadow sm:rounded-lg">
                             <div class="px-4 py-5 sm:p-6">
-                                2
+                                <a href="">asd2</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="pr-4">
-                    <div class="w-3/5 bg-white shadow-md border-t-2 border-yellow-500 overflow-hidden sm:rounded-lg">
+                    <div class="w-3/5 bg-white shadow-md border-t-2 border-indigo-300 overflow-hidden sm:rounded-lg">
                         <div class="px-4 py-5 sm:p-6">
-                            asd
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl" v-text="'£' + product.price"></span>
+                                <button @click.prevent="addToCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Add to Basket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-4 hidden">
+                    <div class="w-3/5">
+                        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+
                         </div>
                     </div>
                 </div>
@@ -57,7 +69,6 @@ export default {
     props: ['product'],
 
     computed: {
-
         vinyl() {
             return this.product.vinyls[0]
         },
@@ -68,11 +79,13 @@ export default {
     },
 
     created() {
-        console.log(this.product.vinyls)
+        // this.$on('cart-open', (msg) => alert(msg))
     },
 
     methods: {
-
+        addToCart() {
+            this.$root.$emit('item-added', 'it works')
+        }
     }
 
 }

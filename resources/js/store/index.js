@@ -6,6 +6,7 @@ import artists from './modules/desktop/artists'
 import genres from './modules/desktop/genres'
 
 import shop from './modules/shop/shop'
+import cart from './modules/shop/cart'
 
 const store = createStore({
     modules: {
@@ -16,7 +17,7 @@ const store = createStore({
         genres,
 
         // Public Area
-        shop,
+        cart,
     },
 });
 

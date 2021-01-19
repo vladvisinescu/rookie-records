@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\VinylController;
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
@@ -13,6 +14,11 @@ Route::redirect('/shop', '/shop/vinyl');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'shop'], function () {
+
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', [CartController::class, 'getCart'])->name('shop.cart.get');
+        Route::post('/', [CartController::class, 'addToCart'])->name('shop.cart.add');
+    });
 
     Route::group(['prefix' => 'vinyl'], function () {
 

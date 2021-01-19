@@ -6,6 +6,7 @@ import vueDebounce from 'vue-debounce'
 import store from './store';
 
 import Profile from './components/User/Profile';
+import MenuCart from './components/User/Shop/MenuCart';
 import VinylShow from './components/User/Shop/Vinyl/VinylShow';
 import VinylBrowser from './components/User/Shop/Vinyl/VinylBrowser';
 
@@ -19,6 +20,7 @@ app.use(vueDebounce, { listenTo: ['keydown'] })
 
 // Public Area
 app.component('profile', Profile);
+app.component('menu-cart', MenuCart);
 app.component('vinyl-show', VinylShow);
 app.component('vinyl-browser', VinylBrowser);
 
