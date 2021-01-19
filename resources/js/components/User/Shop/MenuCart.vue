@@ -7,17 +7,18 @@
         </span>
         <div class="absolute top-100 p-4 mt-5 bg-white border rounded">
             <ul class="divide-y">
-                <li>asd</li>
-                <li>asd</li>
-                <li>asd</li>
-                <li>asd</li>
-                <li>asd</li>
+                <li v-for="product in products" :key="product.id">
+                    <span v-text="product.name"></span>
+                </li>
             </ul>
         </div>
     </div>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
 
     data() {
@@ -26,8 +27,14 @@ export default {
         }
     },
 
+    computed: {
+        ...mapGetters({
+            products: 'cart/allProducts'
+        }),
+    },
+
     mounted() {
-        this.$store.dispatch('cart/addToCart', 'bla')
+        this.$store.dispatch('cart/getCartSession').then()
     },
 
     methods: {

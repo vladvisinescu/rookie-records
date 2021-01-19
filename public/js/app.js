@@ -16562,12 +16562,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.mjs");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
   },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    products: 'cart/allProducts'
+  })),
   mounted: function mounted() {
-    this.$store.dispatch('cart/addToCart', 'bla');
+    this.$store.dispatch('cart/getCartSession').then();
   },
   methods: {}
 });
@@ -16750,11 +16761,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  created: function created() {// this.$on('cart-open', (msg) => alert(msg))
+  created: function created() {//
   },
   methods: {
     addToCart: function addToCart() {
-      this.$root.$emit('item-added', 'it works');
+      this.$store.dispatch('cart/addToCart', this.product);
     }
   }
 });
@@ -18164,21 +18175,29 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_2 = {
   "class": "absolute top-100 p-4 mt-5 bg-white border rounded"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", {
+};
+var _hoisted_3 = {
   "class": "divide-y"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, "asd"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, "asd"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, "asd"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, "asd"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, "asd")])], -1
-/* HOISTED */
-);
-
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     "class": "relative",
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return _ctx.$root.$emit('cart-open');
     }, ["prevent"]))
-  }, [_hoisted_1, _hoisted_2]);
+  }, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.products, function (product) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
+      key: product.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name)
+    }, null, 8
+    /* PROPS */
+    , ["textContent"])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])]);
 }
 
 /***/ }),
@@ -18971,10 +18990,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.mjs");
-/* harmony import */ var _modules_desktop_products__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/desktop/products */ "./resources/js/store/modules/desktop/products.js");
-/* harmony import */ var _modules_desktop_discogs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/desktop/discogs */ "./resources/js/store/modules/desktop/discogs.js");
-/* harmony import */ var _modules_desktop_artists__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/desktop/artists */ "./resources/js/store/modules/desktop/artists.js");
-/* harmony import */ var _modules_desktop_genres__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/desktop/genres */ "./resources/js/store/modules/desktop/genres.js");
+/* harmony import */ var _modules_desktop_genres__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/desktop/genres */ "./resources/js/store/modules/desktop/genres.js");
+/* harmony import */ var _modules_desktop_artists__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/desktop/artists */ "./resources/js/store/modules/desktop/artists.js");
+/* harmony import */ var _modules_desktop_discogs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/desktop/discogs */ "./resources/js/store/modules/desktop/discogs.js");
+/* harmony import */ var _modules_desktop_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/desktop/products */ "./resources/js/store/modules/desktop/products.js");
 /* harmony import */ var _modules_shop_shop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/shop/shop */ "./resources/js/store/modules/shop/shop.js");
 /* harmony import */ var _modules_shop_cart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/shop/cart */ "./resources/js/store/modules/shop/cart.js");
 
@@ -18987,11 +19006,12 @@ __webpack_require__.r(__webpack_exports__);
 var store = (0,vuex__WEBPACK_IMPORTED_MODULE_6__.createStore)({
   modules: {
     // Admin Area
-    products: _modules_desktop_products__WEBPACK_IMPORTED_MODULE_0__.default,
-    discogs: _modules_desktop_discogs__WEBPACK_IMPORTED_MODULE_1__.default,
-    artists: _modules_desktop_artists__WEBPACK_IMPORTED_MODULE_2__.default,
-    genres: _modules_desktop_genres__WEBPACK_IMPORTED_MODULE_3__.default,
+    genres: _modules_desktop_genres__WEBPACK_IMPORTED_MODULE_0__.default,
+    artists: _modules_desktop_artists__WEBPACK_IMPORTED_MODULE_1__.default,
+    discogs: _modules_desktop_discogs__WEBPACK_IMPORTED_MODULE_2__.default,
+    products: _modules_desktop_products__WEBPACK_IMPORTED_MODULE_3__.default,
     // Public Area
+    shop: _modules_shop_shop__WEBPACK_IMPORTED_MODULE_4__.default,
     cart: _modules_shop_cart__WEBPACK_IMPORTED_MODULE_5__.default
   }
 });
@@ -19359,21 +19379,25 @@ var getters = {
 var actions = {
   addToCart: function addToCart(_ref, data) {
     var commit = _ref.commit;
-    console.log(data); // return new Promise((resolve, reject) => {
-    //     axios
-    //         .post('/shop/cart', {}, { withCredentials: true })
-    //         .then()
-    //         .catch(error => {
-    //             reject(error.response.data)
-    //         })
-    // })
+    return new Promise(function (resolve, reject) {
+      axios.post('/shop/cart', data, {
+        withCredentials: true
+      }).then(function (response) {
+        resolve(response.data);
+      })["catch"](function (error) {
+        reject(error.response.data);
+      });
+    });
   },
   getCartSession: function getCartSession(_ref2) {
     var commit = _ref2.commit;
     return new Promise(function (resolve, reject) {
       axios.get('/shop/cart', {
         withCredentials: true
-      }).then()["catch"](function (error) {
+      }).then(function (response) {
+        commit('setProducts', response.data);
+        resolve(response.data);
+      })["catch"](function (error) {
         reject(error.response.data);
       });
     });

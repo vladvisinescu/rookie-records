@@ -79,12 +79,12 @@ export default {
     },
 
     created() {
-        // this.$on('cart-open', (msg) => alert(msg))
+        //
     },
 
     methods: {
         addToCart() {
-            this.$root.$emit('item-added', 'it works')
+            this.$store.dispatch('cart/addToCart', this.product)
         }
     }
 

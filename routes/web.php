@@ -16,7 +16,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'cart'], function () {
-        Route::get('/', [CartController::class, 'getCart'])->name('shop.cart.get');
+        Route::get('/', [CartController::class, 'getCartSession'])->name('shop.cart.get');
         Route::post('/', [CartController::class, 'addToCart'])->name('shop.cart.add');
     });
 

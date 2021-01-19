@@ -7,13 +7,31 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
 
-    public function getCart(Request $request)
+    public $item = [
+        [
+            'id',
+            'price',
+            'quantity',
+        ]
+    ];
+
+    public function getCartSession(Request $request)
     {
-        return $request->all();
+        $ids = collect($request->session()->get('cart'))->pluck('id');
+
+        return $ids;
     }
 
     public function addToCart(Request $request)
     {
-        return $request->all();
+        $request->session()->push('cart', [
+            'id' => $request->input('id'),
+            'price' => $request->input('price'),
+            'quantity' => 1,
+        ]);
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

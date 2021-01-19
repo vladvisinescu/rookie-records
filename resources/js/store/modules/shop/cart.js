@@ -9,22 +9,26 @@ const getters = {
 const actions = {
 
     addToCart({ commit }, data) {
-        console.log(data)
-        // return new Promise((resolve, reject) => {
-        //     axios
-        //         .post('/shop/cart', {}, { withCredentials: true })
-        //         .then()
-        //         .catch(error => {
-        //             reject(error.response.data)
-        //         })
-        // })
+        return new Promise((resolve, reject) => {
+            axios
+                .post('/shop/cart', data, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data)
+                })
+        })
     },
 
     getCartSession({ commit }) {
         return new Promise((resolve, reject) => {
             axios
                 .get('/shop/cart', { withCredentials: true })
-                .then()
+                .then(response => {
+                    commit('setProducts', response.data)
+                    resolve(response.data)
+                })
                 .catch(error => {
                     reject(error.response.data)
                 })
