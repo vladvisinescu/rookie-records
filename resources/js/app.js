@@ -6,7 +6,9 @@ import vueDebounce from 'vue-debounce'
 import store from './store';
 
 import Profile from './components/User/Profile';
+import VinylShow from './components/User/Shop/Vinyl/VinylShow';
 import VinylBrowser from './components/User/Shop/Vinyl/VinylBrowser';
+
 import ProductList from './components/Desktop/Products/ProductList';
 import ProductCreate from './components/Desktop/Products/ProductCreate';
 
@@ -17,6 +19,7 @@ app.use(vueDebounce, { listenTo: ['keydown'] })
 
 // Public Area
 app.component('profile', Profile);
+app.component('vinyl-show', VinylShow);
 app.component('vinyl-browser', VinylBrowser);
 
 // Admin Area

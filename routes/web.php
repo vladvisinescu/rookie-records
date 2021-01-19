@@ -15,12 +15,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'vinyl'], function () {
-        Route::get('/', [VinylController::class, 'index'])->name('shop.index');
 
         Route::group(['prefix' => 'api'], function () {
             Route::get('/', [VinylController::class, 'getVinyls'])->name('shop.vinyl');
             Route::get('/filter-data', [VinylController::class, 'getFilterData'])->name('shop.vinyl.filter-data');
         });
+
+        Route::get('/', [VinylController::class, 'index'])->name('shop.index');
+        Route::get('/{slug}', [VinylController::class, 'show'])->name('shop.vinyl.show');
     });
 });
 

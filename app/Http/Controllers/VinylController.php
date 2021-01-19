@@ -16,6 +16,15 @@ class VinylController extends Controller
         return view('shop.vinyl.index');
     }
 
+    public function show($slug)
+    {
+        $product = Product::where('slug', $slug)->with(['vinyls', 'vinyls.artists', 'vinyls.genres'])->first();
+
+        return view('shop.vinyl.show', [
+            'product' => $product
+        ]);
+    }
+
     public function getVinyls(Request $request)
     {
         $products = Product::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);

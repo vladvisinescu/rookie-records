@@ -1,0 +1,79 @@
+<template>
+    <div class="flex gap-4">
+        <div class="w-2/5">
+            <div class="relative shadow" style="padding-bottom: 100%;">
+                <img :src="bigImage.resource_url" class="absolute w-full h-full object-cover object-center shadow-lg">
+            </div>
+        </div>
+        <div class="w-3/5">
+            <div class="flex flex-col gap-4">
+                <div class="w-full">
+                    <h2 v-text="product.title" class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate"></h2>
+                    <div class="mb-2">
+                        <span class="text-gray-500">by </span>
+                        <span v-text="vinyl.artists.map(artist => artist.name).join(', ')"></span>
+                    </div>
+                    <div>
+                        <span v-for="genre in vinyl.genres" :key="genre.id" v-text="genre.name" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 mr-1"></span>
+                    </div>
+                </div>
+                <div class="flex w-full gap-4">
+                    <div class="w-3/5">
+                        <ul class="divide-y">
+                            <li class="grid grid-cols-2 gap-4 py-1.5">
+                                <span>Condition</span> <span class="font-bold" v-text="vinyl.grading"></span>
+                            </li>
+                            <li class="grid grid-cols-2 gap-4 py-1.5">
+                                <span>Year</span> <span class="font-bold" v-text="vinyl.year"></span>
+                            </li>
+                            <li class="grid grid-cols-2 gap-4 py-1.5">
+                                <span>Country</span> <span class="font-bold" v-text="vinyl.country"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-2/5">
+                        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pr-4">
+                    <div class="w-3/5 bg-white shadow-md border-t-2 border-yellow-500 overflow-hidden sm:rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            asd
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+    props: ['product'],
+
+    computed: {
+
+        vinyl() {
+            return this.product.vinyls[0]
+        },
+
+        bigImage() {
+            return _.find(this.vinyl.images, (image) => image.type === 'primary' || image.type === 'secondary')
+        }
+    },
+
+    created() {
+        console.log(this.product.vinyls)
+    },
+
+    methods: {
+
+    }
+
+}
+</script>
