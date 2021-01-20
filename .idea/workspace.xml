@@ -25,12 +25,11 @@
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/MenuCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/MenuCart.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +242,7 @@
       <workItem from="1610628516017" duration="29663000" />
       <workItem from="1610964687445" duration="227000" />
       <workItem from="1610996805631" duration="6611000" />
-      <workItem from="1611054358156" duration="17347000" />
+      <workItem from="1611054358156" duration="20948000" />
     </task>
     <servers />
   </component>

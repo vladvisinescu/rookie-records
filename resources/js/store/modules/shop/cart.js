@@ -55,6 +55,7 @@ const actions = {
 
 const mutations = {
     setProducts(state, data) {
+        console.log(666,  data)
         state.products = data
     },
   };

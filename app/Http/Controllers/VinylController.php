@@ -18,6 +18,7 @@ class VinylController extends Controller
 
     public function show($slug)
     {
+//        session()->flush();
         $product = Product::where('slug', $slug)->with(['vinyls', 'vinyls.artists', 'vinyls.genres'])->first();
 
         return view('shop.vinyl.show', [
