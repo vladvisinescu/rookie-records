@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased {{ $bodyClass }}" id="app">
-        @include('layouts.navigation')
+        @include('layouts.navigation-shop')
 
         <!-- Page Heading -->
         @if(isset($header))

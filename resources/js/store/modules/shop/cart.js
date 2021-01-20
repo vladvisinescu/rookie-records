@@ -4,6 +4,16 @@ const state = () => ({
 
 const getters = {
     allProducts: (state) => state.products,
+    cartTotal: (state) => {
+
+        if (!state.products.length) {
+            return 0;
+        }
+
+        return state.products.map(item => {
+            return item.price * item.quantity
+        }).reduce((accumulator, currentValue) => accumulator + currentValue)
+    }
 };
 
 const actions = {
@@ -12,6 +22,19 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .post('/shop/cart', data, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data)
+                })
+        })
+    },
+
+    removeFromCart({ commit }, product) {
+        return new Promise((resolve, reject) => {
+            axios
+                .delete('/shop/cart/' + product.id, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 })
@@ -55,7 +78,6 @@ const actions = {
 
 const mutations = {
     setProducts(state, data) {
-        console.log(666,  data)
         state.products = data
     },
   };

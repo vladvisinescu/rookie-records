@@ -15,9 +15,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'shop'], function () {
 
+    Route::group(['prefix' => 'checkout'], function () {
+        Route::get('/', [CartController::class, 'getCartSession'])->name('shop.cart.get');
+    });
+
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/', [CartController::class, 'getCartSession'])->name('shop.cart.get');
         Route::post('/', [CartController::class, 'addToCart'])->name('shop.cart.add');
+        Route::delete('/{id}', [CartController::class, 'removeFromCart'])->name('shop.cart.add');
     });
 
     Route::group(['prefix' => 'vinyl'], function () {

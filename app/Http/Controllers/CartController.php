@@ -7,15 +7,6 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-
-    public $item = [
-        [
-            'id',
-            'price',
-            'quantity',
-        ]
-    ];
-
     public function getCartSession(Request $request)
     {
         $ids = collect($request->session()->get('cart'))->pluck('id');
@@ -27,7 +18,9 @@ class CartController extends Controller
                 function ($item) use ($product) {
                     return $item['id'] == $product->id;
                 }
-            )[0]['quantity'];
+            );
+
+            $quantity = reset($quantity)['quantity'];
 
 //            dd($quantity);
 
@@ -44,7 +37,6 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-
         $request->session()->push('cart', [
             'id' => $request->input('id'),
             'price' => $request->input('price'),
@@ -54,5 +46,10 @@ class CartController extends Controller
         return response()->json([
             'success' => true
         ]);
+    }
+
+    public function removeFromCart($id)
+    {
+
     }
 }

@@ -1,12 +1,12 @@
 <template>
-    <div class="flex gap-4">
+    <div class="flex gap-8">
         <div class="w-2/5">
             <div class="relative shadow" style="padding-bottom: 100%;">
                 <img :src="bigImage.resource_url" class="absolute z-0 w-full h-full object-cover object-center shadow-lg">
             </div>
         </div>
         <div class="w-3/5">
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-8">
                 <div class="w-full">
                     <h2 v-text="product.title" class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate"></h2>
                     <div class="mb-2">
@@ -31,13 +31,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-2/5">
-                        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                            <div class="px-4 py-5 sm:p-6">
-                                <a href="">asd2</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="pr-4">
                     <div class="w-3/5 bg-white shadow-md border-t-2 border-indigo-300 overflow-hidden sm:rounded-lg">
