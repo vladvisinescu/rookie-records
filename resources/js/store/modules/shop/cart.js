@@ -5,14 +5,11 @@ const state = () => ({
 const getters = {
     allProducts: (state) => state.products,
     cartTotal: (state) => {
-
-        if (!state.products.length) {
+        if (state.products.length < 1) {
             return 0;
         }
 
-        return state.products.map(item => {
-            return item.price * item.quantity
-        }).reduce((accumulator, currentValue) => accumulator + currentValue)
+        return _(state.products).map((item) => item.price * item.quantity).sum()
     }
 };
 
@@ -31,10 +28,10 @@ const actions = {
         })
     },
 
-    removeFromCart({ commit }, product) {
+    removeFromCart({ commit }, id) {
         return new Promise((resolve, reject) => {
             axios
-                .delete('/shop/cart/' + product.id, { withCredentials: true })
+                .delete('/shop/cart/' + id, { withCredentials: true })
                 .then(response => {
                     resolve(response.data)
                 })

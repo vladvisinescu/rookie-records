@@ -1,8 +1,8 @@
-<x-app-layout>
+<x-shop-layout>
 
     @slot('banner')
         BANNER PLACEHOLDER
     @endslot
 
     <Profile />
-</x-app-layout>
+</x-shop-layout>

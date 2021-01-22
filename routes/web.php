@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\VinylController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
 
@@ -16,7 +17,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'checkout'], function () {
-        Route::get('/', [CartController::class, 'getCartSession'])->name('shop.cart.get');
+        Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
+
+        Route::group(['prefix' => 'api'], function () {
+            Route::get('/products', [CheckoutController::class, 'getAllProducts']);
+        });
     });
 
     Route::group(['prefix' => 'cart'], function () {
@@ -38,7 +43,7 @@ Route::group(['prefix' => 'shop'], function () {
 });
 
 // Admin Area
-Route::group(['prefix' => 'desktop'], function () {
+Route::group(['prefix' => 'desktop', 'middleware' => ['permissions.role:super_admin']], function () {
 
     Route::get('/', [DesktopController::class, 'home']);
 

@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Models\ProductDetails\Artist;
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class VinylController extends Controller
@@ -18,7 +17,6 @@ class VinylController extends Controller
 
     public function show($slug)
     {
-//        session()->flush();
         $product = Product::where('slug', $slug)->with(['vinyls', 'vinyls.artists', 'vinyls.genres'])->first();
 
         return view('shop.vinyl.show', [

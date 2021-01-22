@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
+use Gloudemans\Shoppingcart\CanBeBought;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,7 +28,7 @@ use Spatie\Sluggable\SlugOptions;
  *
  * @method  mixed description
  */
-class Product extends Model
+class Product extends Model implements Buyable
 {
     use HasSlug;
     use HasFactory;
@@ -47,9 +49,21 @@ class Product extends Model
         return $this->hasMany(Vinyl::class, 'product_id', 'id');
     }
 
-    public function getInCartAttribute()
+    public function getRelated($count = 8)
     {
-        return collect(session()->get('cart'))->only('id')->has($this->getKey());
+        $products = self::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
+
+        $genres = $this->vinyls()->first()->genres()->get()->map(function ($genre) {
+            return $genre->id;
+        })->all();
+
+        $products = $products->whereHas(
+            'vinyls.genres', function ($query) use ($genres) {
+                $query->whereIn('genres.id', $genres);
+            },
+        )->inRandomOrder()->take($count);
+
+        return $products->get();
     }
 
     public function toSearchableArray(): array
@@ -58,6 +72,11 @@ class Product extends Model
             'id' => $this->id,
             'title' => $this->title,
         ];
+    }
+
+    public function getInCartAttribute()
+    {
+        return collect(session()->get('cart'))->only('id')->has($this->getKey());
     }
 
     public function getDateCreatedHumanAttribute(): string
@@ -73,5 +92,26 @@ class Product extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
+    }
+
+
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
+
+    public function getBuyableDescription($options = null)
+    {
+        return $this->title;
+    }
+
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
+
+    public function getBuyableWeight($options = null)
+    {
+        return 1;
     }
 }

@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         Artisan::call('permission:create-role super_admin');
         Artisan::call('permission:create-role user');
 
