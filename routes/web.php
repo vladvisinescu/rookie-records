@@ -16,7 +16,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'shop'], function () {
 
-    Route::group(['prefix' => 'checkout'], function () {
+    Route::group(['prefix' => 'checkout', 'middleware' => ['auth']], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
 
         Route::group(['prefix' => 'api'], function () {

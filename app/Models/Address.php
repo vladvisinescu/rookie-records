@@ -8,6 +8,14 @@ class Address extends Model
 {
     protected $table = 'addresses';
 
+    protected $casts = [
+        'is_default' => 'boolean'
+    ];
+
+    protected $fillable = [
+        'address_1', 'address_2', 'town', 'county', 'country', 'postcode', 'user_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

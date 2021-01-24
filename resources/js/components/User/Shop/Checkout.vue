@@ -52,14 +52,31 @@
                 </span>
             </div>
         </div>
+        <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
+            <ul class="divide-y divide-gray-200">
+                <li v-for="address in addresses" :key="address.id" class="px-4 py-4 sm:px-6">
+                    <div class="flex flex-col">
+                        <span v-text="address.type"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="" v-else>
+            <AddressForm />
+        </div>
     </div>
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
+import AddressForm from "./AddressForm";
 
 export default {
+
+    components: {
+        AddressForm
+    },
 
     data() {
         return {}
@@ -68,8 +85,13 @@ export default {
     computed: {
         ...mapGetters({
             products: 'cart/allProducts',
+            addresses: 'address/allAddresses',
             cartTotal: 'cart/cartTotal',
         }),
+
+        hasAddresses() {
+            return _.size(this.addresses) > 0
+        }
     },
 
     created() {

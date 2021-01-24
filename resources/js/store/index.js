@@ -8,6 +8,7 @@ import products from './modules/desktop/products'
 import shop from './modules/shop/shop'
 import cart from './modules/shop/cart'
 import checkout from './modules/shop/checkout'
+import address from './modules/shop/address'
 
 const store = createStore({
     modules: {
@@ -21,6 +22,7 @@ const store = createStore({
         shop,
         cart,
         checkout,
+        address,
     },
 });
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Desktop\ArtistsController;
 use App\Http\Controllers\Desktop\GenresController;
 use App\Http\Controllers\Desktop\DiscogsController;
@@ -38,4 +39,11 @@ Route::group(['prefix' => 'genres', 'middleware' => 'auth:sanctum'], function ()
 
     Route::get('/', [GenresController::class, 'getAllGenres']);
     Route::post('/', [GenresController::class, 'createGenre']);
+});
+
+Route::group(['prefix' => 'addresses'], function () {
+
+    Route::get('/', [AddressController::class, 'getAllAddresses']);
+    Route::post('/', [AddressController::class, 'saveAddress']);
+    Route::delete('/{address}', [AddressController::class, 'deleteAddress']);
 });
