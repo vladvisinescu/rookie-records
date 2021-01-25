@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 pt-4">
         <div>
-            <label for="postcode_lookup" class="block text-sm font-medium text-gray-700">Account number</label>
-            <div class="mt-1 relative rounded-md shadow-sm">
+            <label for="postcode_lookup" class="block text-sm font-medium text-gray-700 hidden">Account number</label>
+            <div class="relative rounded-md shadow-sm">
                 <input v-model="address.lookup" type="text" id="postcode_lookup" style="font-size: 20px; " autocomplete="new-password" class="focus:ring-indigo-500 focus:border-indigo-500 font-3xl block w-full py-2.5 pr-10 sm:text-sm border-transparent rounded-md" placeholder="Postcode">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <!-- Heroicon name: question-mark-circle -->
@@ -92,7 +92,7 @@ export default {
 
     methods: {
         saveAddress() {
-            this.$store.dispatch('address/saveAddress', this.address)
+            this.$store.dispatch('address/saveAddress', this.address).then(() => this.$store.dispatch('address/getAddresses'))
         }
     }
 }

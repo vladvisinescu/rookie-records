@@ -21,9 +21,9 @@ class CreateAddressesTable extends Migration
 
             $table->string('postcode');
             $table->string('type');
-            $table->string('flat_no');
-            $table->string('house_name');
-            $table->string('house_no');
+            $table->string('flat_no')->nullable();
+            $table->string('house_name')->nullable();
+            $table->string('house_no')->nullable();
             $table->string('address_1');
             $table->string('address_2')->nullable();
             $table->string('town');

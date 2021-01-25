@@ -54,15 +54,43 @@
         </div>
         <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
-                <li v-for="address in addresses" :key="address.id" class="px-4 py-4 sm:px-6">
-                    <div class="flex flex-col">
-                        <span v-text="address.type"></span>
+                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6">
+                    <div class="flex flex-shrink items-center pr-4">
+                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" checked>
+                    </div>
+                    <div class="flex flex-grow">
+                        <div>
+                            <span v-text="address.type"></span>
+                        </div>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="" v-else>
-            <AddressForm />
+        <a @click.prevent="createsNewAddress = !createsNewAddress" href="javascript:;" class="inline-flex text-gray-500 text-sm cursor-pointer pt-4" v-if="hasAddresses">
+            <svg class="inline-flex h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+            Add address
+        </a>
+        <transition
+            enter-active-class="transition ease-out duration-100"
+            enter-from-class="transform opacity-0 scale-95"
+            enter-to-class="transform opacity-100 scale-100"
+
+            leave-active-class="transition ease-in duration-75"
+            leave-from-class="transform opacity-100 scale-100"
+            leave-to-class="transform opacity-0 scale-95">
+            <AddressForm v-show="!hasAddresses || createsNewAddress"  />
+        </transition>
+        <div class="relative my-4">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-start">
+                <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-500">
+                  Contact Details
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -79,7 +107,9 @@ export default {
     },
 
     data() {
-        return {}
+        return {
+            createsNewAddress: false
+        }
     },
 
     computed: {

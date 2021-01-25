@@ -17,9 +17,9 @@ class AddressController extends Controller
 
     public function saveAddress(CreateAddressRequest $request)
     {
-        $address = $request->user()->addresses()->save([
-//            'user_id' => Auth::user()->id,
-
+        $address = $request->user()->addresses()->create([
+            'type' => 'delivery',
+            'default' => true,
             'address_1' => $request->input('address_1'),
             'address_2' => $request->input('address_2'),
             'town' => $request->input('town'),

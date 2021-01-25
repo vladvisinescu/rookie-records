@@ -49,6 +49,7 @@ module.exports = {
 
     plugins: [
         require('@tailwindcss/forms'),
-        require('tailwindcss-textshadow')
+        require('tailwindcss-textshadow'),
+        require('@tailwindcss/line-clamp'),
     ],
 };
