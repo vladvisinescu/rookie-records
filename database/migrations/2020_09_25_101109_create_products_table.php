@@ -41,6 +41,7 @@ class CreateProductsTable extends Migration
             $table->string('year')->limit(4)->nullable();
             $table->string('country')->nullable();
             $table->string('grading')->nullable();
+            $table->text('images')->nullable();
             $table->text('description')->nullable();
             $table->text('discogs_image_url')->nullable();
 

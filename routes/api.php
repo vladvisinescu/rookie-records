@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\Desktop\ArtistsController;
 use App\Http\Controllers\Desktop\GenresController;
 use App\Http\Controllers\Desktop\DiscogsController;
 use App\Http\Controllers\Desktop\ProductsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,9 +43,21 @@ Route::group(['prefix' => 'genres', 'middleware' => 'auth:sanctum'], function ()
     Route::post('/', [GenresController::class, 'createGenre']);
 });
 
-Route::group(['prefix' => 'addresses'], function () {
+Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function () {
 
     Route::get('/', [AddressController::class, 'getAllAddresses']);
     Route::post('/', [AddressController::class, 'saveAddress']);
     Route::delete('/{address}', [AddressController::class, 'deleteAddress']);
+});
+
+Route::group(['prefix' => 'contacts', 'middleware' => 'auth:sanctum'], function () {
+
+    Route::get('/', [ContactDetailsController::class, 'getAllContacts']);
+    Route::post('/', [ContactDetailsController::class, 'saveContact']);
+    Route::delete('/{contact}', [ContactDetailsController::class, 'deleteContact']);
+});
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth:sanctum'], function () {
+
+    Route::get('/', [UserController::class, 'getUser']);
 });

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         Artisan::call('permission:create-role user');
 
         $user = User::factory([
-            'name' => 'Vlad Visinescu',
+            'first_name' => 'Vlad',
+            'last_name' => 'Visinescu',
             'email' => 'hello@rookie-records.co.uk',
             'password' => bcrypt('honterus'),
             'email_verified_at' => now(),
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
 //            ->has(
 //                Product::factory()->count(20)
 //            )
-            ->count(10)
+            ->count(100)
             ->create()->each->assignRole('user');
     }
 }

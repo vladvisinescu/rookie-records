@@ -1,7 +1,7 @@
 <template>
     <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="space-y-2" aria-label="Sidebar">
-        <div>
+        <div class="hidden">
             <div class="flex rounded-md shadow-sm">
                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

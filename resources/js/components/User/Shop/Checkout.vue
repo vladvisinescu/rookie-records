@@ -59,8 +59,14 @@
                         <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" checked>
                     </div>
                     <div class="flex flex-grow">
-                        <div>
-                            <span v-text="address.type"></span>
+                        <div class="flex flex-col">
+                            <span v-text="address.address_1" class="font-bold font-lg"></span>
+                            <span v-text="address.address_2" class="text-sm"></span>
+                            <p>
+                                <span v-text="address.town" class="text-sm"></span>,
+                                <span v-text="address.county" class="text-sm"></span>
+                            </p>
+                            <span v-text="address.country" class="text-sm"></span>
                         </div>
                     </div>
                 </li>
@@ -80,7 +86,7 @@
             leave-active-class="transition ease-in duration-75"
             leave-from-class="transform opacity-100 scale-100"
             leave-to-class="transform opacity-0 scale-95">
-            <AddressForm v-show="!hasAddresses || createsNewAddress"  />
+            <AddressForm v-show="!hasAddresses || createsNewAddress" />
         </transition>
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -92,6 +98,7 @@
                 </span>
             </div>
         </div>
+        <ContactDetailsForm />
     </div>
 </template>
 
@@ -99,11 +106,12 @@
 
 import { mapGetters } from 'vuex'
 import AddressForm from "./AddressForm";
+import ContactDetailsForm from "./ContactDetailsForm";
 
 export default {
 
     components: {
-        AddressForm
+        AddressForm, ContactDetailsForm
     },
 
     data() {
