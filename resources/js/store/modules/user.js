@@ -8,7 +8,6 @@ const getters = {
 
 const actions = {
 
-
 };
 
 const mutations = {

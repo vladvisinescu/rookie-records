@@ -86,7 +86,7 @@
             leave-active-class="transition ease-in duration-75"
             leave-from-class="transform opacity-100 scale-100"
             leave-to-class="transform opacity-0 scale-95">
-            <AddressForm v-show="!hasAddresses || createsNewAddress" />
+            <AddressForm v-show="!hasAddresses || createsNewAddress" @added="createsNewAddress = false" />
         </transition>
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">

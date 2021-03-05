@@ -20,7 +20,7 @@ Route::group(['prefix' => 'shop'], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
 
         Route::group(['prefix' => 'api'], function () {
-            Route::get('/products', [CheckoutController::class, 'getAllProducts']);
+            Route::get('/product2s', [CheckoutController::class, 'getAllProducts']);
         });
     });
 

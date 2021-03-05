@@ -50,6 +50,12 @@
                 </div>
             </div>
         </div>
+        <div class="flex">
+            <label for="description" class="block text-sm font-medium text-gray-700 sr-only">Description</label>
+            <div class="flex w-full">
+                <textarea v-model="address.description" rows="4" placeholder="Special instructions, if any..." id="description" name="description" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md"></textarea>
+            </div>
+        </div>
         <div class="flex justify-end">
             <button @click.prevent="saveAddress" type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -76,6 +82,7 @@ export default {
                 county: '',
                 country: '',
                 postcode: '',
+                description: '',
             }
         }
     },
@@ -92,7 +99,12 @@ export default {
 
     methods: {
         saveAddress() {
-            this.$store.dispatch('address/saveAddress', this.address).then(() => this.$store.dispatch('address/getAddresses'))
+            this.$store.dispatch('address/saveAddress', this.address).then(
+                () => {
+                    this.$store.dispatch('address/getAddresses')
+                    this.$emit('added')
+                }
+            )
         }
     }
 }

@@ -9,7 +9,6 @@ import shop from './modules/shop/shop'
 import cart from './modules/shop/cart'
 import checkout from './modules/shop/checkout'
 import address from './modules/shop/address'
-import contact from './modules/shop/contact_details'
 
 const store = createStore({
     modules: {
@@ -24,7 +23,6 @@ const store = createStore({
         cart,
         checkout,
         address,
-        contact,
     },
 });
 

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -46,6 +47,7 @@ class ProductsController extends Controller
         $product->description = $request->input('description');
         $product->product_type = 'vinyl';
         $product->price = $request->input('price');
+        $product->uuid = Str::uuid();
 
         $product->user()->associate(Auth::user());
         $product->save();
