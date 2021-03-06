@@ -10,6 +10,8 @@ import cart from './modules/shop/cart'
 import checkout from './modules/shop/checkout'
 import address from './modules/shop/address'
 
+import user from './modules/user'
+
 const store = createStore({
     modules: {
         // Admin Area
@@ -23,6 +25,7 @@ const store = createStore({
         cart,
         checkout,
         address,
+        user
     },
 });
 

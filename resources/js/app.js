@@ -20,6 +20,8 @@ const app = createApp({})
 app.use(store);
 app.use(vueDebounce, { listenTo: ['keydown'] })
 
+store.dispatch('user/getUser')
+
 // Public Area
 app.component('profile', Profile);
 app.component('checkout', Checkout);

@@ -54,9 +54,9 @@
         </div>
         <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
-                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6">
+                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.id">
                     <div class="flex flex-shrink items-center pr-4">
-                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" checked>
+                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.id === address_id">
                     </div>
                     <div class="flex flex-grow">
                         <div class="flex flex-col">
@@ -74,10 +74,12 @@
         </div>
         <a @click.prevent="createsNewAddress = !createsNewAddress" href="javascript:;" class="inline-flex text-gray-500 text-sm cursor-pointer pt-4" v-if="hasAddresses">
             <svg class="inline-flex h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                <path v-if="!createsNewAddress" fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                <path v-else fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
-            Add address
+            <span v-text="createsNewAddress ? 'Hide' : 'Add address'"></span>
         </a>
+
         <transition
             enter-active-class="transition ease-out duration-100"
             enter-from-class="transform opacity-0 scale-95"
@@ -116,7 +118,8 @@ export default {
 
     data() {
         return {
-            createsNewAddress: false
+            createsNewAddress: false,
+            address_id: null,
         }
     },
 
@@ -133,7 +136,7 @@ export default {
     },
 
     created() {
-        this.$store.dispatch('checkout/getProducts')
+        this.$store.dispatch('address/getAddresses')
     },
 
     methods: {

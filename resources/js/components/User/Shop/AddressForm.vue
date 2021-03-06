@@ -1,5 +1,25 @@
 <template>
     <div class="flex flex-col gap-4 pt-4">
+        <div class="rounded-md bg-red-50 p-4" v-if="hasErrors">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <!-- Heroicon name: solid/x-circle -->
+                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">
+                        There were {{ errors.length }} errors with your submission
+                    </h3>
+                    <div class="mt-2 text-sm text-red-700">
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li v-for="error in errors" v-text="error[0]"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <label for="postcode_lookup" class="block text-sm font-medium text-gray-700 hidden">Account number</label>
             <div class="relative rounded-md shadow-sm">
@@ -83,18 +103,19 @@ export default {
                 country: '',
                 postcode: '',
                 description: '',
-            }
+            },
+            errors: []
         }
     },
 
     computed: {
-        ...mapGetters({
-            addresses: 'address/allAddresses'
-        }),
+        hasErrors() {
+            return _.size(this.errors) > 0
+        }
     },
 
     created() {
-        this.$store.dispatch('address/getAddresses')
+        //
     },
 
     methods: {
@@ -104,7 +125,7 @@ export default {
                     this.$store.dispatch('address/getAddresses')
                     this.$emit('added')
                 }
-            )
+            ).catch(errors => this.errors = errors)
         }
     }
 }

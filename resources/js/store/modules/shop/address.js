@@ -28,11 +28,10 @@ const actions = {
             axios
                 .post('/api/addresses', { ...data }, { withCredentials: true })
                 .then(response => {
-                    console.log(response.data)
                     resolve(response.data)
                 })
                 .catch(error => {
-                    reject(error.response.data)
+                    reject(error.response.data.errors)
                 })
         })
     },
