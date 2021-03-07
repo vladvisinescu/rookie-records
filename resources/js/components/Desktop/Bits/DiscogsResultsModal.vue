@@ -22,8 +22,7 @@
 
                     leave-active-class="ease-in duration-200"
                     leave-from-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
+                    leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                         <div class="flex justify-between bg-gray-50 border-b border-gray-300 font-medium px-4 py-3 sm:px-6">
                             <h2 class="text-lg">Results</h2>

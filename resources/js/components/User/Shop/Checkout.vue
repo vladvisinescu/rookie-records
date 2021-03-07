@@ -1,11 +1,18 @@
 <template>
+    <ConfirmModal :color="'red'" :open="deletesProduct.modal" :data="{ product_id: deletesProduct.id }" @confirm="removeProduct" @cancel="deletesProduct.modal = false">
+        <template v-slot:icon>
+            <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+        </template>
+        <template v-slot:title>Are you sure?</template>
+    </ConfirmModal>
     <div class="w-1/2 mx-auto">
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-4xl font-extralight text-gray-500">Your order</h2>
             <div>
                 <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Payment
-                    <!-- Heroicon name: mail -->
                     <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -17,9 +24,7 @@
                 <div class="w-full border-t border-gray-300"></div>
             </div>
             <div class="relative flex justify-start">
-                <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-500">
-                  Products
-                </span>
+                <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-500">Products</span>
             </div>
         </div>
         <div class="bg-white shadow overflow-hidden rounded-md">
@@ -33,7 +38,7 @@
                             <span v-if="product.quantity > 1" v-text="product.quantity + ' x '" class="text-gray-400 mr-1"></span>
                             <span v-text="'£' + product.price"></span>
                         </div>
-                        <a @click.prevent="removeProduct(id)" href="javascript:;" class="text-red-400 pl-3 pr-6 py-4 hover:text-red-600">
+                        <a @click.prevent="deletesProduct.modal = true; deletesProduct.id = id;" href="#" class="text-red-400 pl-3 pr-6 py-4 hover:text-red-600">
                             <svg class="inline-flex w-4 h-4 transition-all" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
@@ -109,16 +114,23 @@
 import { mapGetters } from 'vuex'
 import AddressForm from "./AddressForm";
 import ContactDetailsForm from "./ContactDetailsForm";
+import ConfirmModal from "../../Bits/modals/ConfirmModal";
 
 export default {
 
     components: {
-        AddressForm, ContactDetailsForm
+        ConfirmModal,
+        AddressForm,
+        ContactDetailsForm
     },
 
     data() {
         return {
             createsNewAddress: false,
+            deletesProduct: {
+                modal: false,
+                id: null,
+            },
             address_id: null,
         }
     },
@@ -140,8 +152,11 @@ export default {
     },
 
     methods: {
-        removeProduct(id) {
-            this.$store.dispatch('cart/removeFromCart', id).then(() => this.$store.dispatch('cart/getCartSession'))
+        removeProduct(data) {
+            this.$store.dispatch('cart/removeFromCart', data.product_id).then(() => {
+                this.$store.dispatch('cart/getCartSession')
+                this.deletesProduct.modal = false
+            })
         },
     },
 }
