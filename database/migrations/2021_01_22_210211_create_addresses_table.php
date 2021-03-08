@@ -18,6 +18,7 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id');
+            $table->string('uuid');
 
             $table->string('postcode');
             $table->string('type');

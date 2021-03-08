@@ -3,35 +3,32 @@ const state = () => ({
 });
 
 const getters = {
-    allProducts: (state) => state.products,
-    cartTotal: (state) => {
-        //
-    }
+    //
 };
 
 const actions = {
-    getProducts({ commit }, filters = {}) {
+    submitOrder({ commit }, data) {
         return new Promise((resolve, reject) => {
             axios
-                .get('/shop/checkout/api/products', {
+                .post('/shop/checkout/submit', data, {
                     withCredentials: true
                 })
                 .then(response => {
-                    commit('setProducts', response.data)
+                    console.log(response.data)
+
+                    commit('', response.data)
                     resolve(response.data)
                 })
                 .catch(error => {
-                    reject(error.response.data)
+                    reject(error.response.data.errors)
                 })
         })
     },
 };
 
 const mutations = {
-    setProducts(state, data) {
-        state.products = data
-    },
-  };
+    //
+};
 
 export default {
     namespaced: true,

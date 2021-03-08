@@ -50,11 +50,25 @@
                 </span>
             </div>
         </div>
+        <div class="rounded-md bg-red-50 p-4 mb-4" v-if="errors.address_id">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">
+                        Please choose a delivery address.
+                    </h3>
+                </div>
+            </div>
+        </div>
         <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
-                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.id">
+                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.uuid">
                     <div class="flex flex-shrink items-center pr-4">
-                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.id === address_id">
+                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.uuid === address_id">
                     </div>
                     <div class="flex flex-grow">
                         <div class="flex flex-col">
@@ -98,7 +112,7 @@
                 </span>
             </div>
         </div>
-        <ContactDetailsForm />
+        <ContactDetailsForm :user="user" :errors="errors" />
 
         <div>
             <div class="relative my-4">
@@ -116,7 +130,12 @@
         </div>
 
         <div class="flex justify-end mt-6">
-            <button type="button" class="w-1/2 text-right inline-flex justify-between items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button
+                @click.prevent="submitOrder"
+                :class="cardCompleted ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-300'"
+                :disabled="!cardCompleted"
+                type="button"
+                class="w-1/2 text-right inline-flex justify-between items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Submit order
                 <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -155,6 +174,8 @@ export default {
 
             stripe: {},
             cardElement: {},
+            cardCompleted: false,
+            errors: {}
         }
     },
 
@@ -162,6 +183,7 @@ export default {
         ...mapGetters({
             products: 'cart/allProducts',
             addresses: 'address/allAddresses',
+            user: 'user/getUser',
             cartTotal: 'cart/cartTotal',
         }),
 
@@ -181,6 +203,12 @@ export default {
         })
 
         this.cardElement.mount('#card-element')
+
+        this.cardElement.on('change', event => {
+            if (event.complete) {
+                this.cardCompleted = true
+            }
+        })
     },
 
     created() {
@@ -192,6 +220,39 @@ export default {
             this.$store.dispatch('cart/removeFromCart', data.product_id).then(() => {
                 this.$store.dispatch('cart/getCartSession')
                 this.deletesProduct.modal = false
+            })
+        },
+
+        async submitOrder() {
+            this.errors = {}
+
+            const { paymentMethod, error } =  await this.stripe.createPaymentMethod(
+                'card', this.cardElement, {
+                    billing_details: {
+                        name: this.user.first_name + ' ' + this.user.last_name,
+                        email: this.user.email,
+                    }
+                }
+            )
+
+            if (paymentMethod) {
+                console.log(paymentMethod.id)
+            }
+
+            if (error) {
+                alert(error)
+            }
+
+            return
+
+            this.$store.dispatch('checkout/submitOrder', {
+                address_id: this.address_id,
+                user: this.user,
+            }).then(response => {
+                alert('ok!');
+            }).catch(errors => {
+                console.log(errors)
+                this.errors = errors
             })
         },
     },

@@ -18,10 +18,7 @@ Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'checkout', 'middleware' => ['auth']], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
-
-        Route::group(['prefix' => 'api'], function () {
-            Route::get('/product2s', [CheckoutController::class, 'getAllProducts']);
-        });
+        Route::post('/submit', [CheckoutController::class, 'submitOrder'])->name('shop.checkout.submit');
     });
 
     Route::group(['prefix' => 'cart'], function () {

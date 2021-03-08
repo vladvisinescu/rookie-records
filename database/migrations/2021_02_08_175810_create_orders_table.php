@@ -22,7 +22,6 @@ class CreateOrdersTable extends Migration
             $table->integer ('total')->default(0);
             $table->timestamp('payed_at')->nullable();
             $table->timestamp('dispatched_at')->nullable();
-            $table->timestamp('total')->nullable();
         });
 
         Schema::create('order_product', function (Blueprint $table) {

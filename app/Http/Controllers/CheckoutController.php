@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Orders\SubmitOrderRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,10 @@ class CheckoutController extends Controller
                 'model' => $item->model
             ];
         });
+    }
+
+    public function submitOrder(SubmitOrderRequest $request)
+    {
+        return $request->all();
     }
 }

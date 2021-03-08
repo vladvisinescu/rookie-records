@@ -50,6 +50,13 @@ Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function
     Route::delete('/{address}', [AddressController::class, 'deleteAddress']);
 });
 
+Route::group(['prefix' => 'checkout', 'middleware' => 'auth:sanctum'], function () {
+
+    Route::get('/', [AddressController::class, 'getAllAddresses']);
+    Route::post('/', [AddressController::class, 'saveAddress']);
+    Route::delete('/{address}', [AddressController::class, 'deleteAddress']);
+});
+
 Route::group(['prefix' => 'user'], function () {
 
     Route::get('/', [UserController::class, 'getUser']);

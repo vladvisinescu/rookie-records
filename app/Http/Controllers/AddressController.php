@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\Addresses\CreateAddressRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AddressController extends Controller
 {
@@ -17,9 +18,10 @@ class AddressController extends Controller
 
     public function saveAddress(CreateAddressRequest $request)
     {
-        $address = $request->user()->addresses()->create([
+        return $request->user()->addresses()->create([
             'type' => 'delivery',
             'default' => true,
+            'uuid' => Str::uuid(),
             'address_1' => $request->input('address_1'),
             'address_2' => $request->input('address_2'),
             'town' => $request->input('town'),
@@ -27,7 +29,5 @@ class AddressController extends Controller
             'country' => $request->input('country'),
             'postcode' => $request->input('postcode'),
         ]);
-
-        return $address;
     }
 }
