@@ -7,17 +7,10 @@
         </template>
         <template v-slot:title>Are you sure?</template>
     </ConfirmModal>
+
     <div class="w-1/2 mx-auto">
-        <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center mb-8">
             <h2 class="text-4xl font-extralight text-gray-500">Your order</h2>
-            <div>
-                <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Payment
-                    <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </button>
-            </div>
         </div>
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -106,22 +99,49 @@
             </div>
         </div>
         <ContactDetailsForm />
+
+        <div>
+            <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-start">
+                    <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-500">Payment</span>
+                </div>
+            </div>
+            <div class="relative">
+                <div id="card-element"></div>
+                <p class="text-sm text-gray-400 pt-2">Card details and purchases are done securely through <a href="https://stripe.com/" class="border-b hover:text-gray-500">Stripe</a>.</p>
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-6">
+            <button type="button" class="w-1/2 text-right inline-flex justify-between items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Submit order
+                <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </div>
     </div>
+
 </template>
 
 <script>
 
 import { mapGetters } from 'vuex'
 import AddressForm from "./AddressForm";
+import PaymentForm from "./PaymentForm";
 import ContactDetailsForm from "./ContactDetailsForm";
 import ConfirmModal from "../../Bits/modals/ConfirmModal";
 
 export default {
 
     components: {
-        ConfirmModal,
+        PaymentForm,
         AddressForm,
-        ContactDetailsForm
+        ConfirmModal,
+        ContactDetailsForm,
     },
 
     data() {
@@ -132,6 +152,9 @@ export default {
                 id: null,
             },
             address_id: null,
+
+            stripe: {},
+            cardElement: {},
         }
     },
 
@@ -145,6 +168,19 @@ export default {
         hasAddresses() {
             return _.size(this.addresses) > 0
         }
+    },
+
+    async mounted() {
+        this.stripe = Stripe(process.env.MIX_STRIPE_KEY)
+
+        const elements = this.stripe.elements()
+        this.cardElement = elements.create('card', {
+            classes: {
+                base: 'p-4 bg-white shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md'
+            }
+        })
+
+        this.cardElement.mount('#card-element')
     },
 
     created() {

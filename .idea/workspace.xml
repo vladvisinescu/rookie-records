@@ -24,9 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_08_175810_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_08_175810_create_orders_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Desktop/Bits/DiscogsResultsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Desktop/Bits/DiscogsResultsModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,6 +258,9 @@
       <workItem from="1614943864557" duration="1162000" />
       <workItem from="1614945189149" duration="7608000" />
       <workItem from="1615057693886" duration="4614000" />
+      <workItem from="1615200366711" duration="227000" />
+      <workItem from="1615201705830" duration="130000" />
+      <workItem from="1615204491884" duration="4227000" />
     </task>
     <servers />
   </component>
