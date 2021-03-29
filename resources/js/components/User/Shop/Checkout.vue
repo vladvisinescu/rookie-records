@@ -243,11 +243,12 @@ export default {
                 alert(error)
             }
 
-            return
+            // return
 
             this.$store.dispatch('checkout/submitOrder', {
                 address_id: this.address_id,
                 user: this.user,
+                payment: paymentMethod
             }).then(response => {
                 alert('ok!');
             }).catch(errors => {
