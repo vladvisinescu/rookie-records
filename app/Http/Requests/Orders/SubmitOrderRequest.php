@@ -19,6 +19,7 @@ class SubmitOrderRequest extends FormRequest
             'user.last_name' => ['required', 'string'],
             'user.email' => ['required', 'email'],
             'user.phone' => ['required'],
+//            'payment.id' => ['required']
         ];
     }
 }

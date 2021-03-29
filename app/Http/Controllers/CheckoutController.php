@@ -44,6 +44,38 @@ class CheckoutController extends Controller
 
     public function submitOrder(SubmitOrderRequest $request)
     {
-        return $request->all();
+
+        try {
+            $total = intval(number_format(Cart::instance('shopping')->total(), 0));
+            $user = auth()->user();
+
+            $user->createOrGetStripeCustomer();
+            $user->updateDefaultPaymentMethod($request->input('payment.id'));
+
+            $payment = $user->charge(
+                $total * 100,
+                $request->input('payment.id')
+            );
+
+            $payment = $payment->asStripePaymentIntent();
+
+            $order = $user->orders()->create([
+                'transaction_id' => $request->  input('payment.id'),
+                'total' => $payment->charges->data[0]->amount / 100
+            ]);
+
+            foreach (Cart::content() as $product) {
+                $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
+            }
+
+            $order->load('products');
+
+            return  $order;
+
+        } catch (\Exception $e) {
+            return $e;
+        }
+
+
     }
 }

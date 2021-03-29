@@ -16849,11 +16849,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 if (error) {
                   alert(error);
-                }
+                } // return
 
-                return _context2.abrupt("return");
 
-              case 10:
+                _this3.$store.dispatch('checkout/submitOrder', {
+                  address_id: _this3.address_id,
+                  user: _this3.user,
+                  payment: paymentMethod
+                }).then(function (response) {
+                  alert('ok!');
+                })["catch"](function (errors) {
+                  console.log(errors);
+                  _this3.errors = errors;
+                });
+
+              case 9:
               case "end":
                 return _context2.stop();
             }

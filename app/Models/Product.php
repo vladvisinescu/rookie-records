@@ -49,6 +49,11 @@ class Product extends Model implements Buyable
         return $this->hasMany(Vinyl::class, 'product_id', 'id');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_product',  'order_id', 'product_id');
+    }
+
     public function getRelated($count = 8)
     {
         $products = self::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
