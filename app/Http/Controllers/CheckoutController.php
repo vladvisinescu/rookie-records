@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Orders\SubmitOrderRequest;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Resources\UserResource;
+use Log;
+
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
+use App\Http\Resources\OrderResource;
+use App\Http\Requests\Orders\SubmitOrderRequest;
 
 class CheckoutController extends Controller
 {
@@ -65,15 +70,17 @@ class CheckoutController extends Controller
             ]);
 
             foreach (Cart::content() as $product) {
+                $product->model->update([ 'sold_at' => now() ]);
+
                 $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
             }
 
             $order->load('products');
 
-            return  $order;
+            return new OrderResource($order);
 
         } catch (\Exception $e) {
-            return $e;
+
         }
 
 

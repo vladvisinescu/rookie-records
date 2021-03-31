@@ -16752,6 +16752,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       createsNewAddress: false,
+      editsCardDetails: false,
       deletesProduct: {
         modal: false,
         id: null
@@ -21072,7 +21073,8 @@ var actions = {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       axios.get('/api/user').then(function (response) {
-        commit('setUser', response.data);
+        console.log(123, response.data.data);
+        commit('setUser', response.data.data);
         resolve(response.data);
       })["catch"](function (error) {
         reject(error.response.data);

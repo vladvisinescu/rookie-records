@@ -166,12 +166,12 @@ export default {
     data() {
         return {
             createsNewAddress: false,
+            editsCardDetails: false,
             deletesProduct: {
                 modal: false,
                 id: null,
             },
             address_id: null,
-
             stripe: {},
             cardElement: {},
             cardCompleted: false,

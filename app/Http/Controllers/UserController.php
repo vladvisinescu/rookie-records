@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
+
 class UserController extends Controller
 {
 
     public function getUser()
     {
-        return auth()->user();
+        return new UserResource(auth()->user());
     }
 }

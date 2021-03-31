@@ -10,7 +10,8 @@ const actions = {
     getUser({ commit }) {
         return new Promise((resolve, reject) => {
             axios.get('/api/user').then(response => {
-                commit('setUser', response.data)
+                console.log(123, response.data.data)
+                commit('setUser', response.data.data)
                 resolve(response.data)
             }).catch(error => {
                 reject(error.response.data)

@@ -39,6 +39,10 @@ class Product extends Model implements Buyable
         'in_cart', 'date_created_human', 'date_created_diff'
     ];
 
+    protected $fillable = [
+        'sold_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
