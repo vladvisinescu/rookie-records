@@ -37,7 +37,8 @@
             </header>
         @endif
 
-        <div class="px-4">
+{{--        <div class="px-4">--}}
+        <div>
             {{ $slot }}
         </div>
 

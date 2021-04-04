@@ -41,7 +41,7 @@ class ProductsController extends Controller
 
     public function saveProduct(CreateProductRequest $request)
     {
-//        return $request->all();
+
         $product = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
@@ -60,6 +60,11 @@ class ProductsController extends Controller
         $vinyl->grading = $request->input('grading');
         $vinyl->description = $request->input('description');
         $vinyl->discogs_image_url = $request->input('discogs_image_url');
+
+        $images = collect($request->input('images'))->each(function ($image) use ($product) {
+            $product->addMediaFromUrl($image['resource_url'])->toMediaCollection('vinyls', 'products');
+        });
+
         $vinyl->images = json_encode($request->input('images'));
 
         $vinyl->product()->associate($product);
@@ -70,7 +75,7 @@ class ProductsController extends Controller
 
         $product->refresh();
 
-        return $product->load(['vinyls', 'vinyls.artists', 'vinyls.genres']);
+        return $product->load(['vinyls', 'vinyls.artists', 'vinyls.genres', 'media']);
     }
 
     public function deleteProduct($product)

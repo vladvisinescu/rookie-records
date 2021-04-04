@@ -9,6 +9,6 @@ class UserController extends Controller
 
     public function getUser()
     {
-        return new UserResource(auth()->user());
+        return auth()->check() ? new UserResource(auth()->user()) : null;
     }
 }

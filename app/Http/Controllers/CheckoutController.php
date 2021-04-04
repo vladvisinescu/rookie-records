@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Str;
 use Log;
 
 use Illuminate\Http\Request;
@@ -65,14 +66,18 @@ class CheckoutController extends Controller
             $payment = $payment->asStripePaymentIntent();
 
             $order = $user->orders()->create([
-                'transaction_id' => $request->  input('payment.id'),
-                'total' => $payment->charges->data[0]->amount / 100
+                'transaction_id' => Str::uuid(),
+                'stripe_id' => $request->input('payment.id'),
+                'total' => $payment->charges->data[0]->amount / 100,
+                'payed_at' => now()
             ]);
 
             foreach (Cart::content() as $product) {
                 $product->model->update([ 'sold_at' => now() ]);
 
-                $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
+                $order->products()->attach($product->model->id, [
+                    'quantity' => $product->qty
+                ]);
             }
 
             $order->load('products');
@@ -81,8 +86,10 @@ class CheckoutController extends Controller
 
         } catch (\Exception $e) {
 
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 402);
         }
-
-
     }
 }

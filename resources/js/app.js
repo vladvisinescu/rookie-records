@@ -11,6 +11,7 @@ import MenuCart from './components/User/Shop/MenuCart';
 // import MenuDropdown from './components/User/MenuDropdown';
 import VinylShow from './components/User/Shop/Vinyl/VinylShow';
 import VinylBrowser from './components/User/Shop/Vinyl/VinylBrowser';
+import MiniDisplay from './components/User/MiniDisplay';
 
 import ProductList from './components/Desktop/Products/ProductList';
 import ProductCreate from './components/Desktop/Products/ProductCreate';
@@ -29,6 +30,7 @@ app.component('menu-cart', MenuCart);
 app.component('vinyl-show', VinylShow);
 // app.component('menu-dropdown', MenuDropdown);
 app.component('vinyl-browser', VinylBrowser);
+app.component('mini-display', MiniDisplay);
 
 // Admin Area
 app.component('product-list', ProductList);

@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
 
             $table->integer('user_id');
+            $table->string('stripe_id')->nullable();
             $table->string('transaction_id');
             $table->integer ('total')->default(0);
             $table->timestamp('payed_at')->nullable();
@@ -27,9 +28,10 @@ class CreateOrdersTable extends Migration
         Schema::create('order_product', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('product_id');
-            $table->integer('order_id');
-            $table->integer('quantity');
+            $table->string('order_id');
+            $table->string('product_id');
+            $table->integer('quantity')->default(1);
+            $table->string('meta')->nullable();
         });
     }
 

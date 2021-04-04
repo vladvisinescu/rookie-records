@@ -52,6 +52,13 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'products' => [
+            'driver' => 'local',
+            'root' => public_path('images/products'),
+            'url' => env('APP_URL').'/images/products',
+            'visibility' => 'public',
+        ]
+
     ],
 
     /*

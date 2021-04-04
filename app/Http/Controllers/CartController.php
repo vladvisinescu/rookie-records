@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function getCartSession(Request $request)
+    public function getCartSession()
     {
-        $ids = collect($request->session()->get('cart'))->pluck('id');
-
         return Cart::instance('shopping')->content()->map(function ($item) {
             return [
                 'id' => $item->model->uuid,
@@ -26,7 +24,6 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-
         Cart::instance('shopping')->add(Product::find($request->input('id')));
 
         return response()->json([
