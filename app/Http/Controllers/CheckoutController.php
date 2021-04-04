@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Orders\SubmitOrderRequest;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Str;
+use Log;
+
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
+use App\Http\Resources\OrderResource;
+use App\Http\Requests\Orders\SubmitOrderRequest;
 
 class CheckoutController extends Controller
 {
@@ -60,22 +66,30 @@ class CheckoutController extends Controller
             $payment = $payment->asStripePaymentIntent();
 
             $order = $user->orders()->create([
-                'transaction_id' => $request->  input('payment.id'),
-                'total' => $payment->charges->data[0]->amount / 100
+                'transaction_id' => Str::uuid(),
+                'stripe_id' => $request->input('payment.id'),
+                'total' => $payment->charges->data[0]->amount / 100,
+                'payed_at' => now()
             ]);
 
             foreach (Cart::content() as $product) {
-                $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
+                $product->model->update([ 'sold_at' => now() ]);
+
+                $order->products()->attach($product->model->id, [
+                    'quantity' => $product->qty
+                ]);
             }
 
             $order->load('products');
 
-            return  $order;
+            return new OrderResource($order);
 
         } catch (\Exception $e) {
-            return $e;
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 402);
         }
-
-
     }
 }

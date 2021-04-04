@@ -68,6 +68,10 @@ class VinylController extends Controller
             );
         }
 
+        if ($request->has('limit')) {
+            $products = $products->limit($request->input('limit'));
+        }
+
         if ($request->input('term')) {
             $constraints = $products;
             $products = Product::search($request->input('term'))->constrain($constraints);

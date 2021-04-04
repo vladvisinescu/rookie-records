@@ -13,6 +13,9 @@ use Laravel\Scout\Searchable;
 use Ramsey\Uuid\UuidInterface;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property mixed id
@@ -28,16 +31,29 @@ use Spatie\Sluggable\SlugOptions;
  *
  * @method  mixed description
  */
-class Product extends Model implements Buyable
+class Product extends Model implements Buyable, HasMedia
 {
     use HasSlug;
     use HasFactory;
     use Searchable;
     use SoftDeletes;
+    use InteractsWithMedia;
 
     protected $appends = [
         'in_cart', 'date_created_human', 'date_created_diff'
     ];
+
+    protected $fillable = [
+        'sold_at'
+    ];
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(368)
+            ->height(232)
+            ->sharpen(10);
+    }
 
     public function user()
     {

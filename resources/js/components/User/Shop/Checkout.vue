@@ -12,6 +12,7 @@
         <div class="flex items-center mb-8">
             <h2 class="text-4xl font-extralight text-gray-500">Your order</h2>
         </div>
+
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-300"></div>
@@ -20,6 +21,7 @@
                 <span class="pr-3 bg-gray-100 text-lg font-medium text-gray-500">Products</span>
             </div>
         </div>
+
         <div class="bg-white shadow overflow-hidden rounded-md">
             <ul class="divide-y divide-gray-200">
                 <li v-for="(product, id) in products" class="flex justify-between items-center">
@@ -40,6 +42,7 @@
                 </li>
             </ul>
         </div>
+
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-300"></div>
@@ -50,6 +53,7 @@
                 </span>
             </div>
         </div>
+
         <div class="rounded-md bg-red-50 p-4 mb-4" v-if="errors.address_id">
             <div class="flex">
                 <div class="flex-shrink-0">
@@ -64,6 +68,7 @@
                 </div>
             </div>
         </div>
+
         <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
                 <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.uuid">
@@ -84,6 +89,7 @@
                 </li>
             </ul>
         </div>
+
         <a @click.prevent="createsNewAddress = !createsNewAddress" href="javascript:;" class="inline-flex text-gray-500 text-sm cursor-pointer pt-4" v-if="hasAddresses">
             <svg class="inline-flex h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path v-if="!createsNewAddress" fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
@@ -102,6 +108,7 @@
             leave-to-class="transform opacity-0 scale-95">
             <AddressForm v-show="!hasAddresses || createsNewAddress" @added="createsNewAddress = false" />
         </transition>
+
         <div class="relative my-4">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-300"></div>
@@ -112,6 +119,7 @@
                 </span>
             </div>
         </div>
+
         <ContactDetailsForm :user="user" :errors="errors" />
 
         <div>
@@ -166,12 +174,12 @@ export default {
     data() {
         return {
             createsNewAddress: false,
+            editsCardDetails: false,
             deletesProduct: {
                 modal: false,
                 id: null,
             },
             address_id: null,
-
             stripe: {},
             cardElement: {},
             cardCompleted: false,
