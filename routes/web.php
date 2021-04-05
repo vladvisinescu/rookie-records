@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\VinylController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
+
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
 
@@ -37,6 +39,11 @@ Route::group(['prefix' => 'shop'], function () {
         Route::get('/', [VinylController::class, 'index'])->name('shop.index');
         Route::get('/{slug}', [VinylController::class, 'show'])->name('shop.vinyl.show');
     });
+});
+
+Route::group(['prefix' => 'account'], function () {
+
+    Route::get('/', [AccountController::class, 'index']);
 });
 
 // Admin Area

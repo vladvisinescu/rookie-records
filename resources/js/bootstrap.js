@@ -8,13 +8,15 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
+window.csrf_token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
 window.axios = axios.create({
     baseURL: process.env.MIX_APP_URL,
     withCredentials: true,
     headers: {
         common: {
             'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            'X-CSRF-TOKEN' : csrf_token
         }
     }
 });
