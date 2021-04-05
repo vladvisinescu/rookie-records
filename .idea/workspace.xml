@@ -23,69 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ProductResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/media-library.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_04_150713_create_media_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/hero1.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/1/R-599143-1224774730.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/10/R-6031510-1533159866-4270.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/11/R-6031510-1533159866-7025.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/12/R-6031510-1533159866-7052.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/13/R-5133248-1615985809-5347.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/14/R-5133248-1397391479-6198.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/15/R-5133248-1397392241-4786.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/16/R-5133248-1397392241-7000.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/17/R-5133248-1397392241-9005.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/18/R-5133248-1397392241-3203.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/19/R-385881-1435589362-3299.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/2/R-599143-1224774739.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/20/R-385881-1435589360-1556.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/21/R-385881-1510678708-1298.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/22/R-385881-1510678708-2422.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/23/R-385881-1510678709-3901.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/24/R-385881-1510678709-1819.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/25/R-6881001-1514326891-5048.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/26/R-369260-1104600382.jpg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/27/R-9169243-1475992417-4997.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/28/R-9169243-1475992423-7527.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/29/R-9169243-1475992429-9127.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/3/R-599143-1358629562-2580.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/30/R-9169243-1475992441-5255.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/31/R-9169243-1475992446-6132.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/32/R-9169243-1475992449-1736.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/33/R-9169243-1475992451-6328.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/34/R-9169243-1475992457-2977.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/35/R-5456322-1393814265-6601.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/36/R-5456322-1393814272-9471.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/4/R-599143-1358629569-2192.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/5/R-5241500-1388500166-9572.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/6/R-6031510-1434727708-1439.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/7/R-6031510-1434727728-1915.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/8/R-6031510-1533159866-2107.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/9/R-6031510-1533159866-8490.jpeg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/User/MiniDisplay.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/rookie-records.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rookie-records.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Desktop/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/VinylController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_08_175810_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_08_175810_create_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_28_194416_create_order_product_table.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/MenuDropdown.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/MiniDisplay.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/MiniDisplay.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Item.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Item.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation-shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation-shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,6 +194,7 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-medialibrary" />
       <path value="$PROJECT_DIR$/vendor/spatie/image" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/tightenco/ziggy" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mHkhkLDVAs2XEdhCDobr5tMFt6" />
@@ -333,7 +286,8 @@
       <workItem from="1616952862302" duration="5603000" />
       <workItem from="1617122806786" duration="4598000" />
       <workItem from="1617180377035" duration="66000" />
-      <workItem from="1617474353715" duration="9777000" />
+      <workItem from="1617474353715" duration="16318000" />
+      <workItem from="1617617538161" duration="966000" />
     </task>
     <servers />
   </component>
