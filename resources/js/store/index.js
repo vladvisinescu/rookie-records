@@ -11,6 +11,7 @@ import checkout from './modules/shop/checkout'
 import address from './modules/shop/address'
 
 import user from './modules/user'
+import orders from './modules/orders'
 
 const store = createStore({
     modules: {
@@ -25,7 +26,8 @@ const store = createStore({
         cart,
         checkout,
         address,
-        user
+        user,
+        orders,
     },
 });
 

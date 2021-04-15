@@ -1,5 +1,5 @@
 <template>
-    <div class="flex">
+    <div class="flex mt-2">
         <div class="w-1/4">
             <BrowserFilters @change="getProducts" />
         </div>

@@ -60,4 +60,5 @@ Route::group(['prefix' => 'checkout', 'middleware' => 'auth:sanctum'], function 
 Route::group(['prefix' => 'user'], function () {
 
     Route::get('/', [UserController::class, 'getUser']);
+    Route::get('/orders', [UserController::class, 'getOrders'])->name('api.user.orders');
 });

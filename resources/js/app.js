@@ -5,7 +5,9 @@ import vueDebounce from 'vue-debounce'
 
 import store from './store';
 
-import Profile from './components/User/Profile';
+import Account from './components/Account/UserAccount';
+import Orders from './components/Account/UserOrders';
+
 import Checkout from './components/User/Shop/Checkout';
 import MenuCart from './components/User/Shop/MenuCart';
 import MenuUser from './components/User/Shop/MenuUser';
@@ -26,13 +28,16 @@ app.mixin({ methods: { route }});
 store.dispatch('user/getUser')
 
 // Public Area
-app.component('profile', Profile);
 app.component('checkout', Checkout);
 app.component('menu-cart', MenuCart);
 app.component('menu-user', MenuUser);
 app.component('vinyl-show', VinylShow);
 app.component('vinyl-browser', VinylBrowser);
 app.component('mini-display', MiniDisplay);
+
+// User Area
+app.component('user-account', Account);
+app.component('user-orders', Orders);
 
 // Admin Area
 app.component('product-list', ProductList);

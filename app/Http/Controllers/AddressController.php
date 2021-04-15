@@ -30,4 +30,9 @@ class AddressController extends Controller
             'postcode' => $request->input('postcode'),
         ]);
     }
+
+    public function deleteAddress()
+    {
+
+    }
 }
