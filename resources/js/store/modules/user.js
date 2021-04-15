@@ -4,6 +4,7 @@ const state = () => ({
 
 const getters = {
     getUser: (state) => state.user,
+    getAddresses: (state) => state.user.addresses ?? null
 };
 
 const actions = {

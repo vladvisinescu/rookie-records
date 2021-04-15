@@ -43,7 +43,8 @@ Route::group(['prefix' => 'shop'], function () {
 
 Route::group(['prefix' => 'account'], function () {
 
-    Route::get('/', [AccountController::class, 'index']);
+    Route::get('/details', [AccountController::class, 'index'])->name('user.account.home');
+    Route::get('/orders', [AccountController::class, 'orders'])->name('user.account.orders');
 });
 
 // Admin Area
