@@ -6,6 +6,7 @@
             </svg>
         </template>
         <template v-slot:title>Are you sure?</template>
+        <template v-slot:cta>Delete</template>
     </ConfirmModal>
     <div class="flex flex-col gap-y-6">
         <div class="mb-4">
@@ -16,12 +17,12 @@
                 <h3 class="text-lg leading-6 font-bold text-gray-700">Personal Details</h3>
             </div>
             <div class="col-span-4">
-                <div class="bg-white overflow-hidden shadow rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
+                <div class="overflow-hidden shadow rounded-lg">
+                    <div class="bg-white px-4 py-5 sm:p-6">
                         <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                             <div class="sm:col-span-3">
                                 <label for="first_name" class="block text-sm font-medium text-gray-700">
-                                    First name
+                                    First name <span v-if="errors.first_name" v-html="errors.first_name[0]" class="text-xs font-bold uppercase text-red-400"></span>
                                 </label>
                                 <div class="mt-1">
                                     <input
@@ -36,7 +37,7 @@
 
                             <div class="sm:col-span-3">
                                 <label for="last_name" class="block text-sm font-medium text-gray-700">
-                                    Last name
+                                    Last name <span v-if="errors.last_name" v-html="errors.last_name[0]" class="text-xs font-bold uppercase text-red-400"></span>
                                 </label>
                                 <div class="mt-1">
                                     <input
@@ -49,20 +50,61 @@
                                 </div>
                             </div>
 
-                            <div class="sm:col-span-4">
+                            <div class="sm:col-span-3">
                                 <label for="email" class="block text-sm font-medium text-gray-700">
                                     Email address
                                 </label>
                                 <div class="mt-1">
                                     <input
+                                        disabled="disabled"
                                         v-model="user.email"
                                         id="email"
                                         name="email"
                                         type="email"
                                         autocomplete="email"
-                                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                        class="bg-gray-100 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="phone" class="block text-sm font-medium text-gray-700">
+                                    Phone <span v-if="errors.phone" v-html="errors.phone[0]" class="text-xs font-bold uppercase text-red-400"></span>
+                                </label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm">+44</span>
+                                    </div>
+                                    <input
+                                        v-model="user.phone"
+                                        type="text"
+                                        name="phone"
+                                        id="phone"
+                                        class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-16 sm:pl-14 sm:text-sm border-gray-300 rounded-md"
+                                        placeholder="www.example.com" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center bg-gray-100 px-6 py-2">
+                        <div>
+                            <p v-if="updatesUser.result" class="flex items-center text-sm" :class="updatesUser.success ? 'text-green-400' : 'text-red-400'">
+                                <span v-if="updatesUser.success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                <span v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                <span v-text="updatesUser.result" class="ml-2"></span>
+                            </p>
+                        </div>
+                        <div>
+                            <button @click.prevent="updateUser" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Save
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -147,6 +189,10 @@ export default {
             deletesAddress: {
                 modal: false,
                 id: null
+            },
+            updatesUser: {
+                result: null,
+                success: false,
             }
         }
     },
@@ -155,6 +201,7 @@ export default {
         ...mapGetters({
             user: 'user/getUser',
             addresses: 'address/allAddresses',
+            errors: 'user/getErrors'
         }),
 
         hasAddresses() {
@@ -167,8 +214,22 @@ export default {
     },
 
     methods: {
-        removeAddress(data) {
-            console.log(12355, data)
+        removeAddress({ address_id }) {
+            this.$store.dispatch('address/removeAddress', address_id).then(() => {
+                this.$store.dispatch('address/getAddresses')
+                this.deletesAddress.modal = false
+            })
+        },
+
+        updateUser() {
+            this.$store.dispatch('user/updateUser', this.user).then(response => {
+                console.log(555111)
+                this.updatesUser.result = 'Changes saved.';
+                this.updatesUser.success = true;
+            }).catch(error => {
+                this.updatesUser.result = 'Please review the information you entered.';
+                this.updatesUser.success = false;
+            })
         }
     }
 }

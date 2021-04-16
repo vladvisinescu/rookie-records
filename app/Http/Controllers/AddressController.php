@@ -31,8 +31,10 @@ class AddressController extends Controller
         ]);
     }
 
-    public function deleteAddress()
+    public function deleteAddress(Address $address)
     {
+        $address->delete();
 
+        return response()->json([], 200);
     }
 }

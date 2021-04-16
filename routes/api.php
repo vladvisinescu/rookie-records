@@ -47,7 +47,7 @@ Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function
 
     Route::get('/', [AddressController::class, 'getAllAddresses']);
     Route::post('/', [AddressController::class, 'saveAddress']);
-    Route::delete('/{address}', [AddressController::class, 'deleteAddress']);
+    Route::delete('/{address}', [AddressController::class, 'deleteAddress'])->name('api.addresses.delete');
 });
 
 Route::group(['prefix' => 'checkout', 'middleware' => 'auth:sanctum'], function () {
@@ -59,6 +59,7 @@ Route::group(['prefix' => 'checkout', 'middleware' => 'auth:sanctum'], function 
 
 Route::group(['prefix' => 'user'], function () {
 
-    Route::get('/', [UserController::class, 'getUser']);
+    Route::get('/', [UserController::class, 'getUser'])->name('api.user.get');
+    Route::patch('/', [UserController::class, 'updateUser'])->name('api.user.update');
     Route::get('/orders', [UserController::class, 'getOrders'])->name('api.user.orders');
 });

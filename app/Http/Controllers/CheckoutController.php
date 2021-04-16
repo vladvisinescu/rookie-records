@@ -17,6 +17,10 @@ class CheckoutController extends Controller
 
     public function index(Request $request)
     {
+        if (Cart::instance('shopping')->content()->isEmpty()) {
+            return redirect()->route('home');
+        }
+
         $cart = Cart::instance('shopping')->content()->map(function ($item) {
             return [
                 'id' => $item->model->uuid,
