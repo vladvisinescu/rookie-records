@@ -134,7 +134,7 @@
             </div>
             <div class="relative">
                 <div id="card-element"></div>
-                <p class="text-sm text-gray-400 pt-2">Card details and purchases are done securely through <a href="https://stripe.com/" class="border-b hover:text-gray-500">Stripe</a>.</p>
+                <p class="text-sm text-gray-400 pt-2">Card details and purchases are handled securely through <a href="https://stripe.com/" class="border-b hover:text-gray-500">Stripe</a>.</p>
             </div>
         </div>
 

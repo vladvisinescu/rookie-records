@@ -19793,7 +19793,7 @@ var _hoisted_25 = {
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative my-4\"><div class=\"absolute inset-0 flex items-center\" aria-hidden=\"true\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"relative flex justify-start\"><span class=\"pr-3 bg-gray-100 text-lg font-medium text-gray-500\"> Contact Details </span></div></div>", 1);
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><div class=\"relative my-4\"><div class=\"absolute inset-0 flex items-center\" aria-hidden=\"true\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"relative flex justify-start\"><span class=\"pr-3 bg-gray-100 text-lg font-medium text-gray-500\">Payment</span></div></div><div class=\"relative\"><div id=\"card-element\"></div><p class=\"text-sm text-gray-400 pt-2\">Card details and purchases are done securely through <a href=\"https://stripe.com/\" class=\"border-b hover:text-gray-500\">Stripe</a>.</p></div></div>", 1);
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><div class=\"relative my-4\"><div class=\"absolute inset-0 flex items-center\" aria-hidden=\"true\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"relative flex justify-start\"><span class=\"pr-3 bg-gray-100 text-lg font-medium text-gray-500\">Payment</span></div></div><div class=\"relative\"><div id=\"card-element\"></div><p class=\"text-sm text-gray-400 pt-2\">Card details and purchases are handled securely through <a href=\"https://stripe.com/\" class=\"border-b hover:text-gray-500\">Stripe</a>.</p></div></div>", 1);
 
 var _hoisted_28 = {
   "class": "flex justify-end mt-6"
