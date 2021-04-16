@@ -6,6 +6,7 @@
             </svg>
         </template>
         <template v-slot:title>Are you sure?</template>
+        <template v-slot:cta>Delete</template>
     </ConfirmModal>
 
     <div class="w-1/2 mx-auto">

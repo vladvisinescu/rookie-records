@@ -35,6 +35,19 @@ const actions = {
                 })
         })
     },
+
+    removeAddress({ commit }, address) {
+        return new Promise((resolve, reject) => {
+            axios
+                .delete(route('api.addresses.delete', address), { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data.errors)
+                })
+        })
+    }
 };
 
 const mutations = {

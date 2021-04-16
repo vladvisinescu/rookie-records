@@ -6,6 +6,7 @@
             </svg>
         </template>
         <template v-slot:title>Are you sure?</template>
+        <template v-slot:cta>Delete</template>
     </ConfirmModal>
     <div class="flex flex-col gap-y-6">
         <div class="mb-4">
@@ -167,8 +168,12 @@ export default {
     },
 
     methods: {
-        removeAddress(data) {
-            console.log(12355, data)
+        removeAddress({ address_id }) {
+            console.log(address_id)
+            this.$store.dispatch('address/removeAddress', address_id).then(() => {
+                this.$store.dispatch('address/getAddresses')
+                this.deletesAddress.modal = false
+            })
         }
     }
 }
