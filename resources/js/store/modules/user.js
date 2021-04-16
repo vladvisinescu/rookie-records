@@ -23,6 +23,7 @@ const actions = {
 
     updateUser({ commit }, data) {
         commit('setErrors', {})
+
         return new Promise((resolve, reject) => {
             axios.patch(route('api.user.update'), data, { withCredentials: true }).then(response => {
                 resolve(response.data.data)
