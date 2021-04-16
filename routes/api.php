@@ -59,6 +59,7 @@ Route::group(['prefix' => 'checkout', 'middleware' => 'auth:sanctum'], function 
 
 Route::group(['prefix' => 'user'], function () {
 
-    Route::get('/', [UserController::class, 'getUser']);
+    Route::get('/', [UserController::class, 'getUser'])->name('api.user.get');
+    Route::patch('/', [UserController::class, 'updateUser'])->name('api.user.update');
     Route::get('/orders', [UserController::class, 'getOrders'])->name('api.user.orders');
 });
