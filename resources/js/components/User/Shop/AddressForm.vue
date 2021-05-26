@@ -123,6 +123,18 @@ export default {
             this.$store.dispatch('address/saveAddress', this.address).then(
                 () => {
                     this.$store.dispatch('address/getAddresses')
+
+                    this.address = {
+                        lookup: '',
+                        address_1: '',
+                        address_2: '',
+                        town: '',
+                        county: '',
+                        country: '',
+                        postcode: '',
+                        description: '',
+                    };
+
                     this.$emit('added')
                 }
             ).catch(errors => this.errors = errors)

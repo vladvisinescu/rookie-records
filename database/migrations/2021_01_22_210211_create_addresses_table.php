@@ -33,7 +33,7 @@ class CreateAddressesTable extends Migration
             $table->string('country');
             $table->string('state')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('default');
+            $table->boolean('default')->default(0);
 
         });
     }

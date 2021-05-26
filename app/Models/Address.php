@@ -12,7 +12,7 @@ class Address extends Model
     protected $table = 'addresses';
 
     protected $casts = [
-        'is_default' => 'boolean'
+        'default' => 'boolean'
     ];
 
     protected $fillable = [
