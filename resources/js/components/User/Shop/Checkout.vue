@@ -9,6 +9,11 @@
         <template v-slot:cta>Delete</template>
     </ConfirmModal>
 
+    <SuccessModal :open="completeOrder.modal" :data="{ cta_url: route('home') }">
+        <template v-slot:title>Are you sure?</template>
+        <template v-slot:cta>YEEES</template>
+    </SuccessModal>
+
     <div class="w-1/2 mx-auto">
         <div class="flex items-center mb-8">
             <h2 class="text-4xl font-extralight text-gray-500">Your order</h2>
@@ -162,6 +167,7 @@ import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import ContactDetailsForm from "./ContactDetailsForm";
 import ConfirmModal from "../../Bits/modals/ConfirmModal";
+import SuccessModal from "../../Bits/modals/SuccessModal";
 
 export default {
 
@@ -169,6 +175,7 @@ export default {
         PaymentForm,
         AddressForm,
         ConfirmModal,
+        SuccessModal,
         ContactDetailsForm,
     },
 
@@ -179,6 +186,9 @@ export default {
             deletesProduct: {
                 modal: false,
                 id: null,
+            },
+            completeOrder: {
+                modal: false
             },
             address_id: null,
             stripe: {},
@@ -259,7 +269,7 @@ export default {
                 user: this.user,
                 payment: paymentMethod
             }).then(response => {
-                alert('ok!');
+                this.completeOrder.modal = true
             }).catch(errors => {
                 console.log(errors)
                 this.errors = errors

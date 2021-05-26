@@ -16,6 +16,11 @@ class AddressController extends Controller
         return $request->user()->addresses()->get();
     }
 
+    public function toggleIsDefault(Request $request)
+    {
+
+    }
+
     public function saveAddress(CreateAddressRequest $request)
     {
         return $request->user()->addresses()->create([

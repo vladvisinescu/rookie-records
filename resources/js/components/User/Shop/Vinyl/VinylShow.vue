@@ -38,8 +38,11 @@
                         <div class="px-4 py-5 sm:p-6">
                             <div class="flex justify-between items-center">
                                 <span class="text-2xl" v-text="'£' + product.price"></span>
-                                <button @click.prevent="addToCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <button v-if="!inCart" @click.prevent="addToCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     Add to Basket
+                                </button>
+                                <button v-else @click.prevent="removeFromCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                    Remove from Basket
                                 </button>
                             </div>
                         </div>
@@ -58,17 +61,35 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
 
     props: ['product'],
 
+    data() {
+        return {
+            added: false
+        }
+    },
+
     computed: {
+
+        ...mapGetters({
+            cart: 'cart/allProducts'
+        }),
+
         vinyl() {
             return this.product.vinyls[0]
         },
 
         bigImage() {
             return _.find(this.vinyl.images, (image) => image.type === 'primary' || image.type === 'secondary')
+        },
+
+        inCart() {
+            return _.find(this.cart, (item) => item.id === this.product.uuid)
         }
     },
 
@@ -78,7 +99,25 @@ export default {
 
     methods: {
         addToCart() {
-            this.$store.dispatch('cart/addToCart', this.product).then(() => this.$store.dispatch('cart/getCartSession'))
+            this.$store.dispatch('cart/addToCart', this.product).then(() => {
+                this.$store.dispatch('cart/getCartSession')
+            })
+        },
+
+        removeFromCart() {
+            let rowID = null;
+
+            _.forEach(this.cart, (item, key) => {
+                if (item.id === this.product.uuid) rowID = key
+            })
+
+            if (!rowID) {
+                return
+            }
+
+            this.$store.dispatch('cart/removeFromCart', rowID).then(() => {
+                this.$store.dispatch('cart/getCartSession')
+            })
         }
     }
 
