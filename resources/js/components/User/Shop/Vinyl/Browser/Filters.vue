@@ -1,5 +1,4 @@
 <template>
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <nav class="space-y-2" aria-label="Sidebar">
         <div class="rounded-lg overflow-hidden">
             <div class="flex justify-between pl-4 py-2">
@@ -62,7 +61,7 @@
                     @click.prevent="selectYear(year)"
                     class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
                     <span :class="[ filters.years.includes(year) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
-                    <span :class="[ filters.years.includes(year) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="year"></span>
+                    <span :class="[ filters.years.includes(year) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="(year != 0) ? year : 'Not found'"></span>
                 </li>
             </ul>
         </div>

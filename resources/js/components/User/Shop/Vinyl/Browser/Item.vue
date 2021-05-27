@@ -19,7 +19,7 @@
                 <span class="truncate" v-text="vinyl.country"></span>
             </div>
             <div class="text-center py-3">
-                <span v-text="vinyl.year"></span>
+                <span v-text="(vinyl.year != 0) ? vinyl.year : '-'"></span>
             </div>
             <div class="text-center py-3">
                 <span v-text="vinyl.grading.toUpperCase()"></span>
