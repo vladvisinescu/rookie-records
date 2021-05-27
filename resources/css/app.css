@@ -3,5 +3,9 @@
 @import 'tailwindcss/utilities';
 
 body {
-    min-height: 2000px;
+    /*min-height: 2000px;*/
+}
+
+.footer-links a {
+    padding-bottom: 2px;
 }
