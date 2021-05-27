@@ -1,4 +1,8 @@
 <template>
+    <SuccessModal :open="modals.productSaved" :data="{ cta_url: route('desktop.products.create') }">
+        <template v-slot:title>Product Saved!</template>
+        <template v-slot:cta>Go Back</template>
+    </SuccessModal>
     <div>
         <DiscogsResultsModal
             @close="modals.discogsResults = false"
@@ -311,12 +315,15 @@ import DiscogsResultsModal from '@/components/Desktop/Bits/DiscogsResultsModal.v
 import ArtistListItem from '@/components/Desktop/Artist/ArtistListItem.vue'
 import GenreListItem from '@/components/Desktop/Genre/GenreListItem.vue';
 
+import SuccessModal from "../../Bits/modals/SuccessModal";
+
 export default {
 
     components: {
         GenreListItem,
         DiscogsResultsModal,
-        ArtistListItem
+        ArtistListItem,
+        SuccessModal
     },
 
     computed: {
@@ -366,7 +373,8 @@ export default {
                 }
             },
             modals: {
-                discogsResults: false
+                discogsResults: false,
+                productSaved: false
             }
         }
     },
@@ -405,6 +413,8 @@ export default {
                 ...this.record,
                 artists: this.artists.selected.map(artist => artist.id),
                 genres: this.genres.selected.map(genre => genre.id),
+            }).then(() => {
+                this.modals.productSaved = true
             })
         },
 

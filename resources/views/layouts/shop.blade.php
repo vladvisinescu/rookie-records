@@ -38,10 +38,11 @@
             </header>
         @endif
 
-{{--        <div class="px-4">--}}
         <div>
             {{ $slot }}
         </div>
+
+        @include('layouts.footer-shop')
 
     </body>
 </html>
