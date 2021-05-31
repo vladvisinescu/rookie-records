@@ -50,6 +50,7 @@ class ProductsController extends Controller
         $product->uuid = Str::uuid();
 
         $product->user()->associate(Auth::user());
+        $product->categories()->associate($request->input('category_id'));
         $product->save();
 
         $vinyl = new Vinyl;

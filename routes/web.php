@@ -16,6 +16,10 @@ Route::redirect('/shop', '/shop/vinyl');
 // Public Area
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('home.terms');
+Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('home.policy');
+Route::get('cookie-policy', [HomeController::class, 'cookiePolicy'])->name('home.cookie');
+
 Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'checkout', 'middleware' => ['auth']], function () {

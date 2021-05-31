@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 
+import categories from './modules/desktop/categories'
 import genres from './modules/desktop/genres'
 import artists from './modules/desktop/artists'
 import discogs from './modules/desktop/discogs'
@@ -16,6 +17,7 @@ import orders from './modules/orders'
 const store = createStore({
     modules: {
         // Admin Area
+        categories,
         genres,
         artists,
         discogs,

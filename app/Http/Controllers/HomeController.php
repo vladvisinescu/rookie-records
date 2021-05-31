@@ -9,4 +9,19 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+
+    public function termsAndConditions()
+    {
+        return view('terms-and-conditions');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('privacy-policy');
+    }
+
+    public function cookiePolicy()
+    {
+        return view('cookie-policy');
+    }
 }

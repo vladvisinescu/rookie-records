@@ -65,6 +65,11 @@ class Product extends Model implements Buyable, HasMedia
         return $this->hasMany(Vinyl::class, 'product_id', 'id');
     }
 
+    public function categories()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id', 'id');
+    }
+
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_product',  'order_id', 'product_id');

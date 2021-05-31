@@ -33,6 +33,13 @@
                             </span>
                         </div>
                     </div>
+                    <div class="px-4 sm:px-0 mt-5">
+                        <label for="category" class="block text-sm font-bold text-gray-700">Category <span v-if="errors.category_id" v-html="errors.category_id[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
+                        <select v-model="record.category_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="null" selected disabled>Select Category</option>
+                            <option v-for="category in allCategories" :value="category.id" :key="category.id">{{ category.name }}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form action="#" method="POST">
@@ -330,7 +337,8 @@ export default {
         ...mapGetters({
             allArtists: 'artists/allArtists',
             allGenres: 'genres/allGenres',
-            errors: 'products/getErrors'
+            allCategories: 'categories/allCategories',
+            errors: 'products/getErrors',
         })
     },
 
@@ -348,7 +356,8 @@ export default {
                 images: '',
                 artists: [],
                 labels: [],
-                genres: []
+                genres: [],
+                category_id: null
             },
             search: {
                 term: '',
@@ -385,6 +394,7 @@ export default {
 
         this.$store.dispatch('artists/getArtists');
         this.$store.dispatch('genres/getGenres');
+        this.$store.dispatch('categories/getCategories');
     },
 
     methods: {

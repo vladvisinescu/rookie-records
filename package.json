@@ -9,6 +9,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.2.1",
+        "@tailwindcss/typography": "^0.4.1",
         "@vue/compiler-sfc": "^3.0.5",
         "axios": "^0.21.1",
         "cross-env": "^7.0",
