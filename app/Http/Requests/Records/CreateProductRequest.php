@@ -20,6 +20,7 @@ class CreateProductRequest extends FormRequest
             'grading' => 'required',
             'year' => ['required', 'numeric'],
             'discogs_id' => 'required',
+            'category_id' => 'required',
             'artists' => ['required', 'array', 'min:1'],
             'labels' => ['required', 'array', 'min:1'],
             'genres' => ['required', 'array', 'min:1']

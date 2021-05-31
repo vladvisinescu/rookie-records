@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\Desktop\ArtistsController;
+use App\Http\Controllers\Desktop\CategoriesController;
 use App\Http\Controllers\Desktop\GenresController;
 use App\Http\Controllers\Desktop\DiscogsController;
 use App\Http\Controllers\Desktop\ProductsController;
@@ -41,6 +42,11 @@ Route::group(['prefix' => 'genres', 'middleware' => 'auth:sanctum'], function ()
 
     Route::get('/', [GenresController::class, 'getAllGenres']);
     Route::post('/', [GenresController::class, 'createGenre']);
+});
+
+Route::group(['prefix' => 'categories', 'middleware' => 'auth:sanctum'], function () {
+
+    Route::get('/', [CategoriesController::class, 'getAllCategories'])->name('api.categories');
 });
 
 Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function () {

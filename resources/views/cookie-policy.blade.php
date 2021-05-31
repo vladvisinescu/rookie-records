@@ -599,34 +599,6 @@
                             style="font-size: 15px; color: rgb(89, 89, 89);"><span
                                 style="font-size: 15px; color: rgb(89, 89, 89);"><span data-custom-class="body_text">The date at the top of this Cookie Policy indicates when it was last updated.</span></span></span></span>
                 </div>
-                <div style="line-height: 1.5;"><br></div>
-                <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span
-                            style="font-size: 15px; color: rgb(89, 89, 89);"><span
-                                style="font-size: 15px; color: rgb(0, 0, 0);"><strong><span
-                                        data-custom-class="heading_1"></span></strong></span></span></span>
-                </div>
-                <div style="line-height: 1.5;"><br></div>
-                <div style="line-height: 1.5;"><span style="font-size: 15px; color: rgb(89, 89, 89);"><span
-                            style="font-size: 15px; color: rgb(89, 89, 89);"><span
-                                style="font-size: 15px; color: rgb(89, 89, 89);"></span></span></span>
-                </div>
-                <style>
-                    ul {
-                        list-style-type: square;
-                    }
-
-                    ul > li > ul {
-                        list-style-type: circle;
-                    }
-
-                    ul > li > ul > li > ul {
-                        list-style-type: square;
-                    }
-
-                    ol li {
-                        font-family: Arial;
-                    }
-                </style>
             </div>
         </div>
     </div>
