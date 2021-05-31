@@ -77,9 +77,9 @@
 
         <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
-                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.uuid">
+                <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.id">
                     <div class="flex flex-shrink items-center pr-4">
-                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.uuid === address_id">
+                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.id === address_id">
                     </div>
                     <div class="flex flex-grow">
                         <div class="flex flex-col">

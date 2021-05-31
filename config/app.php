@@ -2,6 +2,9 @@
 
 return [
 
+    'postcode_lookup_base_url' => env('POSTCODE_LOOKUP_BASE_URL'),
+    'postcode_lookup_key' => env('POSTCODE_LOOKUP_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

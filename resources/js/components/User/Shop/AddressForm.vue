@@ -23,12 +23,48 @@
         <div>
             <label for="postcode_lookup" class="block text-sm font-medium text-gray-700 hidden">Account number</label>
             <div class="relative rounded-md shadow-sm">
-                <input v-model="address.lookup" type="text" id="postcode_lookup" style="font-size: 20px; " autocomplete="new-password" class="focus:ring-indigo-500 focus:border-indigo-500 font-3xl block w-full py-2.5 pr-10 sm:text-sm border-transparent rounded-md" placeholder="Postcode">
+                <input v-debounce:1000="postcodeLookup" v-model="address.lookup" type="text" id="postcode_lookup" style="font-size: 20px; " autocomplete="false" class="focus:ring-indigo-500 focus:border-indigo-500 font-3xl block w-full py-2.5 pr-10 sm:text-sm border-transparent rounded-md" placeholder="Postcode">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <!-- Heroicon name: question-mark-circle -->
-                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <svg v-if="!searching" class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
+                    <svg v-else class="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="bg-white border rounded overflow-hidden mt-4" v-if="lookupResults.addresses">
+                <ul class="divide-y divide-gray-200 max-h-60 overflow-y-scroll">
+                    <li
+                        @click.prevent="populateAfterLookup(result)"
+                        v-for="result in lookupResults.addresses"
+                        class="cursor-pointer py-2 px-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
+                        <a href="#" class="block focus:outline-none">
+                            <span class="text-sm font-bold text-gray-900 truncate">
+                                {{ result.formatted_address[0] }},
+                            </span>
+                            <span class="text-sm text-gray-500 truncate">
+                                {{ result.formatted_address.filter(item => item.length > 0).splice(1).join(', ') }}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-4" v-else>
+                <div class="rounded-md bg-blue-50 border border-blue-200 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3 flex-1 md:flex md:justify-between">
+                            <p class="text-sm text-blue-700">Search for your postcode or fill in the details below.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,11 +140,15 @@ export default {
                 postcode: '',
                 description: '',
             },
-            errors: []
+            errors: [],
+            searching: false
         }
     },
 
     computed: {
+        ...mapGetters({
+            lookupResults: 'postcodes/getResult'
+        }),
         hasErrors() {
             return _.size(this.errors) > 0
         }
@@ -138,6 +178,26 @@ export default {
                     this.$emit('added')
                 }
             ).catch(errors => this.errors = errors)
+        },
+
+        postcodeLookup() {
+            this.searching = true
+            this.$store.dispatch('postcodes/getAddressesForPostcode', this.address.lookup).then(() => this.searching = false)
+        },
+
+        populateAfterLookup(result) {
+            this.address = {
+                ...this.address,
+                address_1: result.line_1,
+                address_2: result.line_2,
+                town: result.town_or_city,
+                county: result.county,
+                country: result.country,
+                postcode: this.lookupResults.postcode
+            }
+
+            this.$store.dispatch('postcodes/clearResults')
+            this.errors = []
         }
     }
 }

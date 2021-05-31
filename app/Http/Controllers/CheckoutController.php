@@ -73,7 +73,8 @@ class CheckoutController extends Controller
                 'transaction_id' => Str::uuid(),
                 'stripe_id' => $request->input('payment.id'),
                 'total' => $payment->charges->data[0]->amount / 100,
-                'payed_at' => now()
+                'payed_at' => now(),
+                'address_id' => $request->input('address_id')
             ]);
 
             foreach (Cart::content() as $product) {
@@ -83,6 +84,8 @@ class CheckoutController extends Controller
                     'quantity' => $product->qty
                 ]);
             }
+
+            Cart::destroy();
 
             $order->load('products');
 

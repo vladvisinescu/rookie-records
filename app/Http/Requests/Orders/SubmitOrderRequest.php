@@ -14,12 +14,11 @@ class SubmitOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'address_id' => ['required', 'uuid'],
+            'address_id' => ['required'],
             'user.first_name' => ['required', 'string'],
             'user.last_name' => ['required', 'string'],
             'user.email' => ['required', 'email'],
             'user.phone' => ['required'],
-//            'payment.id' => ['required']
         ];
     }
 }

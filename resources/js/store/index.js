@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 
+import postcodes from "./modules/utilities/postcodes";
+
 import categories from './modules/desktop/categories'
 import genres from './modules/desktop/genres'
 import artists from './modules/desktop/artists'
@@ -16,6 +18,9 @@ import orders from './modules/orders'
 
 const store = createStore({
     modules: {
+        // Utilities
+        postcodes,
+
         // Admin Area
         categories,
         genres,
