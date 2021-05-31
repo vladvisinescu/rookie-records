@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\Addresses\CreateAddressRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class AddressController extends Controller
@@ -41,5 +42,13 @@ class AddressController extends Controller
         $address->delete();
 
         return response()->json([], 200);
+    }
+
+    public function postcodeLookup($postcode)
+    {
+        return Http::get(config('app.postcode_lookup_base_url') . '/find/' . $postcode, [
+            'api-key' => config('app.postcode_lookup_key'),
+            'expand' => 'true'
+        ])->json();
     }
 }

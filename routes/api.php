@@ -51,6 +51,7 @@ Route::group(['prefix' => 'categories', 'middleware' => 'auth:sanctum'], functio
 
 Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function () {
 
+    Route::get('/postcode/{postcode}', [AddressController::class, 'postcodeLookup'])->name('api.addresses.lookup');
     Route::get('/', [AddressController::class, 'getAllAddresses']);
     Route::post('/', [AddressController::class, 'saveAddress']);
     Route::delete('/{address}', [AddressController::class, 'deleteAddress'])->name('api.addresses.delete');
