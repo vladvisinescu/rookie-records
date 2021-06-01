@@ -96,6 +96,10 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
 
+    props: [
+        'filters'
+    ],
+
     data() {
         return {
             drawers: {
@@ -104,14 +108,6 @@ export default {
                 artists: true,
                 countries: true,
             },
-
-            filters: {
-                term: '',
-                years: [],
-                genres: [],
-                artists: [],
-                countries: [],
-            }
         }
     },
 
@@ -126,6 +122,7 @@ export default {
 
     created() {
         this.$store.dispatch('shop/getFilterData')
+        this.$emit('change', this.filters)
     },
 
     methods: {

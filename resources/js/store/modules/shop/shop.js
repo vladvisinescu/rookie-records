@@ -1,5 +1,8 @@
 const state = () => ({
-    products: [],
+    products: {
+        data: [],
+        pagination: {}
+    },
     artists: [],
     genres: [],
     years: [],
@@ -7,7 +10,8 @@ const state = () => ({
 });
 
 const getters = {
-    allProducts: (state) => state.products,
+    allProducts: (state) => state.products.data,
+    pagination: (state) => state.products.pagination,
     allArtists: (state) => state.artists,
     allGenres: (state) => state.genres,
     allYears: (state) => state.years,
@@ -43,12 +47,14 @@ const actions = {
                     reject(error.response.data)
                 })
         })
-    }
+    },
 };
 
 const mutations = {
     setProducts(state, data) {
-        state.products = data
+        state.products.data = data.data
+        delete data.data
+        state.products.pagination = data
     },
 
     setFilterData(state, data) {
