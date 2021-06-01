@@ -26,8 +26,8 @@ const actions = {
                     params: { ...filters }
                 }, { withCredentials: true })
                 .then(response => {
-                    commit('setProducts', response.data)
                     resolve(response.data)
+                    commit('setProducts', response.data)
                 })
                 .catch(error => {
                     reject(error.response.data)

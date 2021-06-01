@@ -1,7 +1,7 @@
 <template>
     <nav class="space-y-2" aria-label="Sidebar">
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 py-2">
+            <div class="flex justify-between pl-4 pb-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.genres = !drawers.genres">Genres</span>
                 <a @click.prevent="clearFilters('genres')" href="javascript:;" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -20923,7 +20923,7 @@ var _hoisted_2 = {
   "class": "rounded-lg overflow-hidden"
 };
 var _hoisted_3 = {
-  "class": "flex justify-between pl-4 py-2"
+  "class": "flex justify-between pl-4 pb-2"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
@@ -22498,8 +22498,8 @@ var actions = {
       }, {
         withCredentials: true
       }).then(function (response) {
-        commit('setProducts', response.data);
         resolve(response.data);
+        commit('setProducts', response.data);
       })["catch"](function (error) {
         reject(error.response.data);
       });
