@@ -22498,8 +22498,8 @@ var actions = {
       }, {
         withCredentials: true
       }).then(function (response) {
-        commit('setProducts', response.data);
         resolve(response.data);
+        commit('setProducts', response.data);
       })["catch"](function (error) {
         reject(error.response.data);
       });

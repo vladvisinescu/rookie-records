@@ -68,16 +68,20 @@ class VinylController extends Controller
             );
         }
 
-        if ($request->has('limit')) {
-            $products = $products->limit($request->input('limit'));
-        }
-
         if ($request->input('term')) {
             $constraints = $products;
             $products = Product::search($request->input('term'))->constrain($constraints);
         }
 
-        return $products->orderBy('created_at', 'desc')->paginate(24);
+        $products = $products->orderBy('created_at', 'desc');
+
+        if ($request->has('limit')) {
+            $products = $products->limit($request->input('limit'))->get();
+        } else {
+            $products = $products->paginate(24);
+        }
+
+        return $products;
     }
 
     public function getFilterData(Request $request)
