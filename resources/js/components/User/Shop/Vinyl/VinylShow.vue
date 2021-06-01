@@ -31,20 +31,15 @@
                             </li>
                         </ul>
                     </div>
-
-                </div>
-                <div class="pr-4">
-                    <div class="w-3/5 bg-white shadow-md border-t-2 border-indigo-300 overflow-hidden sm:rounded-lg">
-                        <div class="px-4 py-5 sm:p-6">
-                            <div class="flex justify-between items-center">
-                                <span class="text-2xl" v-text="'£' + product.price"></span>
-                                <button v-if="!inCart" @click.prevent="addToCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Add to Basket
-                                </button>
-                                <button v-else @click.prevent="removeFromCart" type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                    Remove from Basket
-                                </button>
-                            </div>
+                    <div class="w-2/5">
+                        <div class="flex flex-col items-center gap-y-4">
+                            <span class="text-3xl font-bold" v-text="'£' + product.price"></span>
+                            <button v-if="!inCart" @click.prevent="addToCart" type="button" class="w-full items-center px-4 py-4 border border-transparent font-bold rounded-lg shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Add to Basket
+                            </button>
+                            <button v-else @click.prevent="removeFromCart" type="button" class="w-full items-center px-4 py-4 border border-transparent font-bold rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Remove from Basket
+                            </button>
                         </div>
                     </div>
                 </div>

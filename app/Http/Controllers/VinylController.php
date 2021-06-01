@@ -77,9 +77,7 @@ class VinylController extends Controller
             $products = Product::search($request->input('term'))->constrain($constraints);
         }
 
-        $products = $products->orderBy('created_at', 'desc');
-
-        return $products->get();
+        return $products->orderBy('created_at', 'desc')->paginate(24);
     }
 
     public function getFilterData(Request $request)
