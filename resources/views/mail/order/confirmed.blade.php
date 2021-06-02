@@ -3,8 +3,6 @@
 
 Here are the lovely records you'll soon listen to:
 
-
-
 @component('mail::table')
 | Product       | Quantity      | Price    |
 | ------------- |:-------------:| --------:|

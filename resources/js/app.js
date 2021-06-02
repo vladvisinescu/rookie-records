@@ -18,6 +18,8 @@ import MiniDisplay from './components/User/MiniDisplay';
 import ProductList from './components/Desktop/Products/ProductList';
 import ProductCreate from './components/Desktop/Products/ProductCreate';
 
+import OrdersList from './components/Desktop/Orders/OrderList';
+
 const app = createApp({})
 
 app.use(store);
@@ -46,5 +48,7 @@ app.component('user-orders', Orders);
 // Admin Area
 app.component('product-list', ProductList);
 app.component('product-create', ProductCreate);
+
+app.component('orders-list', OrdersList);
 
 app.mount('#app');

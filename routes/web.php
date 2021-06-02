@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Desktop\OrdersController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -60,6 +61,10 @@ Route::group(['prefix' => 'desktop', 'middleware' => ['permissions.role:super_ad
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductsController::class, 'home'])->name('desktop.products.home');
         Route::get('/create', [ProductsController::class, 'create'])->name('desktop.products.create');
+    });
+
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', [OrdersController::class, 'home'])->name('desktop.orders.home');
     });
 });
 
