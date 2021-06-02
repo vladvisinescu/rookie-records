@@ -24,6 +24,7 @@ Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'checkout', 'middleware' => ['auth']], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
+        Route::get('/order/{orderID}', [CheckoutController::class, 'orderDetails'])->name('shop.checkout.order.details');
         Route::post('/submit', [CheckoutController::class, 'submitOrder'])->name('shop.checkout.submit');
     });
 

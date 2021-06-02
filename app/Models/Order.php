@@ -27,4 +27,9 @@ class Order extends Model
     {
         return $this->belongsTo(Address::class, 'address_id', 'id');
     }
+
+    public static function findByUUID(string $uuid)
+    {
+        return self::where('transaction_id', $uuid)->first();
+    }
 }

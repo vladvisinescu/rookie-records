@@ -2,9 +2,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <div class="flex justify-start">
+                <div class="flex justify-start items-center">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo-rookie.png') }}" class="object-contain w-auto h-16" alt="Rookie Records Logo">
+                        <img src="{{ asset('images/logo-rookie.png') }}" class="object-contain w-auto h-12" alt="Rookie Records Logo">
                     </a>
                 </div>
 
@@ -111,4 +111,7 @@
             </div>
         </div>
     @endauth
+</nav>
+<nav class="flex w-full bg-yellow-500 text-white">
+    <p class="text-center mx-auto text-sm font-bold py-1">Free UK delivery for orders over £30!</p>
 </nav>

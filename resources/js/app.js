@@ -23,7 +23,11 @@ const app = createApp({})
 app.use(store);
 app.use(vueDebounce, { listenTo: ['keydown'] })
 
-app.mixin({ methods: { route }});
+app.mixin({
+    methods: {
+        route,
+    }
+});
 
 store.dispatch('user/getUser')
 

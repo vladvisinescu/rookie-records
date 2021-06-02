@@ -9,9 +9,9 @@
         <template v-slot:cta>Delete</template>
     </ConfirmModal>
 
-    <SuccessModal :open="completeOrder.modal" :data="{ cta_url: route('home') }">
-        <template v-slot:title>Are you sure?</template>
-        <template v-slot:cta>YEEES</template>
+    <SuccessModal :open="completeOrder.modal" :data="{ cta_url: route('shop.checkout.order.details', {orderID: completeOrder.transaction_id}) }">
+        <template v-slot:title>You have successfully completed your order!</template>
+        <template v-slot:cta>Order Details</template>
     </SuccessModal>
 
     <div class="w-1/2 mx-auto">
@@ -188,7 +188,8 @@ export default {
                 id: null,
             },
             completeOrder: {
-                modal: false
+                modal: false,
+                transaction_id: ''
             },
             address_id: null,
             stripe: {},
@@ -254,10 +255,6 @@ export default {
                 }
             )
 
-            if (paymentMethod) {
-                console.log(paymentMethod.id)
-            }
-
             if (error) {
                 alert(error)
             }
@@ -270,6 +267,7 @@ export default {
                 payment: paymentMethod
             }).then(response => {
                 this.completeOrder.modal = true
+                this.completeOrder.transaction_id = response.data.transaction_id
             }).catch(errors => {
                 console.log(errors)
                 this.errors = errors
