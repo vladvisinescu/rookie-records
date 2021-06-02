@@ -6,6 +6,7 @@ use App\Http\Controllers\Desktop\ArtistsController;
 use App\Http\Controllers\Desktop\CategoriesController;
 use App\Http\Controllers\Desktop\GenresController;
 use App\Http\Controllers\Desktop\DiscogsController;
+use App\Http\Controllers\Desktop\OrdersController;
 use App\Http\Controllers\Desktop\ProductsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -30,6 +31,13 @@ Route::group(['prefix' => 'products', 'middleware' => 'auth:sanctum'], function 
     Route::get('/', [ProductsController::class, 'getAllProducts']);
     Route::post('/', [ProductsController::class, 'saveProduct']);
     Route::delete('/{product}', [ProductsController::class, 'deleteProduct']);
+});
+
+Route::group(['prefix' => 'orders', 'middleware' => 'auth:sanctum'], function () {
+
+    Route::get('/', [OrdersController::class, 'getAllOrders'])->name('api.orders.all');
+    Route::patch('/{order}/confirm', [OrdersController::class, 'confirmOrder'])->name('api.orders.confirm');
+    Route::delete('/{order}', [OrdersController::class, 'deleteProduct'])->name('api.orders.delete');
 });
 
 Route::group(['prefix' => 'artists', 'middleware' => 'auth:sanctum'], function () {

@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+    public function routeNotificationForMail($notification)
+    {
+        return [$this->email => $this->full_name];
+    }
 }

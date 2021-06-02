@@ -11,7 +11,9 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    protected $fillable = ['transaction_id', 'total', 'address_id'];
+    public $timestamps = ['created_at', 'updated_at', 'dispatched_at', 'confirmed_at'];
+
+    protected $fillable = ['transaction_id', 'total', 'address_id', 'confirmed_at'];
 
     public function user()
     {
@@ -26,5 +28,10 @@ class Order extends Model
     public function address()
     {
         return $this->belongsTo(Address::class, 'address_id', 'id');
+    }
+
+    public static function findByUUID(string $uuid)
+    {
+        return self::where('transaction_id', $uuid)->first();
     }
 }

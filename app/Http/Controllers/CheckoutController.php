@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\Order;
+use App\Models\Product;
+use App\Notifications\OrderConfirmed;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Log;
 
@@ -85,9 +89,12 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            Cart::destroy();
+            // comment for testing
+//            Cart::destroy();
 
-            $order->load('products');
+            $order->load(['products', 'user', 'address']);
+
+            Auth::user()->notify(new OrderConfirmed($order));
 
             return new OrderResource($order);
 
@@ -98,5 +105,18 @@ class CheckoutController extends Controller
                 'message' => $e->getMessage()
             ], 402);
         }
+    }
+
+    public function orderDetails($orderID)
+    {
+        $order = Order::findByUUID($orderID);
+
+        if (!$order) {
+            abort(404);
+        }
+
+        return view('shop.checkout.order-details', [
+            'order' => $order
+        ]);
     }
 }

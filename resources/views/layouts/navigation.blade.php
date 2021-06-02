@@ -13,8 +13,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('desktop.products.home')" :active="request()->routeIs('desktop.products.home')">
+                    <x-nav-link :href="route('desktop.products.home')" :active="request()->routeIs('desktop.products.*')">
                         {{ __('Products') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('desktop.orders.home')" :active="request()->routeIs('desktop.orders.*')">
+                        {{ __('Orders') }}
                     </x-nav-link>
                 </div>
             </div>
