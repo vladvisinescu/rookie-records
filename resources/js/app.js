@@ -28,6 +28,22 @@ app.use(vueDebounce, { listenTo: ['keydown'] })
 app.mixin({
     methods: {
         route,
+        updateSearchQuery(data) {
+            console.log(data)
+            let url = new URL(document.location);
+                url.search = '';
+
+            Object.entries(data).forEach((key, value) => {
+                url.searchParams.set(key, value)
+            })
+
+            window.history.pushState({
+                path: url.toString()
+            },'', url.toString());
+
+            console.log(url.searchParams.toString())
+
+        }
     }
 });
 

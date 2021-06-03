@@ -3,19 +3,19 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="flex justify-start items-center">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('home') }}" class="logo-link-home">
                         <img src="{{ asset('images/logo-rookie.png') }}" class="object-contain w-auto h-12" alt="Rookie Records Logo">
                     </a>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="nav-link-home">
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('shop.index')" :active="request()->routeIs('shop.*')">
+                    <x-nav-link :href="route('shop.index')" :active="request()->routeIs('shop.*')" class="nav-link-products">
                         {{ __('Products') }}
                     </x-nav-link>
                 </div>
