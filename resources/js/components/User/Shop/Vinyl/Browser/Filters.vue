@@ -1,5 +1,30 @@
 <template>
     <nav class="space-y-2" aria-label="Sidebar">
+
+        <div class="rounded-lg overflow-hidden">
+            <div class="flex justify-between pl-4 pb-2 hidden">
+                <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.categories = !drawers.categories">Categories</span>
+                <a @click.prevent="clearFilters('categories')" href="javascript:;" class="flex items-center text-sm">
+                    <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span class="text-xs">Clear</span>
+                </a>
+            </div>
+            <ul class="" v-show="drawers.categories">
+                <li
+                    v-for="category in categories"
+                    :key="category.id"
+                    @click.prevent="selectCategory(category)"
+                    class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
+                    <span :class="[ filters.categories.includes(category.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                    <span :class="[ filters.categories.includes(category.id) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="category.name"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex w-full border-b"></div>
+
         <div class="rounded-lg overflow-hidden">
             <div class="flex justify-between pl-4 pb-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.genres = !drawers.genres">Genres</span>
@@ -100,6 +125,8 @@ export default {
         'filters'
     ],
 
+    emits: ['change'],
+
     data() {
         return {
             drawers: {
@@ -107,6 +134,7 @@ export default {
                 genres: true,
                 artists: true,
                 countries: true,
+                categories: true,
             },
         }
     },
@@ -117,6 +145,7 @@ export default {
             genres: 'shop/allGenres',
             artists: 'shop/allArtists',
             countries: 'shop/allCountries',
+            categories: 'shop/allCategories',
         })
     },
 
@@ -144,6 +173,11 @@ export default {
 
         selectCountry(country) {
             this.filters.countries.includes(country) ? _.pull(this.filters.countries, country) : this.filters.countries.push(country)
+            this.$emit('change', this.filters)
+        },
+
+        selectCategory(category) {
+            this.filters.categories.includes(category.id) ? _.pull(this.filters.categories, category.id) : this.filters.categories.push(category.id)
             this.$emit('change', this.filters)
         },
 

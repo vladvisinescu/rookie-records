@@ -83,7 +83,7 @@
                                 </ul>
                             </fieldset>
                             <div v-else>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet esse in incidunt magni odio, officiis quaerat veritatis! Architecto commodi inventore labore pariatur quaerat unde voluptatibus! Dolores in laudantium obcaecati voluptatum.</p>
+                                <p>Go fish, little chicken!</p>
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

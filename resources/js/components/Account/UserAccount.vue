@@ -223,7 +223,6 @@ export default {
 
         updateUser() {
             this.$store.dispatch('user/updateUser', this.user).then(response => {
-                console.log(555111)
                 this.updatesUser.result = 'Changes saved.';
                 this.updatesUser.success = true;
             }).catch(error => {

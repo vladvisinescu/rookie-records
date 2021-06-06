@@ -28,8 +28,6 @@ const actions = {
     },
 
     saveProduct({ commit }, data) {
-        // console.log(555, data)
-        // return
         return new Promise((resolve, reject) => {
             axios
                 .post('/api/products', data, { withCredentials: true })

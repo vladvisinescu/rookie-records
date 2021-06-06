@@ -41,13 +41,16 @@ class ProductsController extends Controller
 
     public function saveProduct(CreateProductRequest $request)
     {
-
         $product = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
         $product->product_type = 'vinyl';
         $product->price = $request->input('price');
         $product->uuid = Str::uuid();
+
+        if ($request->boolean('published')) {
+            $product->published_at = now();
+        }
 
         $product->user()->associate(Auth::user());
         $product->categories()->associate($request->input('category_id'));

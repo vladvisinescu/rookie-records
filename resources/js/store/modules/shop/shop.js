@@ -16,6 +16,7 @@ const getters = {
     allGenres: (state) => state.genres,
     allYears: (state) => state.years,
     allCountries: (state) => state.countries,
+    allCategories: (state) => state.categories,
 };
 
 const actions = {
@@ -62,6 +63,7 @@ const mutations = {
         state.genres = data.genres
         state.years = data.years
         state.countries = data.countries
+        state.categories = data.categories
     },
 };
 
