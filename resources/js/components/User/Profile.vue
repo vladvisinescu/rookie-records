@@ -5,7 +5,7 @@
 <script>
 export default {
     mounted() {
-        console.log('Profile')
+        // console.log('Profile')
     }
 }
 </script>

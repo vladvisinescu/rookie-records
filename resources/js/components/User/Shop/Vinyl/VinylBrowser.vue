@@ -106,11 +106,14 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
+import queryString from 'query-string'
 
 import BrowserItem from './Browser/Item'
 import BrowserFilters from './Browser/Filters'
 
 export default {
+
+    props: ['urlFilters'],
 
     components: {
         BrowserItem,
@@ -139,12 +142,17 @@ export default {
     },
 
     created() {
+        this.filters = {
+            ...this.filters,
+            ...require('query-string').parse(location.search, {arrayFormat: 'bracket'})
+        }
+
         this.getProducts()
     },
 
     methods: {
         getProducts(filters) {
-            this.updateSearchQuery(this.filters);
+            this.updateSearchQuery(filters);
             this.$store.dispatch('shop/getProducts', filters)
         },
 
