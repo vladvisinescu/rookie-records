@@ -21,6 +21,7 @@ import ProductCreate from './components/Desktop/Products/ProductCreate';
 import OrdersList from './components/Desktop/Orders/OrderList';
 
 const app = createApp({})
+const queryString = require('query-string');
 
 app.use(store);
 app.use(vueDebounce, { listenTo: ['keydown'] })
@@ -28,20 +29,15 @@ app.use(vueDebounce, { listenTo: ['keydown'] })
 app.mixin({
     methods: {
         route,
-        updateSearchQuery(data) {
-            // console.log(data)
-            let url = new URL(document.location);
-                url.search = '';
-
-            Object.entries(data).forEach((key, value) => {
-                url.searchParams.set(key, value)
-            })
+        updateSearchQuery(obj) {
+            const encoded =
+                window.location.href.split('?')[0]
+                + '?'
+                + queryString.stringify(obj, {arrayFormat: 'bracket'});
 
             window.history.pushState({
-                path: url.toString()
-            },'', url.toString());
-
-            // console.log(url.searchParams.toString())
+                path: encoded
+            },'', encoded);
         }
     }
 });

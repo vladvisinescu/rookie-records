@@ -269,7 +269,7 @@ export default {
                 this.completeOrder.modal = true
                 this.completeOrder.transaction_id = response.data.transaction_id
             }).catch(errors => {
-                console.log(errors)
+                // console.log(errors)
                 this.errors = errors
             })
         },
