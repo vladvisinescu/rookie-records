@@ -30,7 +30,7 @@ const actions = {
             axios
                 .patch(route('api.orders.confirm', { order }), { withCredentials: true })
                 .then(response => {
-                    console.log(response)
+                    // console.log(response)
                 })
                 .catch(error => {
                     reject(error.response.data.errors)

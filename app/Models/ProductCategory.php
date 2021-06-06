@@ -18,6 +18,10 @@ class ProductCategory extends Model
         'name', 'slug'
     ];
 
+    protected $casts = [
+        'public' => 'boolean'
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id', 'id');

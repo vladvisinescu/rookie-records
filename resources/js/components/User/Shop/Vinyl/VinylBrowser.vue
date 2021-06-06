@@ -126,6 +126,7 @@ export default {
                 genres: [],
                 artists: [],
                 countries: [],
+                categories: [],
             }
         }
     },
@@ -139,10 +140,6 @@ export default {
 
     created() {
         this.getProducts()
-    },
-
-    updated() {
-        console.log(123123)
     },
 
     methods: {
@@ -164,6 +161,7 @@ export default {
                 genres: [],
                 artists: [],
                 countries: [],
+                categories: []
             }
 
             this.$store.dispatch('shop/getProducts', this.filters)

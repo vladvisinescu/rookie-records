@@ -29,7 +29,7 @@ app.mixin({
     methods: {
         route,
         updateSearchQuery(data) {
-            console.log(data)
+            // console.log(data)
             let url = new URL(document.location);
                 url.search = '';
 
@@ -41,8 +41,7 @@ app.mixin({
                 path: url.toString()
             },'', url.toString());
 
-            console.log(url.searchParams.toString())
-
+            // console.log(url.searchParams.toString())
         }
     }
 });

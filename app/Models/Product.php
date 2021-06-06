@@ -28,6 +28,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property mixed price
  * @property mixed|UuidInterface uuid
  * @property mixed created_at
+ * @property \Illuminate\Support\Carbon|mixed published_at
  *
  * @method  mixed description
  */
@@ -40,7 +41,7 @@ class Product extends Model implements Buyable, HasMedia
     use InteractsWithMedia;
 
     protected $appends = [
-        'in_cart', 'date_created_human', 'date_created_diff'
+        'published', 'date_created_human', 'date_created_diff', 'category_name'
     ];
 
     protected $fillable = [
@@ -100,9 +101,14 @@ class Product extends Model implements Buyable, HasMedia
         ];
     }
 
-    public function getInCartAttribute()
+    public function getCategoryNameAttribute()
     {
-        return collect(session()->get('cart'))->only('id')->has($this->getKey());
+        return $this->categories->first()->name;
+    }
+
+    public function getPublishedAttribute()
+    {
+        return ($this->published_at != null);
     }
 
     public function getDateCreatedHumanAttribute(): string

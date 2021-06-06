@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductDetails\Artist;
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
@@ -27,6 +28,10 @@ class VinylController extends Controller
     public function getVinyls(Request $request)
     {
         $products = Product::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
+
+        if ($request->has('categories')) {
+            $products = $products->whereIn('category_id', $request->input('categories'));
+        }
 
         if($request->has('genres')) {
             $products = $products->whereHas(
@@ -91,6 +96,7 @@ class VinylController extends Controller
             'genres' => Genre::orderBy('name', 'ASC')->get(),
             'years' => Vinyl::distinct('year')->get(['year'])->pluck('year')->sort()->values()->all(),
             'countries' => Vinyl::distinct('country')->get(['country'])->pluck('country')->sort()->values()->all(),
+            'categories' => ProductCategory::orderBy('name', 'ASC')->get(['id', 'name']),
         ];
     }
 }

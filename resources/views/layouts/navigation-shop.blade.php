@@ -19,6 +19,12 @@
                         {{ __('Products') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('shop.index')" :active="request()->routeIs('bargains.*')" class="nav-link-bargains">
+                        {{ __('Bargains') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <div class="flex">
