@@ -1,7 +1,7 @@
 <template>
     <div class="flex mt-2 divide-x gap-x-4">
         <div class="w-1/4">
-            <BrowserFilters @change="getProducts" :filters="filters" @update:filters="filters = $event" />
+            <BrowserFilters @change="getProducts(filters)" :filters="filters" @update:filters="filters = $event" />
         </div>
         <div class="w-3/4 pl-4">
             <div class="" v-if="products.length">
@@ -107,6 +107,7 @@
 
 import { mapGetters, mapActions } from 'vuex'
 import queryString from 'query-string'
+import { nextTick } from 'vue'
 
 import BrowserItem from './Browser/Item'
 import BrowserFilters from './Browser/Filters'
@@ -141,18 +142,26 @@ export default {
         })
     },
 
-    created() {
-        this.filters = {
-            ...this.filters,
-            ...require('query-string').parse(location.search, {arrayFormat: 'bracket'})
-        }
+    async created() {
+        // const urlSearch = require('query-string').parse(location.search, {arrayFormat: 'bracket'})
+        //
+        // // console.log('urlSearch', urlSearch)
+        //
+        // this.filters = {
+        //     ...this.filters,
+        //     ...urlSearch
+        // }
+        //
+        // console.log(this.filters)
+        //
+        // await nextTick()
 
-        this.getProducts()
+        this.getProducts(this.filters)
     },
 
     methods: {
         getProducts(filters) {
-            this.updateSearchQuery(filters);
+            // this.updateSearchQuery(filters);
             this.$store.dispatch('shop/getProducts', filters)
         },
 
