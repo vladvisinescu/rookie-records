@@ -8,6 +8,7 @@ use App\Models\ProductDetails\Artist;
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VinylController extends Controller
 {
@@ -27,6 +28,7 @@ class VinylController extends Controller
 
     public function getVinyls(Request $request)
     {
+
         $products = Product::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
 
         if ($request->has('categories')) {
@@ -73,6 +75,12 @@ class VinylController extends Controller
             );
         }
 
+        if ($request->input('range')) {
+            $products = $products
+                ->whereRaw('price >= CAST(' . $request->input('range')[0] . ' as DECIMAL(8,2))')
+                ->whereRaw('price <= CAST(' . $request->input('range')[1] . ' as DECIMAL(8,2))');
+        }
+
         if ($request->input('term')) {
             $constraints = $products;
             $products = Product::search($request->input('term'))->constrain($constraints);
@@ -97,6 +105,10 @@ class VinylController extends Controller
             'years' => Vinyl::distinct('year')->get(['year'])->pluck('year')->sort()->values()->all(),
             'countries' => Vinyl::distinct('country')->get(['country'])->pluck('country')->sort()->values()->all(),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(['id', 'name']),
+            'range' => [
+                floor(DB::table('products')->select(DB::raw('MIN(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
+                ceil(DB::table('products')->select(DB::raw('MAX(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
+            ]
         ];
     }
 }

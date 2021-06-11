@@ -24,4 +24,9 @@ class HomeController extends Controller
     {
         return view('cookie-policy');
     }
+
+    public function faq()
+    {
+        return view('faq');
+    }
 }

@@ -48,6 +48,10 @@ class Product extends Model implements Buyable, HasMedia
         'sold_at'
     ];
 
+    protected $casts = [
+        'price' => 'float'
+    ];
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')

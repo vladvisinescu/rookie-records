@@ -29,36 +29,41 @@
         <script src="https://js.stripe.com/v3/"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased {{ $bodyClass }}" id="app">
+    <body class="flex flex-col min-h-screen font-sans antialiased {{ $bodyClass }}">
 
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDCCHWM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
+        <script src="https://consent.cookiefirst.com/banner.js" data-cookiefirst-key="6b19b491-06cf-4cbf-9e3e-e0385ff85793"></script>
 
-        @include('layouts.navigation-shop')
+        <div id="app">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDCCHWM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
 
-        <!-- Page Heading -->
-        @if(isset($header))
-            <header class="mb-5 bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
+            @include('layouts.navigation-shop')
 
-        @if(isset($banner))
-            <header class="mb-5 bg-white shadow">
-                <div class="py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $banner }}
-                </div>
-            </header>
-        @endif
+            <!-- Page Heading -->
+            @if(isset($header))
+                <header class="mb-5 bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
-        <div>
-            {{ $slot }}
+            @if(isset($banner))
+                <header class="mb-5 bg-white shadow">
+                    <div class="py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $banner }}
+                    </div>
+                </header>
+            @endif
+
+            <div>
+                {{ $slot }}
+            </div>
+
+            @include('layouts.footer-shop')
+
         </div>
-
-        @include('layouts.footer-shop')
 
     </body>
 </html>
