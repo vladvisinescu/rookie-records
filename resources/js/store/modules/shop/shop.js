@@ -7,7 +7,17 @@ const state = () => ({
     genres: [],
     years: [],
     countries: [],
-    range: [1, 100]
+    range: [1, 100],
+    gradings: [
+        { short: 'M', long: 'Mint', },
+        { short: 'NM', long: 'Near Mint' },
+        { short: 'VG+', long: 'Very Good+', },
+        { short: 'VG', long: 'Very Good' },
+        { short: 'G+', long: 'Good+' },
+        { short: 'G', long: 'Good' },
+        { short: 'F', long: 'Fair' },
+        { short: 'P', long: 'Poor' }
+    ]
 });
 
 const getters = {
@@ -19,6 +29,7 @@ const getters = {
     allCountries: (state) => state.countries,
     allCategories: (state) => state.categories,
     priceRange: (state) => state.range,
+    allGradings: (state) => state.gradings,
 };
 
 const actions = {

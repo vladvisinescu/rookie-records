@@ -6,7 +6,7 @@
                 <div class="absolute inset-0 bg-indigo-500 bg-opacity-50 transition-all transition-ease-in group-hover:bg-opacity-10" style="mix-blend-mode: darken"></div>
                 <div class="absolute inset-x-0 bottom-0 p-4">
                     <div class="flex flex-col object-none object-bottom text-shadow-md">
-                        <span v-text="product.title + product.price" class="font-bold text-white leading-tight"></span>
+                        <span v-text="product.title" class="font-bold text-white leading-tight"></span>
                         <div>
                             <span class="inline-flex text-sm leading-tight text-white" v-text="vinyl.artists.map(artist => artist.name).join(', ')"></span>
                         </div>

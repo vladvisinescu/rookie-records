@@ -77,8 +77,7 @@ class VinylController extends Controller
 
         if ($request->input('range')) {
             $products = $products
-                ->whereRaw('price >= CAST(' . $request->input('range')[0] . ' as DECIMAL(8,2))')
-                ->whereRaw('price <= CAST(' . $request->input('range')[1] . ' as DECIMAL(8,2))');
+                ->whereBetween('price', $request->input('range'));
         }
 
         if ($request->input('term')) {
@@ -86,7 +85,7 @@ class VinylController extends Controller
             $products = Product::search($request->input('term'))->constrain($constraints);
         }
 
-        $products = $products->orderBy('created_at', 'desc');
+        $products = $products->orderBy('price', 'desc');
 
         if ($request->has('limit')) {
             $products = $products->limit($request->input('limit'))->get();

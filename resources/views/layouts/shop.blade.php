@@ -40,15 +40,6 @@
 
             @include('layouts.navigation-shop')
 
-            <!-- Page Heading -->
-            @if(isset($header))
-                <header class="mb-5 bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
             @if(isset($banner))
                 <header class="mb-5 bg-white shadow">
                     <div class="py-6 px-4 sm:px-6 lg:px-8">
@@ -56,6 +47,17 @@
                     </div>
                 </header>
             @endif
+
+            <!-- Page Heading -->
+            @if(isset($header))
+                <header class="">
+                    <div class="container mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+
 
             <div>
                 {{ $slot }}
