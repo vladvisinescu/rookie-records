@@ -25,8 +25,18 @@ class HomeController extends Controller
         return view('cookie-policy');
     }
 
+    public function deliveryPolicy()
+    {
+        return view('delivery-policy');
+    }
+
     public function faq()
     {
         return view('faq');
+    }
+
+    public function contactUs()
+    {
+        return view('contact-us');
     }
 }

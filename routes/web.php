@@ -21,6 +21,8 @@ Route::get('faq', [HomeController::class, 'faq'])->name('home.faq');
 Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('home.terms');
 Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('home.policy');
 Route::get('cookie-policy', [HomeController::class, 'cookiePolicy'])->name('home.cookie');
+Route::get('delivery-policy', [HomeController::class, 'deliveryPolicy'])->name('home.delivery');
+Route::get('contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
 
 Route::group(['prefix' => 'shop'], function () {
 

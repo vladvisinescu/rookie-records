@@ -142,23 +142,6 @@ export default {
         })
     },
 
-    async created() {
-        // const urlSearch = require('query-string').parse(location.search, {arrayFormat: 'bracket'})
-        //
-        // // console.log('urlSearch', urlSearch)
-        //
-        // this.filters = {
-        //     ...this.filters,
-        //     ...urlSearch
-        // }
-        //
-        // console.log(this.filters)
-        //
-        // await nextTick()
-
-        this.getProducts(this.filters)
-    },
-
     methods: {
         getProducts: debounce(function (filters) {
             this.$store.dispatch('shop/getProducts', filters)
@@ -177,7 +160,11 @@ export default {
                 genres: [],
                 artists: [],
                 countries: [],
-                categories: []
+                categories: [],
+                range: [
+                    this.$store.getters['shop/priceRange'][0],
+                    this.$store.getters['shop/priceRange'][1]
+                ]
             }
 
             this.$store.dispatch('shop/getProducts', this.filters)

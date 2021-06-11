@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div class="mb-8">
         <div class="mb-8">
             <h1 class="text-xl font-bold text-gray-700 border-b-4 border-gray-300 inline">Frequently Asked Questions</h1>
         </div>
         <div class="flex flex-col gap-y-4">
             <div v-for="faq in faqs" class="shadow-md border-gray-200 rounded-lg overflow-hidden">
                 <div class="border-b-2 bg-gray-100 py-4 px-6">
-                    <h1 class="font-bold text-gray-700"><span v-text="faq.number"></span>. <span v-text="faq.question"></span></h1>
+                    <h1 class="font-bold text-gray-700"><span v-text="faq.number"></span>. <span v-html="faq.question"></span></h1>
                 </div>
-                <div class="py-4 px-6">
+                <div class="py-4 px-6 prose max-w-full">
                     <p v-html="faq.answer"></p>
                 </div>
             </div>
@@ -25,7 +25,7 @@ export default {
                 {
                     number: 1,
                     question: 'Where do you get the records from?',
-                    answer: 'We mostly sell used vinyls in our shop. We have multiple sources where we buy our vinyls from: ebay, offline shopping from vinyl shops, vinyl fairs. We like traveling and discovering new record shops where we dig for records that might be of interest for our customers.'
+                    answer: 'We mostly sell used vinyls in our shop. We have multiple sources where we buy our vinyls from: ebay, offline shopping from vinyl shops, vinyl fairs. We like traveling and discovering new record shops where we dig for records that might be of interest to our customers.'
                 },
                 {
                     number: 2,
@@ -70,7 +70,7 @@ export default {
                 {
                     number: 10,
                     question: 'What does each grading level (VG, G, P, F) mean?',
-                    answer: 'TODO'
+                    answer: 'For a detailed explanation about what these mean please visit Discogs.com\'s <a href="https://support.discogs.com/hc/en-us/articles/360001566193-How-To-Grade-Items">How to grade items</a> page.'
                 }
             ]
         }

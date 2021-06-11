@@ -6,6 +6,7 @@ import vueDebounce from 'vue-debounce'
 import store from './store';
 
 import Faq from "./components/Faq";
+import ContactUs from "./components/ContactUs";
 
 import Account from './components/Account/UserAccount';
 import Orders from './components/Account/UserOrders';
@@ -24,6 +25,7 @@ import OrdersList from './components/Desktop/Orders/OrderList';
 
 const app = createApp({})
 const queryString = require('query-string');
+const simpleIcons = require('simple-icons');
 
 app.use(store);
 app.use(vueDebounce, {
@@ -34,6 +36,7 @@ app.use(vueDebounce, {
 app.mixin({
     methods: {
         route,
+        simpleIcons,
         updateSearchQuery(obj) {
             const encoded =
                 window.location.href.split('?')[0]
@@ -51,6 +54,7 @@ store.dispatch('user/getUser')
 
 // Public Area
 app.component('faq', Faq);
+app.component('contact-us', ContactUs);
 
 app.component('checkout', Checkout);
 app.component('menu-cart', MenuCart);
