@@ -23,6 +23,7 @@ Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('ho
 Route::get('cookie-policy', [HomeController::class, 'cookiePolicy'])->name('home.cookie');
 Route::get('delivery-policy', [HomeController::class, 'deliveryPolicy'])->name('home.delivery');
 Route::get('contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
+Route::post('contact-us', [HomeController::class, 'submitContactUs'])->name('home.contact-us.submit');
 
 Route::group(['prefix' => 'shop'], function () {
 

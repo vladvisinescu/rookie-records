@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactFormRequest;
+
 class HomeController extends Controller
 {
 
@@ -38,5 +40,10 @@ class HomeController extends Controller
     public function contactUs()
     {
         return view('contact-us');
+    }
+
+    public function submitContactUs(ContactFormRequest $request)
+    {
+
     }
 }
