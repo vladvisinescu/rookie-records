@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'vendor/range-slider.css';
 
 body {
     /*min-height: 2000px;*/

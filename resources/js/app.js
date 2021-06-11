@@ -5,6 +5,8 @@ import vueDebounce from 'vue-debounce'
 
 import store from './store';
 
+import Faq from "./components/Faq";
+
 import Account from './components/Account/UserAccount';
 import Orders from './components/Account/UserOrders';
 
@@ -24,7 +26,10 @@ const app = createApp({})
 const queryString = require('query-string');
 
 app.use(store);
-app.use(vueDebounce, { listenTo: ['keydown'] })
+app.use(vueDebounce, {
+    listenTo: ['keydown', 'change'],
+    fireOnEmpty: false
+})
 
 app.mixin({
     methods: {
@@ -45,6 +50,8 @@ app.mixin({
 store.dispatch('user/getUser')
 
 // Public Area
+app.component('faq', Faq);
+
 app.component('checkout', Checkout);
 app.component('menu-cart', MenuCart);
 app.component('menu-user', MenuUser);

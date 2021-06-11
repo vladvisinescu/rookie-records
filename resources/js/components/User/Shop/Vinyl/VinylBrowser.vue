@@ -10,7 +10,7 @@
                         <span class="text-sm text-gray-500">Showing {{ pagination.from }} to {{ pagination.to }} out of {{ pagination.total }} results.</span>
                     </div>
                     <div class="flex items-center text-sm">
-                        <span class="text-gray-700 font-bold">Page {{ pagination.current_page }}</span>
+
                     </div>
                     <div>
                         <span class="relative z-0 inline-flex shadow-sm rounded-md">
@@ -106,8 +106,7 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex'
-import queryString from 'query-string'
-import { nextTick } from 'vue'
+import { debounce } from 'lodash'
 
 import BrowserItem from './Browser/Item'
 import BrowserFilters from './Browser/Filters'
@@ -131,6 +130,7 @@ export default {
                 artists: [],
                 countries: [],
                 categories: [],
+                range: [1, 100],
             }
         }
     },
@@ -160,10 +160,9 @@ export default {
     },
 
     methods: {
-        getProducts(filters) {
-            // this.updateSearchQuery(filters);
+        getProducts: debounce(function (filters) {
             this.$store.dispatch('shop/getProducts', filters)
-        },
+        }, 500),
 
         navigateToPage(direction) {
             this.filters.page += direction

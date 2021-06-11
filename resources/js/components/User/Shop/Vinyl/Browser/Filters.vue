@@ -18,7 +18,7 @@
         </div>
 
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 pb-2 hidden">
+            <div class="flex justify-between pb-2 hidden">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.categories = !drawers.categories">Categories</span>
                 <a @click.prevent="clearFilters('categories')" href="javascript:;" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,13 +27,13 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="" v-show="drawers.categories">
+            <ul class="flex" v-show="drawers.categories">
                 <li
                     v-for="category in categories"
                     :key="category.id"
                     @click.prevent="selectCategory(category)"
-                    class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                    <span :class="[ filters.categories.includes(category.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                    class="flex items-center mr-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
+                    <span :class="[ filters.categories.includes(category.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-2 rounded-full h-3 w-3"></span>
                     <span :class="[ filters.categories.includes(category.id) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="category.name"></span>
                 </li>
             </ul>
@@ -41,8 +41,19 @@
 
         <div class="flex w-full border-b"></div>
 
+        <div class="">
+            <div class="flex justify-between pb-2">
+                <span class="w-full font-bold cursor-pointer">Price</span>
+            </div>
+            <div class="mt-10 mb-4 px-4">
+                <Slider :min="range[0]" :max="range[1]" v-model="filters.range" />
+            </div>
+        </div>
+
+        <div class="flex w-full border-b"></div>
+
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 pb-2">
+            <div class="flex justify-between pb-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.genres = !drawers.genres">Genres</span>
                 <a @click.prevent="clearFilters('genres')" href="javascript:;" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,7 +62,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border rounded-lg bg-white border-t overflow-y-scroll max-h-56 py-1" v-show="drawers.genres">
+            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.genres">
                 <li
                     v-for="genre in genres"
                     :key="genre.id"
@@ -64,7 +75,7 @@
         </div>
 
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 py-2">
+            <div class="flex justify-between py-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.artists = !drawers.artists">Artists</span>
                 <a @click.prevent="clearFilters('artists')" href="" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,7 +84,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border rounded-lg bg-white border-t overflow-y-scroll max-h-56 py-1" v-show="drawers.artists">
+            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.artists">
                 <li
                     v-for="artist in artists"
                     :key="artist.id"
@@ -86,7 +97,7 @@
         </div>
 
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 py-2">
+            <div class="flex justify-between py-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.years = !drawers.years">Year</span>
                 <a @click.prevent="clearFilters('years')" href="" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,7 +106,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border rounded-lg bg-white border-t overflow-y-scroll max-h-56 py-1" v-show="drawers.years">
+            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.years">
                 <li
                     v-for="year in years"
                     :key="year"
@@ -108,7 +119,7 @@
         </div>
 
         <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pl-4 py-2">
+            <div class="flex justify-between py-2">
                 <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.countries = !drawers.countries">Country</span>
                 <a @click.prevent="clearFilters('countries')" href="" class="flex items-center text-sm">
                     <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,7 +128,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border rounded-lg bg-white border-t overflow-y-scroll max-h-56 py-1" v-show="drawers.countries">
+            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.countries">
                 <li
                     v-for="country in countries"
                     :key="country"
@@ -133,9 +144,14 @@
 
 <script>
 
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+import Slider from '@vueform/slider'
 
 export default {
+
+    components: {
+        Slider,
+    },
 
     props: ['filters'],
 
@@ -157,49 +173,46 @@ export default {
         ...mapGetters({
             years: 'shop/allYears',
             genres: 'shop/allGenres',
+            range: 'shop/priceRange',
             artists: 'shop/allArtists',
+            gradings: 'shop/allGradings',
             countries: 'shop/allCountries',
             categories: 'shop/allCategories',
         })
     },
 
     created() {
-        this.$store.dispatch('shop/getFilterData')
-        this.$emit('change', this.filters)
+        this.$store.dispatch('shop/getFilterData').then(() => {
+            this.filters.range = this.range
+            this.$emit('change', this.filters)
+        })
     },
 
     methods: {
 
         selectGenre(genre) {
             this.filters.genres.includes(genre.id) ? _.pull(this.filters.genres, genre.id) : this.filters.genres.push(genre.id)
-            this.$emit('change', this.filters)
         },
 
         selectArtist(artist) {
             this.filters.artists.includes(artist.id) ? _.pull(this.filters.artists, artist.id) : this.filters.artists.push(artist.id)
-            this.$emit('change', this.filters)
         },
 
         selectYear(year) {
             this.filters.years.includes(year) ? _.pull(this.filters.years, year) : this.filters.years.push(year)
-            this.$emit('change', this.filters)
         },
 
         selectCountry(country) {
             this.filters.countries.includes(country) ? _.pull(this.filters.countries, country) : this.filters.countries.push(country)
-            this.$emit('change', this.filters)
         },
 
         selectCategory(category) {
             this.filters.categories.includes(category.id) ? _.pull(this.filters.categories, category.id) : this.filters.categories.push(category.id)
-            this.$emit('change', this.filters)
         },
 
         clearFilters(type) {
             this.filters[type] = []
-            this.$emit('change', this.filters)
-        }
+        },
     }
-
 }
 </script>
