@@ -25,7 +25,6 @@ import OrdersList from './components/Desktop/Orders/OrderList';
 
 const app = createApp({})
 const queryString = require('query-string');
-const simpleIcons = require('simple-icons');
 
 app.use(store);
 app.use(vueDebounce, {
@@ -36,7 +35,6 @@ app.use(vueDebounce, {
 app.mixin({
     methods: {
         route,
-        simpleIcons,
         updateSearchQuery(obj) {
             const encoded =
                 window.location.href.split('?')[0]

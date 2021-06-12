@@ -22678,8 +22678,6 @@ var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 
 var queryString = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
 
-var simpleIcons = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'simple-icons'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 app.use(_store__WEBPACK_IMPORTED_MODULE_2__.default);
 app.use((vue_debounce__WEBPACK_IMPORTED_MODULE_1___default()), {
   listenTo: ['keydown', 'change'],
@@ -22688,7 +22686,6 @@ app.use((vue_debounce__WEBPACK_IMPORTED_MODULE_1___default()), {
 app.mixin({
   methods: {
     route: route,
-    simpleIcons: simpleIcons,
     updateSearchQuery: function updateSearchQuery(obj) {
       var encoded = window.location.href.split('?')[0] + '?' + queryString.stringify(obj, {
         arrayFormat: 'bracket'
