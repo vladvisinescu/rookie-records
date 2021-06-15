@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class ShopLayout extends Component
 {
-
     public $bodyClass;
 
     public function __construct($bodyClass = '')

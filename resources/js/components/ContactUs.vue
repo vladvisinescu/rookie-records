@@ -1,4 +1,11 @@
 <template>
+    <SuccessModal :open="formSuccess" :data="{ cta_url: route('home') }">
+        <template v-slot:title>Message Sent!</template>
+        <template v-slot:body>
+            We'll reply to your message as soon as possible!
+        </template>
+        <template v-slot:cta>Go to Home Page</template>
+    </SuccessModal>
     <div class="grid grid-cols-1 md:grid-cols-2 mb-10">
         <div class="flex flex-col">
             <div class="mb-8">
@@ -13,7 +20,7 @@
                 </ul>
                 <p>You can also find us on:</p>
                 <div class="flex space-x-4">
-                    <a href="">
+                    <a href="https://www.instagram.com/rookierecords.uk">
                         <span class="flex items-center space-x-2">
                             <svg role="img" class="h-5 w-5 inline-block m-0" style="margin: 0 !important; fill: #E4405F" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <title>Instagram</title>
@@ -23,7 +30,7 @@
                         </span>
                     </a>
 
-                    <a href="">
+                    <a href="https://www.facebook.com/rookierecords.uk">
                         <span class="flex items-center space-x-2">
                             <svg role="img" class="h-5 w-5 inline-block m-0" style="margin: 0 !important; fill: #1877F2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <title>Facebook</title>
@@ -34,29 +41,29 @@
                     </a>
                 </div>
             </div>
-            <form action="" class="flex flex-col space-y-4">
+            <form @submit.prevent="submitContactForm" action="" class="flex flex-col space-y-4">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name <span v-if="formErrors.name" v-html="formErrors.name[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                     <div class="mt-1">
-                        <input type="text" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                        <input v-model="contactForm.name" type="text" name="name" id="name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="John Smith">
                     </div>
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email <span v-if="formErrors.email" v-html="formErrors.email[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                     <div class="mt-1">
-                        <input type="text" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
-                    </div>
-                </div>
-
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                    <div class="mt-1">
-                        <textarea rows="10" name="message" id="message" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com" />
+                        <input v-model="contactForm.email" type="text" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                     </div>
                 </div>
 
                 <div>
-                    <button type="button" class="font-bold inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message <span v-if="formErrors.message" v-html="formErrors.message[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
+                    <div class="mt-1">
+                        <textarea v-model="contactForm.message" rows="10" name="message" id="message" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Message..." />
+                    </div>
+                </div>
+
+                <div>
+                    <button @click.prevent="submitContactForm" type="submit" class="font-bold inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Send Message
                     </button>
                 </div>
@@ -72,18 +79,38 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import SuccessModal from "./Bits/modals/SuccessModal";
 
 export default {
 
+    components: {
+        SuccessModal
+    },
+
     computed: {
         ...mapGetters({
-            user: 'user/getUser'
+            user: 'user/getUser',
+            formErrors: 'user/getContactFormErrors'
         })
     },
 
     data() {
         return {
+            contactForm: {
+                name: '',
+                email: '',
+                message: '',
+            },
+            formSuccess: false
+        }
+    },
 
+    methods: {
+        submitContactForm() {
+            this.$store.dispatch('user/submitContact', this.contactForm).then(() => {
+                this.contactForm = { name: '', email: '', message: '' }
+                this.formSuccess = true
+            })
         }
     }
 }

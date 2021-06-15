@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 
 import postcodes from "./modules/utilities/postcodes";
+import search from "./modules/utilities/search";
 
 import categories from './modules/desktop/categories'
 import genres from './modules/desktop/genres'
@@ -21,6 +22,7 @@ const store = createStore({
     modules: {
         // Utilities
         postcodes,
+        search,
 
         // Admin Area
         categories,

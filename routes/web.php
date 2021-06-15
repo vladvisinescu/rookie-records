@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Desktop\OrdersController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -16,6 +17,9 @@ Route::redirect('/shop', '/shop/vinyl');
 
 // Public Area
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/telegram', function () {
+    \Illuminate\Support\Facades\Notification::route('telegram', 1338175841)->notify();
+});
 
 Route::get('faq', [HomeController::class, 'faq'])->name('home.faq');
 Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('home.terms');
@@ -24,6 +28,8 @@ Route::get('cookie-policy', [HomeController::class, 'cookiePolicy'])->name('home
 Route::get('delivery-policy', [HomeController::class, 'deliveryPolicy'])->name('home.delivery');
 Route::get('contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
 Route::post('contact-us', [HomeController::class, 'submitContactUs'])->name('home.contact-us.submit');
+Route::get('search', [SearchController::class, 'search'])->name('shop.search');
+
 
 Route::group(['prefix' => 'shop'], function () {
 

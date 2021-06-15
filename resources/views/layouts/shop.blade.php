@@ -16,7 +16,7 @@
         <!-- End Google Tag Manager -->
 
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ isset($title) ? $title . ' • ' : '' }} {{ config('app.name', 'Rookie Records') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap">

@@ -7,7 +7,7 @@
                     v-model="filters.term"
                     v-debounce:1000="$emit('change')"
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Filter by title..."
                     class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
