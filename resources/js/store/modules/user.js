@@ -1,11 +1,12 @@
 const state = () => ({
     user: {},
-    errors: {}
+    errors: []
 });
 
 const getters = {
     getUser: (state) => state.user,
     getAddresses: (state) => state.user.addresses ?? null,
+    getContactFormErrors: (state) => state.errors,
     getErrors: (state) => state.errors
 };
 
@@ -31,6 +32,18 @@ const actions = {
             }).catch(error => {
                 reject(error.response.data)
                 commit('setErrors', error.response.data.errors)
+            })
+        })
+    },
+
+    submitContact({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            axios.post(route('home.contact-us.submit'), { ...data }, { withCredentials: true }).then(response => {
+                resolve(response.data.data)
+                commit('setUser', response.data.data)
+            }).catch(error => {
+                commit('setErrors', error.response.data.errors)
+                reject(error.response.data)
             })
         })
     }

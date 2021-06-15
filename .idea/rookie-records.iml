@@ -140,7 +140,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tightenco/ziggy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kalnoy/nestedset" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-cookie-consent" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/algolia/algoliasearch-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravolt/avatar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-notification-channels/telegram" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

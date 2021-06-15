@@ -102,7 +102,13 @@ class Product extends Model implements Buyable, HasMedia
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'artists' => $this->vinyls()->first()->artists->pluck('name')->toArray()
         ];
+    }
+
+    public function searchableAs()
+    {
+        return 'vinyl_records';
     }
 
     public function getCategoryNameAttribute()

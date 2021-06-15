@@ -2,10 +2,14 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 import vueDebounce from 'vue-debounce'
+import vClickOutside from "click-outside-vue3"
 
 import store from './store';
 
+import ShopNavigation from "./components/Bits/Navs/ShopNavigation";
+
 import Faq from "./components/Faq";
+import ContactUs from "./components/ContactUs";
 
 import Account from './components/Account/UserAccount';
 import Orders from './components/Account/UserOrders';
@@ -23,34 +27,23 @@ import ProductCreate from './components/Desktop/Products/ProductCreate';
 import OrdersList from './components/Desktop/Orders/OrderList';
 
 const app = createApp({})
-const queryString = require('query-string');
 
 app.use(store);
+app.use(vClickOutside)
 app.use(vueDebounce, {
     listenTo: ['keydown', 'change'],
     fireOnEmpty: false
 })
 
-app.mixin({
-    methods: {
-        route,
-        updateSearchQuery(obj) {
-            const encoded =
-                window.location.href.split('?')[0]
-                + '?'
-                + queryString.stringify(obj, {arrayFormat: 'bracket'});
-
-            window.history.pushState({
-                path: encoded
-            },'', encoded);
-        }
-    }
-});
+app.mixin({methods: { route }});
 
 store.dispatch('user/getUser')
 
+app.component('shop-navigation', ShopNavigation);
+
 // Public Area
 app.component('faq', Faq);
+app.component('contact-us', ContactUs);
 
 app.component('checkout', Checkout);
 app.component('menu-cart', MenuCart);

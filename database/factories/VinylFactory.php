@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\ProductTypes;
+namespace Database\Factories;
 
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Database\Eloquent\Factories\Factory;

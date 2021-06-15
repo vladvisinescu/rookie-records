@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravolt\Avatar\Avatar;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -31,7 +32,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'full_name'
+        'full_name', 'avatar'
     ];
 
     public function products()
@@ -52,6 +53,11 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function getAvatarAttribute()
+    {
+        return (new Avatar)->create($this->full_name)->toBase64();
     }
 
     public function routeNotificationForMail($notification)

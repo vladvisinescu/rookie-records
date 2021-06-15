@@ -1,4 +1,7 @@
 <x-shop-layout body-class="bg-gray-100">
+
+    <x-slot name="title">Buy {{ $product->title }} by {{ implode(', ', $product->vinyls->first()->artists->pluck('name')->toArray()) }}</x-slot>
+
     <div class="mt-8 container mx-auto px-4 sm:px-6 lg:px-8">
 
         <vinyl-show :product='@json($product)'></vinyl-show>
