@@ -41,12 +41,20 @@
 
         <div class="flex w-full border-b"></div>
 
-        <div class="">
-            <div class="flex justify-between pb-2">
-                <span class="w-full font-bold cursor-pointer">Price</span>
-            </div>
-            <div class="mt-10 mb-4 px-4">
-                <Slider :min="range[0]" :max="range[1]" v-model="filters.range" />
+        <div class="py-2">
+            <div class="flex flex-col space-y-4">
+                <div class="flex justify-between">
+                    <div class="">
+                        <span class="w-full font-bold cursor-pointer">Price range:</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span v-text="'£' + filters.range[0]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"></span>
+                        <span v-text="'£' + filters.range[1]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"></span>
+                    </div>
+                </div>
+                <div class="flex-grow px-2 items-center">
+                    <Slider :min="range[0]" :max="range[1]" :tooltips="false" v-model="filters.range" />
+                </div>
             </div>
         </div>
 
