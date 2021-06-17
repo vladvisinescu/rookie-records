@@ -23,7 +23,7 @@ class OrderConfirmed extends Notification
 
     public function via($notifiable)
     {
-        return ['mail', TelegramChannel::class];
+        return ['mail', 'database', TelegramChannel::class];
     }
 
     public function toMail($notifiable)
@@ -42,10 +42,8 @@ class OrderConfirmed extends Notification
             ->button('Visit Website', url('/'));
     }
 
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
-        return [
-            //
-        ];
+        return $this->order->toArray();
     }
 }

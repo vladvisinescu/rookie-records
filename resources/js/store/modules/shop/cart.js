@@ -9,7 +9,7 @@ const getters = {
             return 0;
         }
 
-        return _(state.products).map((item) => item.price * item.quantity).sum()
+        return _(state.products).map((item) => item.price * item.quantity).sum().toFixed(2)
     }
 };
 
