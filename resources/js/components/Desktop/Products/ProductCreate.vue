@@ -394,9 +394,6 @@ export default {
     created() {
 
         this.autocompleteRecord(window.localStorage.getItem('creating-record-id'))
-
-        // this.$store.dispatch('artists/getArtists');
-        // this.$store.dispatch('genres/getGenres');
         this.$store.dispatch('categories/getCategories');
     },
 
@@ -416,6 +413,7 @@ export default {
 
             this.$store.dispatch('discogs/getRecordByID', selected).then(response => {
                 this.record = { ...this.record, ...response.record }
+                this.record.description = ''
                 this.artists.selected = response.record.artists
                 this.genres.selected = response.record.genres
             })

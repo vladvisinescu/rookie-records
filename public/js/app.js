@@ -36937,9 +36937,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    this.autocompleteRecord(window.localStorage.getItem('creating-record-id')); // this.$store.dispatch('artists/getArtists');
-    // this.$store.dispatch('genres/getGenres');
-
+    this.autocompleteRecord(window.localStorage.getItem('creating-record-id'));
     this.$store.dispatch('categories/getCategories');
   },
   methods: {
@@ -36960,6 +36958,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.$store.dispatch('discogs/getRecordByID', selected).then(function (response) {
         _this2.record = _objectSpread(_objectSpread({}, _this2.record), response.record);
+        _this2.record.description = '';
         _this2.artists.selected = response.record.artists;
         _this2.genres.selected = response.record.genres;
       });
