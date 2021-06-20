@@ -2,7 +2,7 @@
     <div class="flex gap-8">
         <div class="w-2/5">
             <div class="relative shadow" style="padding-bottom: 100%;">
-                <img :src="bigImage.resource_url" class="absolute z-0 w-full h-full object-cover object-center shadow-lg">
+                <img :src="product.images.full" class="absolute z-0 w-full h-full object-cover object-center shadow-lg">
             </div>
         </div>
         <div class="w-3/5">

@@ -75,6 +75,7 @@ class ProductsController extends Controller
         $vinyl->product()->associate($product);
         $vinyl->save();
 
+        $product->searchable();
         $product->refresh();
 
         return $product->load(['vinyls', 'vinyls.artists', 'vinyls.genres', 'media']);

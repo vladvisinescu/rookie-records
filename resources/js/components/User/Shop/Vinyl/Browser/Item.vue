@@ -2,7 +2,7 @@
     <div class="group bg-white overflow-hidden rounded-lg transition-shadow shadow hover:shadow-lg">
         <a :href="'/shop/vinyl/' + product.slug">
             <div class="bg-red-500 relative" style="padding-bottom: 100%;">
-                <img :src="bigImage.resource_url" class="absolute w-full h-full object-cover object-center" alt="">
+                <img :src="product.images.thumb ?? ''" class="absolute w-full h-full object-cover object-center" alt="">
                 <div class="absolute inset-0 bg-indigo-500 bg-opacity-50 transition-all transition-ease-in group-hover:bg-opacity-10" style="mix-blend-mode: darken"></div>
                 <div class="absolute inset-x-0 bottom-0 p-4">
                     <div class="flex flex-col object-none object-bottom text-shadow-md">

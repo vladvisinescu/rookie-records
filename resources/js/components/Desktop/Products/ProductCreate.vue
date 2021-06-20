@@ -346,7 +346,7 @@ export default {
         return {
             record: {
                 title: '',
-                published: false,
+                published: true,
                 description: '',
                 price: '',
                 grading: '',
