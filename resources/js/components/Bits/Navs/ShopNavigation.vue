@@ -8,10 +8,10 @@
                         <img class="hidden lg:block h-8 w-auto" src="/images/logo-rookie.png" alt="Workflow" />
                     </div>
                     <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-                        <a :class="activeClass('home')" :href="route('home')" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a :class="activeClass('home')" :href="route('home')" class="nav-item-home inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Home
                         </a>
-                        <a :class="activeClass('shop.*')" :href="route('shop.index')" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a :class="activeClass('shop.*')" :href="route('shop.index')" class="nav-item-shop inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Vinyl
                         </a>
                     </div>
@@ -20,7 +20,7 @@
                     <MenuSearch />
                 </div>
                 <div class="flex items-center lg:hidden">
-                    <DisclosureButton class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <DisclosureButton class="nav-item-burger inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span class="sr-only">Open main menu</span>
                         <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                         <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
@@ -31,7 +31,7 @@
                         <div class="relative">
                             <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-purple-400 z-50"></span>
                             <MenuButton class="bg-white rounded-full text-gray-400 flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                <span class="sr-only">View notifications</span>
+                                <span class="sr-only">View Cart</span>
                                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
                             </MenuButton>
                         </div>
@@ -97,13 +97,13 @@
                         <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                             <MenuItems class="origin-top-right z-50 absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
                                 <MenuItem v-slot="{ active }">
-                                    <a :href="route('user.account.home')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                    <a :href="route('user.account.home')" class="nav-item-profile block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                                 </MenuItem>
                                 <MenuItem v-slot="{ active }">
-                                    <a :href="route('user.account.orders')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
+                                    <a :href="route('user.account.orders')" class="nav-item-orders block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Orders</a>
                                 </MenuItem>
                                 <MenuItem v-slot="{ active }">
-                                    <a @click.prevent="logout" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                                    <a @click.prevent="logout" class="nav-item-signout cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                                 </MenuItem>
                             </MenuItems>
                         </transition>
@@ -111,8 +111,8 @@
                 </div>
                 <div class="flex px-2 lg:px-0" v-if="!user">
                     <div class="hidden px-2 lg:flex lg:space-x-8">
-                        <a :class="activeClass('login')" :href="route('login')" class="inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Login</a>
-                        <a :class="activeClass('register')" :href="route('register')" class="inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Register</a>
+                        <a :class="activeClass('login')" :href="route('login')" class="nav-item-login inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Login</a>
+                        <a :class="activeClass('register')" :href="route('register')" class="nav-item-register inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Register</a>
                     </div>
                 </div>
             </div>
@@ -120,8 +120,8 @@
 
         <DisclosurePanel class="lg:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <a :href="route('home')" :class="activeClass('home')" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
-                <a :href="route('shop.index')" :class="activeClass('shop.*')" class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Vinyl</a>
+                <a :href="route('home')" :class="activeClass('home')" class="nav-item-home block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a :href="route('shop.index')" :class="activeClass('shop.*')" class="nav-item-shop block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Vinyl</a>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-200" v-if="user">
                 <div class="flex items-center px-4">
@@ -138,15 +138,15 @@
                     </button>
                 </div>
                 <div class="mt-3 space-y-1">
-                    <a :href="route('user.account.home')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
-                    <a :href="route('user.account.orders')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Orders</a>
-                    <a @click.prevent="logout" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
+                    <a :href="route('user.account.home')" class="nav-item-profile block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
+                    <a :href="route('user.account.orders')" class="nav-item-orders block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Orders</a>
+                    <a @click.prevent="logout" class="nav-item-signout block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
                 </div>
             </div>
             <div v-else class="pt-4 pb-3 border-t border-gray-200">
                 <div class="mt-3 space-y-1">
-                    <a :href="route('login')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</a>
-                    <a :href="route('register')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Register</a>
+                    <a :href="route('login')" class="nav-item-login block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Login</a>
+                    <a :href="route('register')" class="nav-item-register block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Register</a>
                 </div>
             </div>
         </DisclosurePanel>

@@ -36892,7 +36892,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       record: {
         title: '',
-        published: false,
+        published: true,
         description: '',
         price: '',
         grading: '',
@@ -38563,7 +38563,7 @@ var _hoisted_11 = {
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "sr-only"
-}, "View notifications", -1
+}, "View Cart", -1
 /* HOISTED */
 );
 
@@ -38736,17 +38736,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var open = _ref.open;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-        "class": [$options.activeClass('home'), "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"],
+        "class": [$options.activeClass('home'), "nav-item-home inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"],
         href: _ctx.route('home')
       }, " Home ", 10
       /* CLASS, PROPS */
       , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-        "class": [$options.activeClass('shop.*'), "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"],
+        "class": [$options.activeClass('shop.*'), "nav-item-shop inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"],
         href: _ctx.route('shop.index')
       }, " Vinyl ", 10
       /* CLASS, PROPS */
       , ["href"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_MenuSearch)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DisclosureButton, {
-        "class": "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+        "class": "nav-item-burger inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_8, !open ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_MenuIcon, {
@@ -38895,7 +38895,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       var active = _ref2.active;
                       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
                         href: _ctx.route('user.account.home'),
-                        "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        "class": "nav-item-profile block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       }, "Profile", 8
                       /* PROPS */
                       , ["href"])];
@@ -38908,7 +38908,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       var active = _ref3.active;
                       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
                         href: _ctx.route('user.account.orders'),
-                        "class": "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        "class": "nav-item-orders block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       }, "Orders", 8
                       /* PROPS */
                       , ["href"])];
@@ -38923,7 +38923,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
                           return $options.logout && $options.logout.apply($options, arguments);
                         }, ["prevent"])),
-                        "class": "cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        "class": "nav-item-signout cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       }, "Sign out")];
                     }),
                     _: 1
@@ -38945,12 +38945,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* STABLE */
 
       })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-        "class": [$options.activeClass('login'), "inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium"],
+        "class": [$options.activeClass('login'), "nav-item-login inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium"],
         href: _ctx.route('login')
       }, "Login", 10
       /* CLASS, PROPS */
       , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-        "class": [$options.activeClass('register'), "inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium"],
+        "class": [$options.activeClass('register'), "nav-item-register inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium"],
         href: _ctx.route('register')
       }, "Register", 10
       /* CLASS, PROPS */
@@ -38960,12 +38960,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('home'),
-            "class": [$options.activeClass('home'), "block pl-3 pr-4 py-2 border-l-4 text-base font-medium"]
+            "class": [$options.activeClass('home'), "nav-item-home block pl-3 pr-4 py-2 border-l-4 text-base font-medium"]
           }, "Home", 10
           /* CLASS, PROPS */
           , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('shop.index'),
-            "class": [$options.activeClass('shop.*'), "block pl-3 pr-4 py-2 border-l-4 text-base font-medium"]
+            "class": [$options.activeClass('shop.*'), "nav-item-shop block pl-3 pr-4 py-2 border-l-4 text-base font-medium"]
           }, "Vinyl", 10
           /* CLASS, PROPS */
           , ["href"])]), _ctx.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
@@ -38989,27 +38989,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             "aria-hidden": "true"
           })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('user.account.home'),
-            "class": "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            "class": "nav-item-profile block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
           }, "Profile", 8
           /* PROPS */
           , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('user.account.orders'),
-            "class": "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            "class": "nav-item-orders block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
           }, "Orders", 8
           /* PROPS */
           , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
               return $options.logout && $options.logout.apply($options, arguments);
             }, ["prevent"])),
-            "class": "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            "class": "nav-item-signout block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
           }, "Sign out")])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('login'),
-            "class": "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            "class": "nav-item-login block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
           }, "Login", 8
           /* PROPS */
           , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
             href: _ctx.route('register'),
-            "class": "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            "class": "nav-item-register block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
           }, "Register", 8
           /* PROPS */
           , ["href"])])]))];
@@ -43159,10 +43159,12 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _$props$product$image;
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     href: '/shop/vinyl/' + $props.product.slug
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-    src: $options.bigImage.resource_url,
+    src: (_$props$product$image = $props.product.images.thumb) !== null && _$props$product$image !== void 0 ? _$props$product$image : '',
     "class": "absolute w-full h-full object-cover object-center",
     alt: ""
   }, null, 8
@@ -43579,7 +43581,7 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-    src: $options.bigImage.resource_url,
+    src: $props.product.images.full,
     "class": "absolute z-0 w-full h-full object-cover object-center shadow-lg"
   }, null, 8
   /* PROPS */

@@ -46,23 +46,16 @@ class Product extends Model implements Buyable, HasMedia
     use InteractsWithMedia;
 
     protected $appends = [
-        'published', 'date_created_human', 'date_created_diff', 'category_name'
+        'published', 'date_created_human', 'date_created_diff', 'category_name', 'images'
     ];
 
-    protected $fillable = [
-        'sold_at'
-    ];
+    protected $fillable = ['sold_at'];
 
-    protected $casts = [
-        'price' => 'float'
-    ];
+    protected $casts = ['price' => 'float'];
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-            ->width(368)
-            ->height(232)
-            ->sharpen(10);
+        $this->addMediaConversion('thumb')->width(400);
     }
 
     public function user()
@@ -114,6 +107,21 @@ class Product extends Model implements Buyable, HasMedia
     public function searchableAs()
     {
         return 'vinyl_records';
+    }
+
+    public function getImagesAttribute()
+    {
+        if (!$this->hasMedia('vinyls')) {
+            return [
+                'full' => asset('images/placeholder.jpg'),
+                'thumb' => asset('images/placeholder.jpg'),
+            ];
+        }
+
+        return [
+            'full' => $this->getFirstMedia('vinyls')->getUrl(),
+            'thumb' => $this->getFirstMedia('vinyls')->getUrl('thumb')
+        ];
     }
 
     public function getCategoryNameAttribute()
