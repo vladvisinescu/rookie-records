@@ -107,7 +107,7 @@ class Product extends Model implements Buyable, HasMedia
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'artists' => $this->vinyls()->first()->artists->pluck('name')->toArray()
+            'artists' => $this->vinyls()->first() ? $this->vinyls()->first()->artists->pluck('name')->toArray() : []
         ];
     }
 

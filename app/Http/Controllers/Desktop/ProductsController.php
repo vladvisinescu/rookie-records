@@ -25,15 +25,33 @@ class ProductsController extends Controller
 
     public function getAllProducts(Request $request)
     {
-        $products = Product::search($request->input('term'))->orderBy('created_at', 'desc')->get()->load([
+        $products = Product::search($request->input('term'))->get()->sortByDesc('created_at');
+
+        return $products->load([
             'vinyls', 'vinyls.artists', 'vinyls.genres'
         ]);
-
-        return $products;
     }
 
     public function saveProduct(CreateProductRequest $request)
     {
+
+        $vinyl = new Vinyl;
+        $vinyl->discogs_id = $request->input('discogs_id');
+        $vinyl->title = $request->input('title');
+        $vinyl->year = $request->input('year');
+        $vinyl->country = $request->input('country');
+        $vinyl->grading = $request->input('grading');
+        $vinyl->description = $request->input('description');
+        $vinyl->discogs_image_url = $request->input('discogs_image_url');
+        $vinyl->type = $request->input('type');
+        $vinyl->size = $request->input('size');
+        $vinyl->tracklist = json_encode($request->input('tracklist'));
+        $vinyl->images = json_encode($request->input('images'));
+        $vinyl->save();
+
+        $vinyl->artists()->attach($request->input('artists'));
+        $vinyl->genres()->attach($request->input('genres'));
+
         $product = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
@@ -47,31 +65,15 @@ class ProductsController extends Controller
 
         $product->user()->associate(Auth::user());
         $product->categories()->associate($request->input('category_id'));
-        $product->save();
 
-        $vinyl = new Vinyl;
-        $vinyl->discogs_id = $request->input('discogs_id');
-        $vinyl->title = $request->input('title');
-        $vinyl->year = $request->input('year');
-        $vinyl->country = $request->input('country');
-        $vinyl->grading = $request->input('grading');
-        $vinyl->description = $request->input('description');
-        $vinyl->discogs_image_url = $request->input('discogs_image_url');
-        $vinyl->type = $request->input('type');
-        $vinyl->size = $request->input('size');
-        $vinyl->tracklist = $request->input('tracklist');
-
-        $images = collect($request->input('images'))->each(function ($image) use ($product) {
+        collect($request->input('images'))->each(function ($image) use ($product) {
             $product->addMediaFromUrl($image['resource_url'])->toMediaCollection('vinyls', 'products');
         });
 
-        $vinyl->images = json_encode($request->input('images'));
+        $product->save();
 
         $vinyl->product()->associate($product);
         $vinyl->save();
-
-        $vinyl->artists()->attach($request->input('artists'));
-        $vinyl->genres()->attach($request->input('genres'));
 
         $product->refresh();
 
