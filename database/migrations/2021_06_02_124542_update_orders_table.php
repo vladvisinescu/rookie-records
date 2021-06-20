@@ -26,6 +26,9 @@ class UpdateOrdersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('orders', function (Blueprint $table) {
+            $table->removeColumn('confirmed_at');
+            $table->removeColumn('delivery_method');
+        });
     }
 }

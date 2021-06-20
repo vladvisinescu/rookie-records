@@ -13,14 +13,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * @property mixed discogs_id
- * @property mixed title
- * @property mixed year
- * @property mixed country
- * @property mixed grading
- * @property mixed description
- * @property mixed discogs_image_url
- * @property mixed images
+ * @property integer discogs_id
+ * @property string title
+ * @property string year
+ * @property string country
+ * @property string grading
+ * @property string description
+ * @property string discogs_image_url
+ * @property string images
+ * @property string type
+ * @property integer size
+ * @property string|json tracklist
  */
 class Vinyl extends Model
 {

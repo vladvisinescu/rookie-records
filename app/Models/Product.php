@@ -4,13 +4,18 @@ namespace App\Models;
 
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
+
+use Laravel\Scout\Searchable;
+use Ramsey\Uuid\UuidInterface;
+
 use Gloudemans\Shoppingcart\CanBeBought;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Scout\Searchable;
-use Ramsey\Uuid\UuidInterface;
+use Illuminate\Support\Carbon;
+
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -28,7 +33,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property mixed price
  * @property mixed|UuidInterface uuid
  * @property mixed created_at
- * @property \Illuminate\Support\Carbon|mixed published_at
+ * @property Carbon|mixed published_at
  *
  * @method  mixed description
  */

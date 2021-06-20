@@ -26,6 +26,9 @@ class UpdateProductCategoriesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('product_categories', function (Blueprint $table) {
+            $table->removeColumn('description');
+            $table->removeColumn('public');
+        });
     }
 }

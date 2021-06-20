@@ -25,13 +25,11 @@ class ProductsController extends Controller
 
     public function getAllProducts(Request $request)
     {
-        $products = Product::search($request->input('term'))->with([
+        $products = Product::search($request->input('term'))->orderBy('created_at', 'desc')->get()->load([
             'vinyls', 'vinyls.artists', 'vinyls.genres'
         ]);
 
-        $products = $products->orderBy('created_at', 'desc');
-
-        return $products->get();
+        return $products;
     }
 
     public function saveProduct(CreateProductRequest $request)
@@ -59,6 +57,9 @@ class ProductsController extends Controller
         $vinyl->grading = $request->input('grading');
         $vinyl->description = $request->input('description');
         $vinyl->discogs_image_url = $request->input('discogs_image_url');
+        $vinyl->type = $request->input('type');
+        $vinyl->size = $request->input('size');
+        $vinyl->tracklist = $request->input('tracklist');
 
         $images = collect($request->input('images'))->each(function ($image) use ($product) {
             $product->addMediaFromUrl($image['resource_url'])->toMediaCollection('vinyls', 'products');
