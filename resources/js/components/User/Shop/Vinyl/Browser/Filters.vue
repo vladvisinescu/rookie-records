@@ -8,7 +8,7 @@
                     v-debounce:1000="$emit('change')"
                     type="text"
                     placeholder="Filter by title..."
-                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md">
+                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-2 focus:ring-0 border-gray-300 rounded-md">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -47,13 +47,13 @@
                     <div class="">
                         <span class="w-full font-bold cursor-pointer">Price range:</span>
                     </div>
-                    <div class="flex space-x-2">
-                        <span v-text="'£' + filters.range[0]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"></span>
-                        <span v-text="'£' + filters.range[1]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800"></span>
-                    </div>
                 </div>
                 <div class="flex-grow px-2 items-center">
                     <Slider :min="range[0]" :max="range[1]" :tooltips="false" v-model="filters.range" />
+                </div>
+                <div class="flex justify-between">
+                    <span v-text="'£' + filters.range[0]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800"></span>
+                    <span v-text="'£' + filters.range[1]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800"></span>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.genres">
+            <ul class="border-2 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.genres">
                 <li
                     v-for="genre in genres"
                     :key="genre.id"
@@ -92,7 +92,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.artists">
+            <ul class="border-2 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.artists">
                 <li
                     v-for="artist in artists"
                     :key="artist.id"
@@ -114,7 +114,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.years">
+            <ul class="border-2 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.years">
                 <li
                     v-for="year in years"
                     :key="year"
@@ -136,7 +136,7 @@
                     <span class="text-xs">Clear</span>
                 </a>
             </div>
-            <ul class="border-4 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.countries">
+            <ul class="border-2 hover:border-gray-300 rounded-lg bg-white overflow-y-scroll max-h-56 py-1" v-show="drawers.countries">
                 <li
                     v-for="country in countries"
                     :key="country"

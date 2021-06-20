@@ -37,5 +37,9 @@ class CreateProductCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('product_categories');
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->removeColumn('category_id');
+        });
     }
 }

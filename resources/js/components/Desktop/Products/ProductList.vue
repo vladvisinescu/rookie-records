@@ -13,8 +13,8 @@
             <li
                 v-for="product in products"
                 :key="product.id"
-                class="grid grid-cols-2 gap-4 px-4 py-4 sm:px-6">
-                <div class="flex flex-col">
+                class="flex justify-between px-4 py-4 sm:px-6">
+                <div class="flex-grow">
                     <span class="font-bold" v-text="product.title"></span>
                     <div v-for="vinyl in product.vinyls">
                         <span

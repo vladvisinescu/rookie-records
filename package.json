@@ -30,10 +30,8 @@
         "@vueform/slider": "^1.0.5",
         "autoprefixer": "^10.2.3",
         "click-outside-vue3": "^4.0.1",
-        "query-string": "^7.0.0",
         "tailwindcss": "^2.0.2",
         "vue": "^3.0.5",
-        "vue-carousel": "^0.18.0",
         "vue-debounce": "^2.6.0",
         "vuex": "^4.0.0-rc.2"
     }

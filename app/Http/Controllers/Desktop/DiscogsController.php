@@ -40,7 +40,7 @@ class DiscogsController extends Controller
             ]);
         });
 
-        $record = [
+        return [
             'record' => [
                 'title' => $result['title'],
                 'price' => $result['lowest_price'],
@@ -52,10 +52,10 @@ class DiscogsController extends Controller
                 'genres' => $genres,
                 'labels' => $result['labels'],
                 'discogs_image_url' => $result['thumb'],
-                'images' => $result['images']
+                'images' => $result['images'],
+                'format' => $result['formats'][0],
+//                'tracklist' => $result['tracklist']
             ]
         ];
-
-        return $record;
     }
 }
