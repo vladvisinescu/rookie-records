@@ -7,6 +7,7 @@ import vClickOutside from "click-outside-vue3"
 import store from './store';
 
 import ShopNavigation from "./components/Bits/Navs/ShopNavigation";
+import AdminNavigation from "./components/Bits/Navs/AdminNavigation";
 
 import Faq from "./components/Faq";
 import ContactUs from "./components/ContactUs";
@@ -40,6 +41,7 @@ app.mixin({methods: { route }});
 store.dispatch('user/getUser')
 
 app.component('shop-navigation', ShopNavigation);
+app.component('admin-navigation', AdminNavigation);
 
 // Public Area
 app.component('faq', Faq);

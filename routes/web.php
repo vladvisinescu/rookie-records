@@ -69,7 +69,7 @@ Route::group(['prefix' => 'account'], function () {
 // Admin Area
 Route::group(['prefix' => 'desktop', 'middleware' => ['permissions.role:super_admin']], function () {
 
-    Route::get('/', [DesktopController::class, 'home']);
+    Route::get('/', [DesktopController::class, 'home'])->name('desktop.home');
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductsController::class, 'home'])->name('desktop.products.home');

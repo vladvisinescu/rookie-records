@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
-class DiscogsService
+class WikipediaService
 {
-    protected $http;
+    protected PendingRequest $http;
     protected string $releaseID;
     protected array $release;
     protected Collection $results;
@@ -20,14 +21,9 @@ class DiscogsService
         ])->baseUrl(config('services.discogs.base_url'));
     }
 
-    /**
-     * Get release metadata by Discogs ID.
-     * @param string $releaseID Discogs release ID
-     * @return $this
-     */
-    public function getRelease(string $releaseID)
+    public function getPageDescription(string $search)
     {
-        $this->releaseID = $releaseID;
+        $this->releaseID = $search;
 
         $url = '/releases/' . $this->releaseID;
 
@@ -36,13 +32,6 @@ class DiscogsService
         return $result->json();
     }
 
-    /**
-     * Search by term and options
-     * @param string $term
-     * @param array $types
-     * @param array $filters
-     * @return DiscogsService
-     */
     public function search(string $term, array $types = [], array $filters = [])
     {
         $result = [];
@@ -59,12 +48,7 @@ class DiscogsService
         return $this;
     }
 
-    /**
-     * Return search results.
-     * @param string $type
-     * @return Collection|null
-     */
-    public function getSearch(string $type = 'release')
+    public function getSearch(string $type)
     {
         if($this->results) {
             return $this->results[$type]['results'];

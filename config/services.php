@@ -34,4 +34,10 @@ return [
         'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE')
     ],
 
+    'discogs' => [
+        'base_url' => env('DISCOGS_BASE_URL'),
+        'key' => env('DISCOGS_KEY'),
+        'secret' => env('DISCOGS_SECRET'),
+    ]
+
 ];
