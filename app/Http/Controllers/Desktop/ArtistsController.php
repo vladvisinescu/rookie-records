@@ -9,6 +9,8 @@ use App\Http\Requests\Records\CreateArtistRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminated\Wikipedia\Wikipedia;
+use PHPHtmlParser\Dom;
 
 class ArtistsController extends Controller
 {
@@ -31,9 +33,13 @@ class ArtistsController extends Controller
 
     public function createArtist(CreateArtistRequest $request)
     {
+        $html = (new Dom)->loadStr((new Wikipedia)->preview($request->input('name')))->getElementsByClass('iwg-section')->innerHtml;
+        $html = json_encode(explode('<br />', $html));
+
         return Artist::create([
             'name' => $request->input('name'),
             'slug' => Str::slug($request->input('name')) . '-' . Str::random(8),
+            'description' => $html
         ]);
     }
 }

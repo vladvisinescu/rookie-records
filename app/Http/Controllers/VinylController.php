@@ -85,7 +85,7 @@ class VinylController extends Controller
             $products = Product::search($request->input('term'))->constrain($constraints);
         }
 
-        $products = $products->orderBy('price', 'desc');
+        $products = $products->orderBy('created_at', 'desc');
 
         if ($request->has('limit')) {
             $products = $products->limit($request->input('limit'))->get();

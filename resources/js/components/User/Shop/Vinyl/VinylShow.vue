@@ -43,6 +43,17 @@
                         </div>
                     </div>
                 </div>
+<!--                <div class="flex">-->
+<!--                    <ul class="divide-y prose max-w-full">-->
+<!--                        <li v-for="artist in artists" :key="artist.id">-->
+<!--                            <h4>About {{ artist.name }}</h4>-->
+<!--                            <p>-->
+<!--                                <span v-html="artist.description" class="line-clamp-6"></span>-->
+<!--                                <a href="#" class="block">Read more</a>-->
+<!--                            </p>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
                 <div class="pr-4 hidden">
                     <div class="w-3/5">
                         <div class="bg-white overflow-hidden shadow sm:rounded-lg">
@@ -85,7 +96,13 @@ export default {
 
         inCart() {
             return _.find(this.cart, (item) => item.id === this.product.uuid)
-        }
+        },
+
+        // artists() {
+        //     return this.vinyl.artists.filter(artist => {
+        //         return artist.description
+        //     })
+        // }
     },
 
     created() {

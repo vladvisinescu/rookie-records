@@ -1,5 +1,7 @@
 <?php
 
+use PHPHtmlParser\Dom;
+
 use App\Http\Controllers\Desktop\OrdersController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +14,7 @@ use App\Http\Controllers\CheckoutController;
 
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
+use Illuminated\Wikipedia\Wikipedia;
 
 Route::redirect('/shop', '/shop/vinyl');
 

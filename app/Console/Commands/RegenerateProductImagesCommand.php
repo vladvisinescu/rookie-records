@@ -38,7 +38,6 @@ class RegenerateProductImagesCommand extends Command
      */
     public function handle()
     {
-
         $products = Product::all();
 
         $this->line('Regenerating product images');

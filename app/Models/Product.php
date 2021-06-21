@@ -106,7 +106,7 @@ class Product extends Model implements Buyable, HasMedia
 
     public function searchableAs()
     {
-        return 'vinyl_records';
+        return app()->environment() . '_vinyl_records';
     }
 
     public function getImagesAttribute()
