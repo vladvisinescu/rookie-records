@@ -37811,7 +37811,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _.find(this.cart, function (item) {
         return item.id === _this.product.uuid;
       });
-    }
+    } // artists() {
+    //     return this.vinyl.artists.filter(artist => {
+    //         return artist.description
+    //     })
+    // }
+
   }),
   created: function created() {//
   },
@@ -43640,7 +43645,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     type: "button",
     "class": "w-full items-center px-4 py-4 border border-transparent font-bold rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-  }, " Remove from Basket "))])])]), _hoisted_23])])]);
+  }, " Remove from Basket "))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                <div class=\"flex\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    <ul class=\"divide-y prose max-w-full\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        <li v-for=\"artist in artists\" :key=\"artist.id\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <h4>About {{ artist.name }}</h4>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            <p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <span v-html=\"artist.description\" class=\"line-clamp-6\"></span>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                <a href=\"#\" class=\"block\">Read more</a>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                            </p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        </li>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                    </ul>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                </div>"), _hoisted_23])])]);
 }
 
 /***/ }),
