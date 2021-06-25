@@ -31,6 +31,10 @@ class VinylController extends Controller
 
         $products = Product::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
 
+        if ($request->input('term')) {
+            $products = $products->where('title', 'LIKE', '%'.$request->input('term').'%');
+        }
+
         if ($request->has('categories')) {
             $products = $products->whereIn('category_id', $request->input('categories'));
         }
@@ -76,13 +80,7 @@ class VinylController extends Controller
         }
 
         if ($request->input('range')) {
-            $products = $products
-                ->whereBetween('price', $request->input('range'));
-        }
-
-        if ($request->input('term')) {
-            $constraints = $products;
-            $products = Product::search($request->input('term'))->constrain($constraints);
+            $products = $products->whereBetween('price', $request->input('range'));
         }
 
         $products = $products->orderBy('created_at', 'desc');

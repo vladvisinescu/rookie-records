@@ -56,6 +56,8 @@ class Product extends Model implements Buyable, HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->width(400);
+
+        $this->addMediaConversion('micro')->width(100);
     }
 
     public function user()
@@ -100,7 +102,10 @@ class Product extends Model implements Buyable, HasMedia
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'artists' => $this->vinyls()->first() ? $this->vinyls()->first()->artists->pluck('name')->toArray() : []
+            'price' => $this->getBuyablePrice(),
+            'category_id' => $this->categories()->first()->getKey(),
+            'artists' => $this->vinyls()->first() ? $this->vinyls()->first()->artists->pluck('name')->toArray() : [],
+            'genres' => $this->vinyls()->first() ? $this->vinyls()->first()->genres->pluck('name')->toArray() : []
         ];
     }
 
@@ -115,12 +120,14 @@ class Product extends Model implements Buyable, HasMedia
             return [
                 'full' => asset('images/placeholder.jpg'),
                 'thumb' => asset('images/placeholder.jpg'),
+                'micro' => asset('images/placeholder.jpg'),
             ];
         }
 
         return [
             'full' => $this->getFirstMedia('vinyls')->getUrl(),
-            'thumb' => $this->getFirstMedia('vinyls')->getUrl('thumb')
+            'thumb' => $this->getFirstMedia('vinyls')->getUrl('thumb'),
+            'micro' => $this->getFirstMedia('vinyls')->getUrl('micro')
         ];
     }
 

@@ -5,6 +5,7 @@ import vueDebounce from 'vue-debounce'
 import vClickOutside from "click-outside-vue3"
 
 import store from './store';
+import VueRouter from 'vue-router'
 
 import ShopNavigation from "./components/Bits/Navs/ShopNavigation";
 import AdminNavigation from "./components/Bits/Navs/AdminNavigation";

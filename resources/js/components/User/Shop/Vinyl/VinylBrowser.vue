@@ -7,7 +7,7 @@
             <div class="" v-if="products.length">
                 <div class="flex justify-between mb-4" v-if="pagination.total > products.length">
                     <div class="flex items-center">
-                        <span class="text-sm text-gray-500">Showing {{ pagination.from }} to {{ pagination.to }} out of {{ pagination.total }} results.</span>
+                        <span class="text-sm text-gray-500">{{ loading ? 'Loading' : 'Showing' }} {{ pagination.from }} to {{ pagination.to }} out of {{ pagination.total }} results.</span>
                     </div>
                     <div class="flex items-center text-sm">
 
@@ -41,7 +41,7 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <template v-for="product in products" :key="product.id">
-                        <BrowserItem :product="product" />
+                        <BrowserItem :product="product" :loading="loading" />
                     </template>
                 </div>
                 <div class="flex justify-between mt-4" v-if="pagination.total > products.length">
@@ -131,7 +131,9 @@ export default {
                 countries: [],
                 categories: [],
                 range: [1, 100],
-            }
+            },
+
+            loading: false
         }
     },
 
@@ -144,8 +146,9 @@ export default {
 
     methods: {
         getProducts: debounce(function (filters) {
-            this.$store.dispatch('shop/getProducts', filters)
-        }, 500),
+            this.loading = true
+            this.$store.dispatch('shop/getProducts', filters).then(() => this.loading = false)
+        }, 200),
 
         navigateToPage(direction) {
             this.filters.page += direction

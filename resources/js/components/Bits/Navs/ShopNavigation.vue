@@ -27,48 +27,61 @@
                     </DisclosureButton>
                 </div>
                 <div class="hidden lg:flex lg:items-center">
-                    <Menu as="div" class="mr-4 relative flex-shrink-0">
+                    <Menu as="div" class="mr-2 relative flex-shrink-0">
                         <div class="relative">
                             <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-purple-400 z-50"></span>
-                            <MenuButton class="bg-white rounded-full text-gray-400 flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <MenuButton class="bg-white rounded-full text-gray-400 p-1 flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span class="sr-only">View Cart</span>
                                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
                             </MenuButton>
                         </div>
-                        <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+                        <transition
+                            enter-active-class="transition ease-out duration-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
+
+                            leave-active-class="transition ease-in duration-75"
+                            leave-from-class="transform opacity-100 scale-100"
+                            leave-to-class="transform opacity-0 scale-95">
                             <MenuItems class="origin-top-right absolute z-50 right-0 mt-5 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <ul class="w-96 divide-y" v-if="cartActive">
-                                    <li v-for="(product, id) in products" :key="id" class="flex group">
-                                        <a :href="product.url" class="flex w-full items-center">
-                                            <img :src="product.image" class="inline-flex w-14" alt="">
-                                            <div class="w-full flex justify-between items-center px-3 py-2">
-                                                <div class="flex flex-col">
-                                                    <span class="text-sm text-gray-600 group-hover:text-gray-700" v-text="product.title"></span>
-                                                    <a @click.prevent="removeProduct(id)" href="javascript:;" class="flex items-center text-red-300 transition-all group-hover:text-red-400">
-                                                        <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                        </svg>
-                                                        <span class="text-sm">Remove</span>
-                                                    </a>
-                                                </div>
-                                                <div class="flex text-sm font-bold">
-                                                    <span v-if="product.quantity > 1" v-text="product.quantity + ' x '" class="text-gray-400 mr-1"></span>
-                                                    <span class="text-gray-600" v-text="'£' + product.price"></span>
-                                                </div>
+                                    <template v-for="(product, id) in products" :key="id">
+                                        <MenuItem v-slot="{ active }">
+                                            <li class="flex group" :class="[active ? 'bg-gray-100' : '']">
+                                                <a :href="product.url" class="flex w-full items-center">
+                                                    <img :src="product.image" class="inline-flex w-14" alt="">
+                                                    <div class="w-full flex justify-between items-center px-3 py-2">
+                                                        <div class="flex flex-col">
+                                                            <span class="line-clamp-1 text-sm text-gray-600 group-hover:text-gray-700" v-text="product.title"></span>
+                                                            <a @click.prevent="removeProduct(id)" href="javascript:;" class="flex items-center text-red-300 transition-all group-hover:text-red-400">
+                                                                <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                </svg>
+                                                                <span class="text-sm">Remove</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="flex text-sm font-bold">
+                                                            <span v-if="product.quantity > 1" v-text="product.quantity + ' x '" class="text-gray-400 mr-1"></span>
+                                                            <span class="text-gray-600" v-text="'£' + product.price"></span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </MenuItem>
+                                    </template>
+                                    <MenuItem>
+                                        <li class="grid grid-cols-2 items-center">
+                                            <div class="flex justify-between px-4">
+                                                <span class="text-sm text-gray-600">Total</span>
+                                                <span class="text-sm font-bold text-right text-gray-500" v-text="'£' + cartTotal"></span>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li class="grid grid-cols-2 items-center">
-                                        <div class="flex justify-between px-4">
-                                            <span class="text-sm text-gray-600">Total</span>
-                                            <span class="text-sm font-bold text-right text-gray-500" v-text="'£' + cartTotal"></span>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="/shop/checkout" class="w-full py-2 font-bold inline-block text-center bg-yellow-300 text-yellow-700 transition-all hover:bg-yellow-400">
-                                                Checkout
-                                            </a>
-                                        </div>
-                                    </li>
+                                            <div class="text-center">
+                                                <a href="/shop/checkout" class="w-full py-2 font-bold inline-block text-center bg-yellow-300 text-yellow-700 transition-all hover:bg-yellow-400">
+                                                    Checkout
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </MenuItem>
                                 </ul>
                                 <div class="w-96" v-else>
                                     <div class="flex flex-col justify-center w-full text-center p-5">
@@ -87,10 +100,14 @@
                         </transition>
                     </Menu>
 
-                    <Menu as="div" class="ml-4 relative flex-shrink-0" v-if="user">
+                    <Menu as="div" class="ml-2 relative flex-shrink-0" v-if="user">
                         <div>
-                            <MenuButton class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <MenuButton class="bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span class="sr-only">Open user menu</span>
+<!--                                <div class="hidden flex flex-col text-right">-->
+<!--                                    <span class="text-sm font-bold text-gray-600" v-text="user.first_name"></span>-->
+<!--                                    <span class="text-xs text-gray-500" v-text="user.email"></span>-->
+<!--                                </div>-->
                                 <img class="h-8 w-8" :src="user.avatar" alt="" />
                             </MenuButton>
                         </div>
@@ -138,6 +155,12 @@
                     </button>
                 </div>
                 <div class="mt-3 space-y-1">
+                    <a :href="route('shop.checkout.index')" class="nav-item-cart block items-center px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
+                        <div class="flex space-x-2">
+                            <ShoppingCartIcon class="h-5 w-5" aria-hidden="true" />
+                            <span>Cart</span>
+                        </div>
+                    </a>
                     <a :href="route('user.account.home')" class="nav-item-profile block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
                     <a :href="route('user.account.orders')" class="nav-item-orders block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Orders</a>
                     <a @click.prevent="logout" class="nav-item-signout block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>

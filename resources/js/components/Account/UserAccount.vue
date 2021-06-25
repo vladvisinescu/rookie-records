@@ -80,7 +80,7 @@
                                         name="phone"
                                         id="phone"
                                         class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-16 sm:pl-14 sm:text-sm border-gray-300 rounded-md"
-                                        placeholder="www.example.com" />
+                                        placeholder="07xxx xxxxxx" />
                                 </div>
                             </div>
                         </div>
