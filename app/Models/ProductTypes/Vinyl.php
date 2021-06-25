@@ -33,6 +33,8 @@ class Vinyl extends Model
 
     public $appends = ['images'];
 
+    public $with = ['artists', 'genres'];
+
     public function getImagesAttribute()
     {
         return json_decode($this->attributes['images']);

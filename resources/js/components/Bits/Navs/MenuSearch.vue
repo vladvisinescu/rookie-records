@@ -10,7 +10,7 @@
                 @click="openExpand"
                 v-click-outside="closeExpand"
                 v-debounce:300ms="searchProducts"
-                :class="[ expanded ? 'rounded-t-md border-b-0 border-t-2 border-l-2 border-r-2 border-indigo-500' : 'rounded-md border-2 border-gray-300' ]"
+                :class="[ expanded ? 'bg-white rounded-t-md border-b-0 border-t-2 border-l-2 border-r-2 border-indigo-500' : 'bg-gray-200 rounded-md border-none' ]"
                 id="search"
                 type="search"
                 autocomplete="off"

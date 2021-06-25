@@ -16,7 +16,7 @@ class CartController extends Controller
                 'title' => $item->model->title,
                 'price' => $item->model->price,
                 'quantity' => $item->qty,
-                'image' => $item->model->vinyls()->first()->images[0]->resource_url,
+                'image' => $item->model->images['micro'],
                 'url' => route('shop.vinyl.show', ['slug' => $item->model->slug])
             ];
         });

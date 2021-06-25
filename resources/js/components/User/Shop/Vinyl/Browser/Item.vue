@@ -1,5 +1,5 @@
 <template>
-    <div class="group bg-white overflow-hidden rounded-lg transition-shadow shadow hover:shadow-lg">
+    <div :class="[ loading ? 'opacity-25 pointer-events-none' : 'opacity-100 pointer-events-auto' ]" class="group bg-white overflow-hidden rounded-lg transition-shadow transition-opacity shadow hover:shadow-lg">
         <a :href="'/shop/vinyl/' + product.slug">
             <div class="bg-red-500 relative" style="padding-bottom: 100%;">
                 <img :src="product.images.thumb ?? ''" class="absolute w-full h-full object-cover object-center" alt="">
@@ -41,7 +41,7 @@
 
 export default {
 
-    props: ['product', 'buttons'],
+    props: ['product', 'buttons', 'loading'],
 
     data() {
         return {

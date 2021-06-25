@@ -57,7 +57,12 @@ class User extends Authenticatable
 
     public function getAvatarAttribute()
     {
-        return (new Avatar)->create($this->full_name)->toBase64();
+        return (new Avatar)
+            ->create(strtoupper($this->full_name))
+            ->setBorder(0, '#eee')
+            ->setBackground('#e5e7eb')
+            ->setForeground('#9ca3af')
+            ->toBase64();
     }
 
     public function routeNotificationForMail($notification)
