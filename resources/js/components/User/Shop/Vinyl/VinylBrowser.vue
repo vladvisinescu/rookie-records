@@ -1,11 +1,11 @@
 <template>
-    <div class="flex mt-2 divide-x gap-x-4">
-        <div class="w-1/4">
+    <div class="flex flex-col lg:flex-row lg:divide-x lg:gap-x-4">
+        <div class="w-full lg:w-1/4">
             <BrowserFilters @change="getProducts(filters)" :filters="filters" @update:filters="filters = $event" />
         </div>
-        <div class="w-3/4 pl-4">
-            <div class="" v-if="products.length">
-                <div class="flex justify-between mb-4" v-if="pagination.total > products.length">
+        <div class="w-full lg:w-3/4 lg:pl-4">
+            <div class="pt-6" v-if="products.length">
+                <div class="flex justify-between mb-6" v-if="pagination.total > products.length">
                     <div class="flex items-center">
                         <span class="text-sm text-gray-500">{{ loading ? 'Loading' : 'Showing' }} {{ pagination.from }} to {{ pagination.to }} out of {{ pagination.total }} results.</span>
                     </div>
@@ -39,7 +39,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
                     <template v-for="product in products" :key="product.id">
                         <BrowserItem :product="product" :loading="loading" />
                     </template>
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <div v-else>
+            <div class="pt-6" v-else>
                 <div class="rounded-md bg-blue-50 p-4 border border-blue-100">
                     <div class="flex">
                         <div class="flex-shrink-0">

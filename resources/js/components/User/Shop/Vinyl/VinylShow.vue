@@ -1,11 +1,11 @@
 <template>
-    <div class="flex gap-8">
-        <div class="w-2/5">
+    <div class="md:flex gap-8">
+        <div class="w-full md:w-1/2 lg:w-2/5">
             <div class="relative shadow" style="padding-bottom: 100%;">
                 <img :src="product.images.full" class="absolute z-0 w-full h-full object-cover object-center shadow-lg">
             </div>
         </div>
-        <div class="w-3/5">
+        <div class="pt-8 w-full md:w-1/2 lg:w-3/5 md:pt-0 lg:pt-0">
             <div class="flex flex-col gap-8">
                 <div class="w-full">
                     <h2 v-text="product.title" class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate"></h2>
@@ -17,8 +17,8 @@
                         <span v-for="genre in vinyl.genres" :key="genre.id" v-text="genre.name" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800 mr-1"></span>
                     </div>
                 </div>
-                <div class="flex w-full gap-4">
-                    <div class="w-3/5">
+                <div class="flex flex-col lg:flex-row w-full gap-4">
+                    <div class="w-full lg:w-3/5">
                         <ul class="divide-y">
                             <li class="grid grid-cols-2 gap-4 py-1.5">
                                 <span class="text-gray-500">Condition</span> <span class="font-bold" v-text="vinyl.grading"></span>
@@ -31,14 +31,17 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-2/5">
-                        <div class="flex flex-col items-center gap-y-4">
-                            <span class="text-3xl font-bold" v-text="'£' + product.price"></span>
-                            <button v-if="!inCart" @click.prevent="addToCart" type="button" class="w-full items-center px-4 py-4 border border-transparent font-bold rounded-lg shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                Add to Basket
+                    <div class="w-full lg:w-2/5">
+<!--                        <span class="text-3xl font-bold" v-text="'£' + product.price"></span>-->
+
+                        <div class="flex flex-col gap-y-4">
+                            <button v-if="!inCart" @click.prevent="addToCart" type="button" class="group flex text-left border border-transparent font-bold rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                <span v-text="'£' + product.price" class="bg-gray-900 rounded-l px-4 py-4"></span>
+                                <span class="text-center flex-grow rounded-r bg-gray-700 px-4 py-4 group-hover:bg-gray-900">Add to Basket</span>
                             </button>
-                            <button v-else @click.prevent="removeFromCart" type="button" class="w-full items-center px-4 py-4 border border-transparent font-bold rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                Remove from Basket
+                            <button v-else @click.prevent="removeFromCart" type="button" class="group flex text-left border border-transparent font-bold rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                <span v-text="'£' + product.price" class="bg-red-700 rounded-l px-4 py-4"></span>
+                                <span class="text-center flex-grow rounded-r bg-red-500 px-4 py-4 group-hover:bg-red-700">Remove from Basket</span>
                             </button>
                         </div>
                     </div>

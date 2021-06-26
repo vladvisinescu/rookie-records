@@ -3,7 +3,7 @@
         <div class="prose">
             <h2>Delivery Policy</h2>
             <h3>Standard UK Shipping</h3>
-            <p>At the moment we use Royal Mail 2nd Class deliveries in strong cardboard boxes. UK £5 (max 4 records per order).</p>
+            <p>At the moment we use Royal Mail 2nd Class deliveries in strong cardboard boxes. UK £5 (max 4 records per box).</p>
             <h3></h3>
         </div>
     </div>

@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-6 gap-4">
+        <div class="grid grid-cols-3 lg:grid-cols-6 gap-4">
             @foreach($product->getRelated(6) as $key => $product)
                 <div class="group bg-white overflow-hidden rounded-lg transition-shadow shadow hover:shadow-lg">
                     <a href="{{ route('shop.vinyl.show', ['slug' => $product->slug]) }}">
