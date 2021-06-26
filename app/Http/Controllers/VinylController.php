@@ -55,13 +55,13 @@ class VinylController extends Controller
             );
         }
 
-        if($request->has('country')) {
-            $products = $products->whereHas(
-                'vinyls.artists', function ($query) use ($request) {
-                    $query->whereIn('artists.id', $request->input('artists') ?? []);
-                },
-            );
-        }
+//        if($request->has('country')) {
+//            $products = $products->whereHas(
+//                'vinyls.artists', function ($query) use ($request) {
+//                    $query->whereIn('artists.id', $request->input('artists') ?? []);
+//                },
+//            );
+//        }
 
         if($request->has('years')) {
             $products = $products->whereHas(

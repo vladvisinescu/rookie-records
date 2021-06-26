@@ -9,8 +9,12 @@ module.exports = {
 
     theme: {
         extend: {
+            blur: {
+                xs: '2px',
+            },
+
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
 
             spacing: {
@@ -47,8 +51,14 @@ module.exports = {
 
     variants: {
         extend: {
+            blur: ['hover', 'focus', 'group-hover'],
             opacity: ['disabled'],
             backgroundColor: ['disabled'],
+
+            backdropBlur: ['hover', 'focus', 'group-hover'],
+            backdropFilter: ['hover', 'focus', 'group-hover'],
+            backdropContrast: ['hover', 'focus', 'group-hover'],
+            backdropBrightness: ['hover', 'focus', 'group-hover'],
         },
     },
 

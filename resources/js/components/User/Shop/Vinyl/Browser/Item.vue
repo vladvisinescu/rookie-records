@@ -1,10 +1,10 @@
 <template>
-    <div :class="[ loading ? 'opacity-25 pointer-events-none' : 'opacity-100 pointer-events-auto' ]" class="group bg-white overflow-hidden rounded-lg transition-shadow transition-opacity shadow hover:shadow-lg">
+    <div :class="[ loading ? 'opacity-25 pointer-events-none' : 'opacity-100 pointer-events-auto' ]" class="group bg-white overflow-hidden rounded-lg transition-all shadow hover:shadow-md">
         <a :href="'/shop/vinyl/' + product.slug">
             <div class="bg-red-500 relative" style="padding-bottom: 100%;">
                 <img :src="product.images.thumb ?? ''" class="absolute w-full h-full object-cover object-center" alt="">
-                <div class="absolute inset-0 bg-indigo-500 bg-opacity-50 transition-all transition-ease-in group-hover:bg-opacity-10" style="mix-blend-mode: darken"></div>
-                <div class="absolute inset-x-0 bottom-0 p-4">
+<!--                <div class="absolute inset-0 bg-indigo-500 bg-opacity-0 transition-all transition-ease-in group-hover:bg-opacity-10" style="mix-blend-mode: darken"></div>-->
+                <div class="absolute transition-all inset-x-0 bottom-0 p-4 bg-gray-900 bg-opacity-10">
                     <div class="flex flex-col object-none object-bottom text-shadow-md">
                         <span v-text="product.title" class="font-bold text-white leading-tight"></span>
                         <div>
@@ -15,8 +15,8 @@
             </div>
         </a>
         <div class="grid grid-cols-3 divide-x border-t border-b text-xs text-gray-500">
-            <div class="text-center py-3">
-                <span class="truncate" v-text="vinyl.country"></span>
+            <div class="text-center py-3 overflow-hidden">
+                <span class="line-clamp-1" v-text="vinyl.country"></span>
             </div>
             <div class="text-center py-3">
                 <span v-text="(vinyl.year != 0) ? vinyl.year : '-'"></span>
