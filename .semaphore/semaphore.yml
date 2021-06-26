@@ -1,24 +1,63 @@
 version: v1.0
-name: Test MyApp
+name: Semaphore PHP Rookie Records Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Test
+  - name: sem-version
     task:
-      prologue:
-        commands:
-          - sem-version php 7.4
       jobs:
-        - name: Test
+        - name: Using sem-version
+          commands:
+            - sem-version php 7.4
+  - name: Install Dependencies
+    task:
+      env_vars:
+        - name: APP_ENV
+          value: prod
+      jobs:
+        - name: composer
           commands:
             - checkout
             - cache restore
             - composer install
+            - npm install
             - cache store
             - cp .env.example .env
             - 'php artisan key:generate'
-            - mkdir -p database
-            - touch database/database.sqlite
+  - name: Run Code Analysis
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+      jobs:
+        - name: phpmd
+          commands:
+            - php vendor/bin/phpmd app/ text phpmd_ruleset.xml
+        - name: phpcs
+          commands:
+            - php vendor/bin/phpcs app --report-full --standard=PSR2
+        - name: phpcpd
+          commands:
+            - 'curl -L https://phar.phpunit.de/phpcpd.phar -o phpcpd.phar'
+            - php phpcpd.phar app/ --min-lines=50
+  - name: Run Unit tests
+    task:
+      jobs:
+        - name: phpunit
+          commands:
+            - checkout
+            - cache restore
             - ./vendor/bin/phpunit
+  - name: Run Security Tests
+    task:
+      jobs:
+        - name: sensiolabs
+          commands:
+            - checkout
+            - 'git clone https://github.com/sensiolabs/security-checker.git'
+            - cd security-checker
+            - composer install
+            - 'php security-checker security:check ../composer.lock'
