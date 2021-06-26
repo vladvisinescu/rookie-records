@@ -15,7 +15,7 @@ blocks:
     task:
       prologue:
         commands:
-          - sem-version php 5.6
+          - sem-version php 7.4
       env_vars:
         - name: APP_ENV
           value: prod
