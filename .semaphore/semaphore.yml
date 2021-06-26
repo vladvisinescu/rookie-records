@@ -7,9 +7,9 @@ agent:
 blocks:
   - name: Test
     task:
-    	prologue:
-        commands:
-          - sem-version php 7.4
+        prologue:
+           commands:
+             - sem-version php 7.4
       jobs:
         - name: Test
           commands:
