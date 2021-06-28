@@ -4,8 +4,10 @@
             <div class="flex justify-between h-16">
                 <div class="flex px-2 lg:px-0">
                     <div class="flex-shrink-0 flex items-center">
-                        <img class="block lg:hidden h-8 w-auto" src="/images/logo-rookie.png" alt="Workflow" />
-                        <img class="hidden lg:block h-8 w-auto" src="/images/logo-rookie.png" alt="Workflow" />
+                        <a :href="route('home')">
+                            <img class="block lg:hidden h-8 w-auto" src="/images/logo-rookie.png" alt="Workflow" />
+                            <img class="hidden lg:block h-8 w-auto" src="/images/logo-rookie.png" alt="Workflow" />
+                        </a>
                     </div>
                     <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
                         <a :class="activeClass('home')" :href="route('home')" class="nav-item-home inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
@@ -75,7 +77,7 @@
                                             <span class="text-sm font-bold text-right text-gray-500" v-text="'£' + cartTotal"></span>
                                         </div>
                                         <div class="text-center">
-                                            <a href="/shop/checkout" class="w-full py-2 font-bold inline-block text-center bg-yellow-300 text-yellow-700 transition-all hover:bg-yellow-400">
+                                            <a :href="route('shop.checkout.index')" class="w-full py-2 font-bold inline-block text-center bg-yellow-300 text-yellow-700 transition-all hover:bg-yellow-400">
                                                 Checkout
                                             </a>
                                         </div>
@@ -147,18 +149,21 @@
                         <div class="text-base font-medium text-gray-800" v-text="user.name"></div>
                         <div class="text-sm font-medium text-gray-500" v-text="user.email"></div>
                     </div>
-                    <button class="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="sr-only">View notifications</span>
-                        <BellIcon class="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    <div class="ml-auto flex-shrink-0 text-lg">
+                        <button class="inline-flex bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="sr-only">View notifications</span>
+                            <BellIcon class="h-7 w-7" aria-hidden="true" />
+                        </button>
+                        <div class="relative inline-flex p-1 ml-2">
+                            <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-purple-400 z-50"></span>
+                            <a :href="route('shop.checkout.index')" class="bg-white text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <span class="sr-only">View Cart</span>
+                                <ShoppingCartIcon class="h-7 w-7" aria-hidden="true" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                    <a :href="route('shop.checkout.index')" class="nav-item-cart block items-center px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
-                        <div class="flex space-x-2">
-                            <ShoppingCartIcon class="h-5 w-5" aria-hidden="true" />
-                            <span>Cart</span>
-                        </div>
-                    </a>
                     <a :href="route('user.account.home')" class="nav-item-profile block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
                     <a :href="route('user.account.orders')" class="nav-item-orders block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Orders</a>
                     <a @click.prevent="logout" class="nav-item-signout block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Sign out</a>
