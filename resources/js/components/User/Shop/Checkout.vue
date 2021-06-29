@@ -14,7 +14,7 @@
         <template v-slot:cta>Order Details</template>
     </SuccessModal>
 
-    <div class="w-1/2 mx-auto">
+    <div class="lg:w-1/2 mx-auto">
         <div class="flex items-center mb-8">
             <h2 class="text-4xl font-extralight text-gray-500">Your order</h2>
         </div>
@@ -32,7 +32,7 @@
             <ul class="divide-y divide-gray-200">
                 <li v-for="(product, id) in products" class="flex justify-between items-center">
                     <div class="px-6 py-4">
-                        <span class="flex text-md font-bold" v-text="product.title"></span>
+                        <span class="flex text-lg lg:text-md font-bold" v-text="product.title"></span>
                     </div>
                     <div class="flex">
                         <div class="px-3 py-4">

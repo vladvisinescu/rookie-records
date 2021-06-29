@@ -10,7 +10,8 @@
                         type="text"
                         id="first_name"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md"
-                        placeholder="First Name">
+                        placeholder="First Name"
+                        autocomplete="false">
                 </div>
             </div>
 
@@ -23,7 +24,8 @@
                         type="text"
                         id="last_name"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md"
-                        placeholder="Last Name">
+                        placeholder="Last Name"
+                        autocomplete="false">
                 </div>
             </div>
 
@@ -36,7 +38,8 @@
                         type="text"
                         id="email"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md"
-                        placeholder="Email">
+                        placeholder="Email"
+                        autocomplete="false">
                 </div>
             </div>
 
@@ -49,7 +52,8 @@
                         type="text"
                         id="phone"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-transparent rounded-md"
-                        placeholder="Phone">
+                        placeholder="Phone"
+                        autocomplete="false">
                 </div>
             </div>
         </div>

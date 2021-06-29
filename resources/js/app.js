@@ -5,7 +5,7 @@ import vueDebounce from 'vue-debounce'
 import vClickOutside from "click-outside-vue3"
 
 import store from './store';
-import VueRouter from 'vue-router'
+// import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 import ShopNavigation from "./components/Bits/Navs/ShopNavigation";
 import AdminNavigation from "./components/Bits/Navs/AdminNavigation";
@@ -29,6 +29,18 @@ import ProductCreate from './components/Desktop/Products/ProductCreate';
 import OrdersList from './components/Desktop/Orders/OrderList';
 
 const app = createApp({})
+app.mixin({methods: { route }});
+
+// if (['shop.index'].includes(route().current())) {
+//     const routes = []
+//
+//     const router = createRouter({
+//         history: createWebHashHistory(),
+//         routes,
+//     })
+//
+//     app.use(router)
+// }
 
 app.use(store);
 app.use(vClickOutside)
@@ -36,8 +48,6 @@ app.use(vueDebounce, {
     listenTo: ['keydown', 'change'],
     fireOnEmpty: false
 })
-
-app.mixin({methods: { route }});
 
 store.dispatch('user/getUser')
 

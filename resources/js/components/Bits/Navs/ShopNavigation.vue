@@ -10,15 +10,21 @@
                         </a>
                     </div>
                     <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-                        <a :class="activeClass('home')" :href="route('home')" class="nav-item-home inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a
+                            :class="activeClass('home')"
+                            :href="route('home')"
+                            class="nav-item-home inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Home
                         </a>
-                        <a :class="activeClass('shop.*')" :href="route('shop.index')" class="nav-item-shop inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a
+                            :class="activeClass('shop.*')"
+                            :href="route('shop.index')"
+                            class="nav-item-shop inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Vinyl
                         </a>
                     </div>
                 </div>
-                <div class="flex-1 flex items-center justify-center mr-4 px-2 lg:ml-6 lg:justify-end">
+                <div class="flex-1 flex items-center justify-center lg:mr-4 px-2 lg:ml-6 lg:justify-end">
                     <MenuSearch />
                 </div>
                 <div class="flex items-center lg:hidden">
@@ -104,14 +110,17 @@
                         <div>
                             <MenuButton class="bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span class="sr-only">Open user menu</span>
-<!--                                <div class="hidden flex flex-col text-right">-->
-<!--                                    <span class="text-sm font-bold text-gray-600" v-text="user.first_name"></span>-->
-<!--                                    <span class="text-xs text-gray-500" v-text="user.email"></span>-->
-<!--                                </div>-->
                                 <img class="h-8 w-8" :src="user.avatar" alt="" />
                             </MenuButton>
                         </div>
-                        <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+                        <transition
+                            enter-active-class="transition ease-out duration-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
+                            leave-active-class="transition ease-in duration-75"
+                            leave-from-class="transform opacity-100 scale-100"
+                            leave-to-class="transform opacity-0 scale-95">
+
                             <MenuItems class="origin-top-right z-50 absolute right-0 mt-3 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
                                 <MenuItem v-slot="{ active }">
                                     <a :href="route('user.account.home')" class="nav-item-profile block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
@@ -123,6 +132,7 @@
                                     <a @click.prevent="logout" class="nav-item-signout cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                                 </MenuItem>
                             </MenuItems>
+
                         </transition>
                     </Menu>
                 </div>
@@ -243,7 +253,6 @@ export default {
         },
 
         logout() {
-            console.log('got here', route('home'))
             axios.post(route('logout')).then(() => window.location.href = route('home'))
         }
     }

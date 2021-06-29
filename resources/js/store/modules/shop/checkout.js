@@ -14,7 +14,6 @@ const actions = {
                     withCredentials: true
                 })
                 .then(response => {
-                    // console.log(response.data)
                     commit('', response.data)
                     resolve(response.data)
                 })
