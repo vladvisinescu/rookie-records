@@ -16,7 +16,7 @@
             <div class="sm:col-span-2">
                 <h3 class="text-lg leading-6 font-bold text-gray-700">Personal Details</h3>
             </div>
-            <div class="col-span-4">
+            <form class="col-span-4" @submit.prevent="updateUser">
                 <div class="overflow-hidden shadow rounded-lg">
                     <div class="bg-white px-4 py-5 sm:p-6">
                         <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between items-center bg-gray-100 px-6 py-2">
-                        <div>
+                    <div class="flex justify-between items-center bg-gray-100 md:px-4 md:py-2">
+                        <div class="px-4">
                             <p v-if="updatesUser.result" class="flex items-center text-sm" :class="updatesUser.success ? 'text-green-400' : 'text-red-400'">
                                 <span v-if="updatesUser.success">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -98,17 +98,28 @@
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
                                 </span>
-                                <span v-text="updatesUser.result" class="ml-2"></span>
+                                <span v-text="updatesUser.result" class="inline-flex ml-2"></span>
                             </p>
                         </div>
                         <div>
-                            <button @click.prevent="updateUser" type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Save
+                            <button type="submit" class="inline-flex items-center uppercase font-bold md:normal-case md:font-normal text-md md:text-base border border-transparent text-sm leading-4 font-medium rounded-br-lg md:rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none md:focus:ring ring-gray-400">
+                                <span v-if="updatesUser.loading"  class="inline-flex px-4 py-4 md:px-3 md:py-2">
+                                    <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                                <span v-else class="inline-flex px-4 py-4 md:px-3 md:py-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                <span class="inline-flex pr-4 py-4 md:pr-3 md:py-2">Save</span>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
         <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -193,6 +204,7 @@ export default {
             updatesUser: {
                 result: null,
                 success: false,
+                loading: false
             }
         }
     },
@@ -222,12 +234,15 @@ export default {
         },
 
         updateUser() {
+            this.updatesUser.loading = true
             this.$store.dispatch('user/updateUser', this.user).then(response => {
                 this.updatesUser.result = 'Changes saved.';
                 this.updatesUser.success = true;
+                this.updatesUser.loading = false;
             }).catch(error => {
                 this.updatesUser.result = 'Please review the information you entered.';
                 this.updatesUser.success = false;
+                this.updatesUser.loading = false;
             })
         }
     }

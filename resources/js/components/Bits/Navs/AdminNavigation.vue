@@ -165,7 +165,6 @@ export default {
         },
 
         logout() {
-            console.log('got here', route('home'))
             axios.post(route('logout')).then(() => window.location.href = route('home'))
         }
     }

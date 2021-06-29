@@ -39,7 +39,7 @@
         </div>
 
         <Disclosure v-slot="{ open }" :defaultOpen="isDisplayLarge">
-            <DisclosureButton class="group flex lg:hidden w-full text-left border border-transparent font-bold rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+            <DisclosureButton class="group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <span class="bg-purple-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
                 <span class="text-center flex-grow rounded-r-md bg-purple-700 px-4 py-4 group-hover:bg-purple-900">Filters</span>
             </DisclosureButton>
@@ -62,8 +62,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="flex w-full border-b my-2"></div>
 
                     <div class="rounded-lg overflow-hidden">
                         <div class="flex justify-between pb-2">

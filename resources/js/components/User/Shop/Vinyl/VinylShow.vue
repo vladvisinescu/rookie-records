@@ -41,7 +41,7 @@
                             </button>
                             <button v-else @click.prevent="removeFromCart" type="button" class="group flex text-left border border-transparent font-bold rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 <span v-text="'£' + product.price" class="bg-red-700 rounded-l px-4 py-4"></span>
-                                <span class="text-center flex-grow rounded-r bg-red-500 px-4 py-4 group-hover:bg-red-700">Remove from Basket</span>
+                                <span class="text-center flex-grow rounded-r bg-red-500 px-4 py-4 group-hover:bg-red-700">Remove</span>
                             </button>
                         </div>
                     </div>

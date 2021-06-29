@@ -55,7 +55,6 @@ const actions = {
                 .get('/shop/vinyl/api/filter-data', {}, { withCredentials: true })
                 .then(response => {
                     commit('setFilterData', response.data)
-                    console.log(1, response.data)
                     resolve(response.data)
                 })
                 .catch(error => {
@@ -79,8 +78,6 @@ const mutations = {
         state.countries = data.countries
         state.categories = data.categories
         state.range = data.range
-        console.log(2, data.range)
-        console.log(3, state.range)
     },
 };
 

@@ -21,9 +21,8 @@
             </div>
         </div>
         <div>
-            <label for="postcode_lookup" class="block text-sm font-medium text-gray-700 hidden">Account number</label>
             <div class="relative rounded-md shadow-sm">
-                <input v-debounce:1000="postcodeLookup" v-model="address.lookup" type="text" id="postcode_lookup" style="font-size: 20px; " autocomplete="false" class="focus:ring-indigo-500 focus:border-indigo-500 font-3xl block w-full py-2.5 pr-10 sm:text-sm border-transparent rounded-md" placeholder="Postcode">
+                <input v-debounce:300ms="postcodeLookup" v-model="address.lookup" type="text" id="postcode_lookup" autocomplete="false" class="focus:ring-indigo-500 focus:border-indigo-500  font-3xl block w-full py-2.5 pr-10 sm:text-sm border-transparent rounded-md" placeholder="Postcode">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <svg v-if="!searching" class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
@@ -112,7 +111,7 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <button @click.prevent="saveAddress" type="button" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button @click.prevent="saveAddress" type="button" class="w-1/2 flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-bold rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                 </svg>
@@ -200,6 +199,7 @@ export default {
             }
 
             this.$store.dispatch('postcodes/clearResults')
+
             this.errors = []
         }
     }
