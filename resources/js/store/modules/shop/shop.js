@@ -49,6 +49,21 @@ const actions = {
         })
     },
 
+    exportProducts({ commit }, filters = {}) {
+        return new Promise((resolve, reject) => {
+            axios
+                .get('/shop/vinyl/api', {
+                    params: { ...filters }
+                }, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data)
+                })
+        })
+    },
+
     getFilterData({ commit }) {
         return new Promise((resolve, reject) => {
             axios
