@@ -45357,7 +45357,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-10 sm:text-sm border-2 focus:ring-0 border-gray-300 rounded-md"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.filters.term]]), _hoisted_5])]), _ctx.user.roles.includes('super_admin') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.filters.term]]), _hoisted_5])]), _ctx.user && _ctx.user.roles.includes('super_admin') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
     key: 0,
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.exportResults && $options.exportResults.apply($options, arguments);

@@ -144,7 +144,6 @@
       <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
       <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
-      <path value="$PROJECT_DIR$/vendor/spatie/pdf-to-image" />
       <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
