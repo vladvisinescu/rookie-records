@@ -43,7 +43,7 @@ class DiscogsController extends Controller
         return [
             'record' => [
                 'title' => $result['title'],
-                'price' => $result['lowest_price'],
+                'discogs_price' => $result['lowest_price'],
                 'country' => $result['country'],
                 'grading' => '',
                 'year' => $result['year'],
@@ -54,7 +54,7 @@ class DiscogsController extends Controller
                 'discogs_image_url' => $result['thumb'],
                 'images' => $result['images'],
                 'format' => $result['formats'][0],
-//                'tracklist' => $result['tracklist']
+                'tracklist' => $result['tracklist']
             ]
         ];
     }

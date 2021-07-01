@@ -91,16 +91,30 @@
                             </div>
                             <div class="flex justify-between gap-4 mt-6">
                                 <div class="w-full">
+                                    <label for="discogs_price" class="block text-sm font-medium text-gray-700">Discogs Price <span v-if="errors.price" v-html="errors.price[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
+                                    <input
+                                        v-model="record.discogs_price"
+                                        disabled="disabled"
+                                        type="text"
+                                        name="discogs_price"
+                                        id="discogs_price"
+                                        autocomplete="off"
+                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 bg-gray-100 rounded-md">
+                                </div>
+
+                                <div class="w-full">
                                     <label for="price" class="block text-sm font-medium text-gray-700">Price <span v-if="errors.price" v-html="errors.price[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                     <input
                                         v-model="record.price"
                                         type="text"
                                         name="price"
                                         id="price"
-                                        autocomplete="given-price"
+                                        autocomplete="off"
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
+                            </div>
 
+                            <div class="flex justify-between gap-4 mt-6">
                                 <div class="w-full">
                                     <label for="grading" class="block text-sm font-medium text-gray-700">Grading <span v-if="errors.grading" v-html="errors.grading[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                     <input
@@ -123,7 +137,8 @@
                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 </div>
                             </div>
-                            <div class="flex mt-6">
+
+                            <div class="flex mt-6 hidden">
                                 <div class="w-full">
                                     <label for="product_title" class="block text-sm font-medium text-gray-700">Discogs Image URL <span v-if="errors.discogs_image_url" v-html="errors.discogs_image_url[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
                                     <input
@@ -275,11 +290,11 @@
             </div>
             <div class="">
                 <h3 class="text-lg font-medium text-gray-900">Tracklist</h3>
-                <div v-if="record.tracklist.length > 0" class="bg-white overflow-hidden shadow rounded-lg py-2 max-h-80 overflow-y-scroll">
+                <div v-if="record.tracklist.length > 0" class="bg-white overflow-hidden shadow rounded-lg max-h-80 overflow-y-scroll">
                     <ul class="flex flex-col divide-y">
-                        <li v-for="track in record.tracklist" :key="track.position" class="text-sm py-2 px-4">
+                        <li v-for="track in record.tracklist" :key="track.position" class="flex justify-between text-sm py-2 px-4">
                             <span class="flex">{{ track.position }}. {{ track.title }}</span>
-                            <span class="text-gray-500">{{ track.artists.map((artist) => artist.name).join(', ') }}</span>
+                            <span v-text="track.duration" class="font-bold"></span>
                         </li>
                     </ul>
                 </div>
@@ -349,6 +364,7 @@ export default {
                 published: true,
                 description: '',
                 price: '',
+                discogs_price: '',
                 grading: '',
                 year: '',
                 discogs_id: '',
@@ -393,7 +409,7 @@ export default {
 
     created() {
 
-        this.autocompleteRecord(window.localStorage.getItem('creating-record-id'))
+        // this.autocompleteRecord(window.localStorage.getItem('creating-record-id'))
         this.$store.dispatch('categories/getCategories');
     },
 
@@ -413,9 +429,9 @@ export default {
 
             this.$store.dispatch('discogs/getRecordByID', selected).then(response => {
                 this.record = { ...this.record, ...response.record }
-                this.record.description = ''
-                this.artists.selected = response.record.artists
+                // this.record.description = ''
                 this.genres.selected = response.record.genres
+                this.artists.selected = response.record.artists
             })
         },
 

@@ -22,6 +22,12 @@
                             class="nav-item-shop inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Vinyl
                         </a>
+                        <a
+                            :class="activeClass('home.faq')"
+                            :href="route('home.faq')"
+                            class="nav-item-faq inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            FAQ
+                        </a>
                     </div>
                 </div>
                 <div class="flex-1 flex items-center justify-center lg:mr-4 px-2 lg:ml-6 lg:justify-end">
@@ -56,7 +62,7 @@
                                     <MenuItem v-slot="{ active }">
                                         <div class="flex group" :class="[active ? 'bg-gray-100' : '']">
                                             <a :href="product.url" class="flex w-full items-center">
-                                                <img :src="product.image" class="inline-flex w-14" alt="">
+                                                <img :src="product.image" class="inline-flex w-14 h-14 object-cover" alt="">
                                                 <div class="w-full flex justify-between items-center px-3 py-2">
                                                     <div class="flex flex-col">
                                                         <span class="line-clamp-1 text-sm text-gray-600 group-hover:text-gray-700" v-text="product.title"></span>
@@ -149,6 +155,7 @@
             <div class="pt-2 pb-3 space-y-1">
                 <a :href="route('home')" :class="activeClass('home')" class="nav-item-home block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
                 <a :href="route('shop.index')" :class="activeClass('shop.*')" class="nav-item-shop block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Vinyl</a>
+                <a :href="route('home.faq')" :class="activeClass('home.faq')" class="nav-item-faq block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Faq</a>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-200" v-if="user">
                 <div class="flex items-center px-4">

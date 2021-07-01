@@ -1,5 +1,7 @@
 const state = () => ({
-    user: {},
+    user: {
+        roles: []
+    },
     errors: []
 });
 

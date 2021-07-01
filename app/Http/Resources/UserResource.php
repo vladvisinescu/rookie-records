@@ -21,6 +21,7 @@ class UserResource extends JsonResource
             'card_four' => $this->card_last_four,
             'addresses' => $this->addresses,
             'avatar' => $this->avatar,
+            'roles' => $this->roles->pluck('name')->toArray()
         ];
     }
 }

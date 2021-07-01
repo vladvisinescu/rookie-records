@@ -16,7 +16,6 @@ class CreateAddressRequest extends FormRequest
         return [
             'postcode' => 'required',
             'address_1' => 'required',
-            'address_2' => 'required',
             'town' => 'required',
             'county' => 'required',
             'country' => 'required',

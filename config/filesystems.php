@@ -57,6 +57,13 @@ return [
             'root' => public_path('images/products'),
             'url' => env('APP_URL').'/images/products',
             'visibility' => 'public',
+        ],
+
+        'product_exports' => [
+            'driver' => 'local',
+            'root' => public_path('exports/products'),
+            'url' => env('APP_URL').'/exports/products',
+            'visibility' => 'public',
         ]
 
     ],
