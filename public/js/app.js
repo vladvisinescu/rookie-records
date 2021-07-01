@@ -39570,7 +39570,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         exportResults: true
       });
 
-      this.$store.dispatch('shop/getProducts', filters).then(function (response) {
+      this.$store.dispatch('shop/exportProducts', filters).then(function (response) {
         _this2.modals["export"] = {
           open: true,
           url: response
@@ -45320,7 +45320,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Disclosure = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Disclosure");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessModal, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SuccessModal, {
     open: $data.modals["export"].open,
     data: {
       export_url: $data.modals["export"].url,
@@ -45581,9 +45581,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["defaultOpen"])])], 64
-  /* STABLE_FRAGMENT */
-  );
+  , ["defaultOpen"])])]);
 }
 
 /***/ }),
@@ -47198,8 +47196,23 @@ var actions = {
       });
     });
   },
-  getFilterData: function getFilterData(_ref2) {
+  exportProducts: function exportProducts(_ref2) {
     var commit = _ref2.commit;
+    var filters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return new Promise(function (resolve, reject) {
+      axios.get('/shop/vinyl/api', {
+        params: _objectSpread({}, filters)
+      }, {
+        withCredentials: true
+      }).then(function (response) {
+        resolve(response.data);
+      })["catch"](function (error) {
+        reject(error.response.data);
+      });
+    });
+  },
+  getFilterData: function getFilterData(_ref3) {
+    var commit = _ref3.commit;
     return new Promise(function (resolve, reject) {
       axios.get('/shop/vinyl/api/filter-data', {}, {
         withCredentials: true

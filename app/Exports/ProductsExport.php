@@ -28,7 +28,7 @@ class ProductsExport implements FromQuery, WithMapping, WithHeadings
             $row->title,
             'Find this record and more on <a href="' . url('/') . '">' . config('app.name') . '</a>',
             'in stock',
-            $row->vinyls->first()->grading,
+            $row->vinyls->first()->grading ?? 'G',
             $row->price . ' GBP',
             route('shop.vinyl.show', $row->slug),
             $row->images['full'],
