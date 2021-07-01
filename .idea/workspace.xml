@@ -23,7 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d184b19-68d7-4cb2-8ff0-185131856bd4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rookie-records.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rookie-records.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Filters.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/Browser/Filters.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +193,6 @@
       <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
       <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
-      <path value="$PROJECT_DIR$/vendor/spatie/pdf-to-image" />
       <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
@@ -322,7 +325,7 @@
       <workItem from="1624728124454" duration="16635000" />
       <workItem from="1624964846955" duration="5574000" />
       <workItem from="1625068154677" duration="2101000" />
-      <workItem from="1625155007748" duration="7936000" />
+      <workItem from="1625155007748" duration="8452000" />
     </task>
     <servers />
   </component>

@@ -60,7 +60,7 @@ Route::group(['prefix' => 'shop'], function () {
     });
 });
 
-Route::group(['prefix' => 'account', 'middleware' => ['permissions.role:user']], function () {
+Route::group(['prefix' => 'account', 'middleware' => ['permissions.role:user,super_admin']], function () {
 
     Route::get('/details', [AccountController::class, 'index'])->name('user.account.home');
     Route::get('/orders', [AccountController::class, 'orders'])->name('user.account.orders');
