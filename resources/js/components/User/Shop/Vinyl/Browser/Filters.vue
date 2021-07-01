@@ -1,4 +1,9 @@
 <template>
+    <SuccessModal :open="modals.export.open" :data="{ export_url: modals.export.url, cta_url: route('shop.index') }">
+        <template v-slot:title>Products Exported!</template>
+        <template v-slot:body><a :href="modals.export.url">Click here to download.</a></template>
+        <template v-slot:cta>Go Back</template>
+    </SuccessModal>
     <nav class="lg:space-y-2 mt-6" aria-label="Sidebar">
         <div>
             <div class="mt-1 relative rounded-md shadow-sm">
@@ -16,16 +21,17 @@
             </div>
         </div>
 
-        <div class="rounded-lg overflow-hidden">
-            <div class="flex justify-between pb-2 hidden">
-                <span class="w-full font-bold cursor-pointer" @click.prevent="drawers.categories = !drawers.categories">Categories</span>
-                <a @click.prevent="clearFilters('categories')" href="javascript:;" class="flex items-center text-sm">
-                    <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span class="text-xs">Clear</span>
-                </a>
-            </div>
+        <div
+            v-if="user.roles.includes('super_admin')"
+            @click.prevent="exportResults"
+            class="text-right">
+            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <DownloadIcon class="-ml-0.5 mr-2 h-4 w-4"></DownloadIcon>
+                Export Results
+            </button>
+        </div>
+
+        <div class="rounded-lg overflow-hidden hidden">
             <ul class="flex" v-show="drawers.categories">
                 <li
                     v-for="category in categories"
@@ -39,7 +45,7 @@
         </div>
 
         <Disclosure v-slot="{ open }" :defaultOpen="isDisplayLarge">
-            <DisclosureButton class="group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <DisclosureButton class="mt-6 group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <span class="bg-purple-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
                 <span class="text-center flex-grow rounded-r-md bg-purple-700 px-4 py-4 group-hover:bg-purple-900">Filters</span>
             </DisclosureButton>
@@ -166,13 +172,14 @@ import {
     DisclosurePanel,
 } from '@headlessui/vue'
 
-import { FilterIcon } from '@heroicons/vue/solid'
+import { FilterIcon, DownloadIcon } from '@heroicons/vue/solid'
+import SuccessModal from "../../../../Bits/modals/SuccessModal";
 
 export default {
 
     components: {
-        Slider, Disclosure, DisclosureButton, DisclosurePanel,
-        FilterIcon
+        Slider, Disclosure, DisclosureButton, DisclosurePanel, SuccessModal,
+        FilterIcon, DownloadIcon
     },
 
     props: ['filters'],
@@ -188,14 +195,22 @@ export default {
                 countries: true,
                 categories: true,
             },
+
+            modals: {
+                export: {
+                    url: '',
+                    open: false
+                }
+            }
         }
     },
 
     computed: {
         ...mapGetters({
+            user: 'user/getUser',
             years: 'shop/allYears',
-            genres: 'shop/allGenres',
             range: 'shop/priceRange',
+            genres: 'shop/allGenres',
             artists: 'shop/allArtists',
             gradings: 'shop/allGradings',
             countries: 'shop/allCountries',
@@ -212,6 +227,10 @@ export default {
             this.filters.range = this.range
             this.$emit('change', this.filters)
         })
+    },
+
+    mounted() {
+
     },
 
     methods: {
@@ -245,6 +264,17 @@ export default {
             this.filters[type] = []
             this.$emit('change', this.filters)
         },
+
+        exportResults() {
+            const filters = { ...this.filters, exportResults: true }
+
+            this.$store.dispatch('shop/getProducts', filters).then(response => {
+                this.modals.export = {
+                    open: true,
+                    url: response
+                }
+            })
+        }
     }
 }
 </script>

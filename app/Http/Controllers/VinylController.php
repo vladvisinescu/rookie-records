@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetails\Artist;
@@ -9,6 +10,8 @@ use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VinylController extends Controller
 {
@@ -19,7 +22,7 @@ class VinylController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->with(['vinyls', 'vinyls.artists', 'vinyls.genres'])->first();
+        $product = Product::query()->where('slug', $slug)->with(['vinyls', 'vinyls.artists', 'vinyls.genres'])->first();
 
         return view('shop.vinyl.show', [
             'product' => $product
@@ -55,14 +58,6 @@ class VinylController extends Controller
             );
         }
 
-//        if($request->has('country')) {
-//            $products = $products->whereHas(
-//                'vinyls.artists', function ($query) use ($request) {
-//                    $query->whereIn('artists.id', $request->input('artists') ?? []);
-//                },
-//            );
-//        }
-
         if($request->has('years')) {
             $products = $products->whereHas(
                 'vinyls', function ($query) use ($request) {
@@ -84,6 +79,16 @@ class VinylController extends Controller
         }
 
         $products = $products->orderBy('created_at', 'desc');
+
+        if ($request->has('exportResults')) {
+            $date = now()->format('d F Y H:i:s');
+            $random = Str::random(6);
+            $fileName = Str::slug("Rookie Records Products Export $date $random") . '.xlsx';
+
+            Excel::store(new ProductsExport($products), $fileName, 'product_exports');
+
+            return '/exports/products/' . $fileName;
+        }
 
         if ($request->has('limit')) {
             $products = $products->limit($request->input('limit'))->get();

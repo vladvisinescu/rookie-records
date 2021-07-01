@@ -116,7 +116,6 @@ export default {
             default: false
         },
         selected: null,
-        submitted: false,
         data: {
             type: Array,
             default: []
@@ -131,8 +130,6 @@ export default {
 
     methods: {
         selectRecord() {
-            this.submitted = true
-
             window.localStorage.setItem('creating-record-id', this.selected)
 
             this.$emit('record-selected', this.selected)

@@ -56,6 +56,7 @@ class ProductsController extends Controller
         $product->title = $request->input('title');
         $product->description = $request->input('description');
         $product->product_type = 'vinyl';
+        $product->discogs_price = $request->input('discogs_price');
         $product->price = $request->input('price');
         $product->uuid = Str::uuid();
 

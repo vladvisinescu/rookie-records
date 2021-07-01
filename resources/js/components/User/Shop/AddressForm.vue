@@ -34,11 +34,11 @@
                 </div>
             </div>
 
-            <div class="bg-white border rounded overflow-hidden mt-4" v-if="hasAddresses">
+            <div class="bg-white rounded overflow-hidden mt-4" v-if="hasAddresses">
                 <ul class="divide-y divide-gray-200 max-h-60 overflow-y-scroll">
                     <li
-                        @click.prevent="populateAfterLookup(result)"
                         v-for="result in lookupResults.addresses"
+                        @click.prevent="populateAfterLookup(result)"
                         class="cursor-pointer py-2 px-3 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                         <a href="#" class="block focus:outline-none">
                             <span class="text-sm font-bold text-gray-900 truncate">

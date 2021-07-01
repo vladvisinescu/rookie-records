@@ -30,7 +30,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property mixed getInCartAttribute
  * @property mixed description
  * @property mixed|string product_type
- * @property mixed price
+ * @property float price
+ * @property float discogs_price
  * @property mixed|UuidInterface uuid
  * @property mixed created_at
  * @property Carbon|mixed published_at
