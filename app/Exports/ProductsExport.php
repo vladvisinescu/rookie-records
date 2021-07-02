@@ -26,12 +26,14 @@ class ProductsExport implements FromQuery, WithMapping, WithHeadings
         return [
             $row->getKey(),
             $row->title,
-            'Find this record and more on <a href="' . url('/') . '">' . config('app.name') . '</a>',
+            'Media > Music & Sound Recordings',
+            'Find this record and more on ' . config('app.name'),
             'in stock',
-            $row->vinyls->first()->grading ?? 'G',
+            'used',
             $row->price . ' GBP',
             route('shop.vinyl.show', $row->slug),
             $row->images['full'],
+            $row->images['thumb'],
             'Rookie Records',
             1
         ];
@@ -42,12 +44,14 @@ class ProductsExport implements FromQuery, WithMapping, WithHeadings
         return [
             'id',
             'title',
+            'google_product_category',
             'description',
             'availability',
             'condition',
             'price',
             'link',
             'image_link',
+            'additional_image_link',
             'brand',
             'quantity_to_sell'
         ];

@@ -57,13 +57,13 @@
 <!--                        </li>-->
 <!--                    </ul>-->
 <!--                </div>-->
-                <div class="pr-4 hidden">
-                    <div class="w-3/5">
-                        <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="pr-4 hidden">-->
+<!--                    <div class="w-3/5">-->
+<!--                        <div class="bg-white overflow-hidden shadow sm:rounded-lg">-->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
