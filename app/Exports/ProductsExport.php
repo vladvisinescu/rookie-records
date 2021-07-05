@@ -30,7 +30,7 @@ class ProductsExport implements FromQuery, WithMapping, WithHeadings
             'Find this record and more on ' . config('app.name'),
             'in stock',
             'used',
-            $row->price . ' GBP',
+            $row->price,
             route('shop.vinyl.show', $row->slug),
             $row->images['full'],
             $row->images['thumb'],
