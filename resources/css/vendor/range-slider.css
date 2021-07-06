@@ -109,7 +109,7 @@
 }
 
 .slider-base {
-    @apply bg-yellow-100
+    @apply bg-gray-100
 }
 
 .slider-base, .slider-connects {
@@ -117,7 +117,7 @@
 }
 
 .slider-connect {
-    @apply bg-yellow-500;
+    @apply bg-gray-500;
     cursor: pointer
 }
 
@@ -176,7 +176,7 @@
     text-align: center;
     color: #fff;
     border-radius: 5px;
-    @apply bg-yellow-700 border-yellow-900 font-bold
+    @apply bg-gray-700 border-gray-900 font-bold
 }
 
 .slider-horizontal .slider-tooltip {

@@ -32,7 +32,7 @@
             <ul class="divide-y divide-gray-200">
                 <li v-for="(product, id) in products" class="flex justify-between items-center">
                     <div class="px-6 py-4">
-                        <span class="flex text-lg lg:text-md font-bold" v-text="product.title"></span>
+                        <span class="flex text-lg lg:text-base font-bold" v-text="product.title"></span>
                     </div>
                     <div class="flex">
                         <div class="px-3 py-4">
@@ -44,6 +44,29 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                         </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex justify-end px-6 py-4 border-t-2">
+                        <div class="flex flex-col w-full lg:w-1/2">
+                            <div
+                                class="flex justify-between">
+                                <span>Items: </span>
+                                <span class="ml-2 font-bold">£{{ cartTotal }}</span>
+                            </div>
+                            <div
+                                class="flex justify-between">
+                                <span>Postage & Packing: </span>
+                                <span v-if="cartTotal < 30" class="ml-2 font-bold">+ £5.00</span>
+                                <span v-else class="ml-2 font-bold">Free</span>
+                            </div>
+                            <div class="flex border-t my-2"></div>
+                            <div
+                                class="flex justify-between text-lg">
+                                <span>You pay: </span>
+                                <span class="ml-2 font-bold">£{{ (cartTotal < 30) ? (parseFloat(cartTotal) + 5).toFixed(2) : cartTotal }}</span>
+                            </div>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -75,7 +98,7 @@
             </div>
         </div>
 
-        <div class="bg-white shadow overflow-hidden sm:rounded-md" v-if="hasAddresses">
+        <div class="bg-white shadow overflow-hidden rounded-md" v-if="hasAddresses">
             <ul class="divide-y divide-gray-200">
                 <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.id">
                     <div class="flex flex-shrink items-center pr-4">
@@ -149,7 +172,7 @@
                 :class="cardCompleted ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-300'"
                 :disabled="!cardCompleted"
                 type="button"
-                class="w-1/2 text-right inline-flex justify-between items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                class="w-full md:w-1/2 text-right inline-flex justify-between items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Submit order
                 <svg class="ml-3 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -259,8 +282,6 @@ export default {
                 alert(error)
             }
 
-            // return
-
             this.$store.dispatch('checkout/submitOrder', {
                 address_id: this.address_id,
                 user: this.user,
@@ -269,7 +290,6 @@ export default {
                 this.completeOrder.modal = true
                 this.completeOrder.transaction_id = response.data.transaction_id
             }).catch(errors => {
-                // console.log(errors)
                 this.errors = errors
             })
         },

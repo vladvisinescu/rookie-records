@@ -32,23 +32,10 @@
                 </button>
             </div>
 
-            <div class="rounded-lg overflow-hidden hidden">
-                <ul class="flex" v-show="drawers.categories">
-                    <li
-                        v-for="category in categories"
-                        :key="category.id"
-                        @click.prevent="selectCategory(category)"
-                        class="flex items-center mr-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                        <span :class="[ filters.categories.includes(category.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-2 rounded-full h-3 w-3"></span>
-                        <span :class="[ filters.categories.includes(category.id) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="category.name"></span>
-                    </li>
-                </ul>
-            </div>
-
             <Disclosure v-slot="{ open }" :defaultOpen="isDisplayLarge">
-                <DisclosureButton class="mt-6 group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    <span class="bg-purple-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
-                    <span class="text-center flex-grow rounded-r-md bg-purple-700 px-4 py-4 group-hover:bg-purple-900">Filters</span>
+                <DisclosureButton class="mt-6 group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <span class="bg-gray-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
+                    <span class="text-center flex-grow rounded-r-md bg-gray-700 px-4 py-4 group-hover:bg-gray-900">Filters</span>
                 </DisclosureButton>
 
                 <div v-show="open">
@@ -64,8 +51,8 @@
                                     <Slider :min="range[0]" :max="range[1]" :tooltips="false" v-model="filters.range" @change="$emit('change')" />
                                 </div>
                                 <div class="flex justify-between">
-                                    <span v-text="'£' + filters.range[0]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800"></span>
-                                    <span v-text="'£' + filters.range[1]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-yellow-100 text-yellow-800"></span>
+                                    <span v-text="'£' + filters.range[0]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-700 border-2 border-gray-300"></span>
+                                    <span v-text="'£' + filters.range[1]" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-700 border-2 border-gray-300"></span>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +73,7 @@
                                     :key="genre.id"
                                     @click.prevent="selectGenre(genre)"
                                     class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                                    <span :class="[ filters.genres.includes(genre.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                                    <span :class="[ filters.genres.includes(genre.id) ? 'bg-gray-500' : 'border-gray-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
                                     <span :class="[ filters.genres.includes(genre.id) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="genre.name"></span>
                                 </li>
                             </ul>
@@ -108,7 +95,7 @@
                                     :key="artist.id"
                                     @click.prevent="selectArtist(artist)"
                                     class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                                    <span :class="[ filters.artists.includes(artist.id) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                                    <span :class="[ filters.artists.includes(artist.id) ? 'bg-gray-500' : 'border-gray-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
                                     <span :class="[ filters.artists.includes(artist.id) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="artist.name"></span>
                                 </li>
                             </ul>
@@ -130,7 +117,7 @@
                                     :key="year"
                                     @click.prevent="selectYear(year)"
                                     class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                                    <span :class="[ filters.years.includes(year) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                                    <span :class="[ filters.years.includes(year) ? 'bg-gray-500' : 'border-gray-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
                                     <span :class="[ filters.years.includes(year) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="(year != 0) ? year : 'Not found'"></span>
                                 </li>
                             </ul>
@@ -152,7 +139,7 @@
                                     :key="country"
                                     @click.prevent="selectCountry(country)"
                                     class="flex items-center px-4 py-2 cursor-pointer transition-all hover:bg-gray-100">
-                                    <span :class="[ filters.countries.includes(country) ? 'bg-yellow-500' : 'border-yellow-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
+                                    <span :class="[ filters.countries.includes(country) ? 'bg-gray-500' : 'border-gray-400' ]" class="border-2 border-transparent inline-flex mr-4 rounded-full h-3 w-3"></span>
                                     <span :class="[ filters.countries.includes(country) ? 'text-gray-700' : 'text-gray-500' ]" class="text-sm" v-text="country"></span>
                                 </li>
                             </ul>

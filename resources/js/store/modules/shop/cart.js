@@ -19,12 +19,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .post('/shop/cart', data, { withCredentials: true })
-                .then(response => {
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error.response.data)
-                })
+                .then(response => resolve(response.data))
+                .catch(error => reject(error.response))
         })
     },
 
@@ -32,12 +28,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .delete('/shop/cart/' + id, { withCredentials: true })
-                .then(response => {
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error.response.data)
-                })
+                .then(response => resolve(response.data))
+                .catch(error => reject(error.response))
         })
     },
 
@@ -49,9 +41,7 @@ const actions = {
                     commit('setProducts', response.data)
                     resolve(response.data)
                 })
-                .catch(error => {
-                    reject(error.response.data)
-                })
+                .catch(error => reject(error.response.data))
         })
     },
 

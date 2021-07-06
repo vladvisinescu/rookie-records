@@ -24,17 +24,25 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        Cart::instance('shopping')->add(Product::find($request->input('id')));
+        $product = Product::find($request->input('id'));
+
+        Cart::instance('shopping')->add($product);
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'product' => $product
         ]);
     }
 
     public function removeFromCart($id)
     {
+        $product = Cart::instance('shopping')->get($id)->model;
+
         Cart::instance('shopping')->remove($id);
 
-        return true;
+        return [
+            'success' => true,
+            'product' => $product
+        ];
     }
 }
