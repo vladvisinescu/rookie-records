@@ -1,18 +1,7 @@
 <x-shop-layout>
     <div class="container mx-auto py-2 px-4 sm:px-6 lg:px-8">
-        <div class="w-1/2 mx-auto my-10">
+        <div class="lg:w-1/2 mx-auto my-10">
             <h1 class="text-4xl my-5 text-gray-700">Order details</h1>
-            <h3 class="mb-2 font-light text-sm text-gray-500">You can expect these to be with you shortly:</h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-5">
-                @foreach($order->products as $product)
-
-                    <?php /* @var \App\Models\ProductTypes\Vinyl $vinyl */ $vinyl = $product->vinyls->first() ?>
-
-                    <div class="relative" style="padding-bottom: 100%;">
-                        <img class="absolute w-full h-full object-cover object-center" src="{{ $product->getMedia('vinyls')->first()->getUrl() }}" alt="{{ $product->title }} Record Cover">
-                    </div>
-                @endforeach
-            </div>
             <div class="flex justify-between divide-x mb-5">
                 <div class="w-1/2 pr-4">
                     <p class="font-bold text-sm mb-2">Delivery Address</p>
@@ -31,6 +20,17 @@
                         <p class="text-gray-700">{{ $order->user->phone }}</p>
                     @endif
                 </div>
+            </div>
+            <h3 class="mb-2 font-light text-sm text-gray-500">You can expect these to be with you shortly:</h3>
+            <div class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-5">
+                @foreach($order->products as $product)
+
+                    <?php /* @var \App\Models\ProductTypes\Vinyl $vinyl */ $vinyl = $product->vinyls->first() ?>
+
+                    <div class="relative" style="padding-bottom: 100%;">
+                        <img class="absolute w-full h-full object-cover object-center" src="{{ $product->getMedia('vinyls')->first()->getUrl('thumb') }}" alt="{{ $product->title }} Record Cover">
+                    </div>
+                @endforeach
             </div>
             <a href="{{ route('user.account.orders') }}" class="border-b">
                 <span>All orders</span>

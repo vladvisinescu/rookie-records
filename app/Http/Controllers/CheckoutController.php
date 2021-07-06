@@ -25,20 +25,7 @@ class CheckoutController extends Controller
             return redirect()->route('home');
         }
 
-        $cart = Cart::instance('shopping')->content()->map(function ($item) {
-            return [
-                'id' => $item->model->uuid,
-                'title' => $item->model->title,
-                'price' => $item->model->price,
-                'quantity' => $item->qty,
-                'image' => $item->model->vinyls()->first()->images[0]->resource_url,
-                'url' => route('shop.vinyl.show', ['slug' => $item->model->slug])
-            ];
-        });
-
-        return view('shop.checkout.index', [
-            'cart' => $cart
-        ]);
+        return view('shop.checkout.index');
     }
 
     public function getAllProducts(Request $request)
@@ -60,7 +47,13 @@ class CheckoutController extends Controller
     {
 
         try {
-            $total = intval(number_format(Cart::instance('shopping')->total(), 0));
+            $total = Cart::instance('shopping')->priceTotal();
+
+            // delivery fee?
+            if ($total < 30) {
+                $total += 5;
+            }
+
             $user = auth()->user();
 
             $user->createOrGetStripeCustomer();

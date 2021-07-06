@@ -114,7 +114,9 @@ export default {
 
     methods: {
         addToCart() {
-            this.$store.dispatch('cart/addToCart', this.product).then(() => {
+            this.$store.dispatch('cart/addToCart', this.product).then(response => {
+                let product = response.product
+                this.$analytics.gAddToCart(product)
                 this.$store.dispatch('cart/getCartSession')
             })
         },
@@ -130,7 +132,9 @@ export default {
                 return
             }
 
-            this.$store.dispatch('cart/removeFromCart', rowID).then(() => {
+            this.$store.dispatch('cart/removeFromCart', rowID).then(response => {
+                let product = response.product
+                this.$analytics.gRemoveFromCart(product)
                 this.$store.dispatch('cart/getCartSession')
             })
         }

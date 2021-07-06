@@ -34,7 +34,7 @@
                     <MenuSearch />
                 </div>
                 <div class="flex items-center lg:hidden">
-                    <DisclosureButton class="nav-item-burger inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <DisclosureButton class="nav-item-burger inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                         <span class="sr-only">Open main menu</span>
                         <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                         <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
@@ -43,7 +43,7 @@
                 <div class="hidden lg:flex lg:items-center">
                     <Menu as="div" class="mr-2 relative flex-shrink-0">
                         <div class="relative">
-                            <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-purple-400 z-50"></span>
+                            <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-teal-700 z-50"></span>
                             <MenuButton class="bg-white rounded-full text-gray-400 p-1 flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span class="sr-only">View Cart</span>
                                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
@@ -57,7 +57,7 @@
                             leave-active-class="transition ease-in duration-75"
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95">
-                            <MenuItems class="w-96 divide-y origin-top-right absolute z-50 right-0 mt-3 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <MenuItems class="w-96 divide-y origin-top-right absolute z-50 right-0 mt-3 w-96 rounded-md overflow-hidden shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <template v-for="(product, id) in products" :key="id" v-if="cartActive">
                                     <MenuItem v-slot="{ active }">
                                         <div class="flex group" :class="[active ? 'bg-gray-100' : '']">
@@ -89,7 +89,7 @@
                                             <span class="text-sm font-bold text-right text-gray-500" v-text="'£' + cartTotal"></span>
                                         </div>
                                         <div class="text-center">
-                                            <a :href="route('shop.checkout.index')" class="w-full py-2 font-bold inline-block text-center bg-yellow-300 text-yellow-700 transition-all hover:bg-yellow-400">
+                                            <a :href="route('shop.checkout.index')" class="w-full py-2 font-bold inline-block text-center bg-teal-300 text-teal-700 transition-all hover:bg-teal-400">
                                                 Checkout
                                             </a>
                                         </div>
@@ -172,7 +172,7 @@
                             <BellIcon class="h-7 w-7" aria-hidden="true" />
                         </button>
                         <div class="relative inline-flex p-1 ml-2">
-                            <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-purple-400 z-50"></span>
+                            <span v-if="cartActive" class="absolute right-0 h-3 w-3 rounded-full bg-teal-700 z-50"></span>
                             <a :href="route('shop.checkout.index')" class="bg-white text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span class="sr-only">View Cart</span>
                                 <ShoppingCartIcon class="h-7 w-7" aria-hidden="true" />
@@ -246,7 +246,7 @@ export default {
         activeClass(string, location = 'desktop') {
             if (location === 'desktop') {
                 return route().current(string)
-                    ? 'border-indigo-500 text-gray-900'
+                    ? 'border-gray-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700';
             } else {
                 return route().current(string)
