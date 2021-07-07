@@ -38,6 +38,18 @@ return [
         'base_url' => env('DISCOGS_BASE_URL'),
         'key' => env('DISCOGS_KEY'),
         'secret' => env('DISCOGS_SECRET'),
-    ]
+    ],
+
+    'google' => [
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT')
+    ],
+
+    'facebook' => [
+        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect'      => env('FACEBOOK_REDIRECT')
+    ],
 
 ];

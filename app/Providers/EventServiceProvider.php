@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductDetails\Artist;
+use App\Models\ProductDetails\Genre;
+use App\Observers\ArtistObserver;
+use App\Observers\GenreObserver;
 use App\Observers\ProductCategoryObserver;
 use App\Observers\ProductObserver;
 use Illuminate\Auth\Events\Registered;
@@ -32,5 +36,8 @@ class EventServiceProvider extends ServiceProvider
     {
         Product::observe(ProductObserver::class);
         ProductCategory::observe(ProductCategoryObserver::class);
+
+        Artist::observe(ArtistObserver::class);
+        Genre::observe(GenreObserver::class);
     }
 }
