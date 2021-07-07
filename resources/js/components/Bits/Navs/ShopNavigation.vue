@@ -142,8 +142,8 @@
                         </transition>
                     </Menu>
                 </div>
-                <div class="flex px-2 lg:px-0" v-if="!user">
-                    <div class="hidden px-2 lg:flex lg:space-x-8">
+                <div class="hidden lg:flex" v-if="!user">
+                    <div class="hidden px-2 lg:flex lg:space-x-4">
                         <a :class="activeClass('login')" :href="route('login')" class="nav-item-login inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Login</a>
                         <a :class="activeClass('register')" :href="route('register')" class="nav-item-register inline-flex items-center px-1 py-5 border-b-2 text-sm font-medium">Register</a>
                     </div>
@@ -194,6 +194,14 @@
             </div>
         </DisclosurePanel>
     </Disclosure>
+    <nav class="flex w-full bg-yellow-500 text-white">
+        <p class="text-center mx-auto text-sm font-bold py-1">
+            <svg class="inline-flex mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M 5.5 3 C 2.462 3 0 5.462 0 8.5 C 0 9.6753966 0.37215298 10.762524 1 11.65625 L 1 18 L 3 18 C 3 19.657 4.343 21 6 21 C 7.657 21 9 19.657 9 18 L 15 18 C 15 19.657 16.343 21 18 21 C 19.657 21 21 19.657 21 18 L 23 18 L 23 13 L 20 7 L 16 7 L 16 5 L 9.7421875 5 C 8.7334647 3.7789071 7.2078831 3 5.5 3 z M 5.5 4.75 C 7.568 4.75 9.25 6.432 9.25 8.5 C 9.25 10.568 7.568 12.25 5.5 12.25 C 3.432 12.25 1.75 10.568 1.75 8.5 C 1.75 6.432 3.432 4.75 5.5 4.75 z M 5.5078125 6.0917969 L 4.6445312 8.6992188 L 6.4042969 10.486328 L 7.4726562 9.4355469 L 6.3554688 8.3007812 L 6.9316406 6.5625 L 5.5078125 6.0917969 z M 10.787109 7 L 14 7 L 14 16 L 8.2207031 16 C 7.6716274 15.390667 6.8849156 15 6 15 C 5.1150844 15 4.3283726 15.390667 3.7792969 16 L 3 16 L 3 13.394531 C 3.7507906 13.77885 4.5984821 14 5.5 14 C 8.538 14 11 11.538 11 8.5 C 11 7.9790867 10.92237 7.4775362 10.787109 7 z M 16 9 L 18.763672 9 L 21 13.472656 L 21 16 L 20.220703 16 C 19.671627 15.390667 18.884916 15 18 15 C 17.227916 15 16.53164 15.300231 16 15.779297 L 16 9 z M 6 16.75 C 6.689 16.75 7.25 17.311 7.25 18 C 7.25 18.689 6.689 19.25 6 19.25 C 5.311 19.25 4.75 18.689 4.75 18 C 4.75 17.311 5.311 16.75 6 16.75 z M 18 16.75 C 18.689 16.75 19.25 17.311 19.25 18 C 19.25 18.689 18.689 19.25 18 19.25 C 17.311 19.25 16.75 18.689 16.75 18 C 16.75 17.311 17.311 16.75 18 16.75 z"></path>
+            </svg>
+            Free UK delivery for orders over £30!
+        </p>
+    </nav>
 </template>
 
 <script>

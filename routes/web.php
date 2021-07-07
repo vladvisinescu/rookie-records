@@ -33,11 +33,8 @@ Route::get('search', [SearchController::class, 'search'])->name('shop.search');
 
 Route::group(['prefix' => 'auth'], function () {
 
-    Route::get('google/redirect', [SocialLoginController::class, 'googleRedirect'])->name('auth.google.redirect');
-    Route::get('google/callback', [SocialLoginController::class, 'googleCallback'])->name('auth.google.callback');
-
-    Route::get('facebook/redirect', [SocialLoginController::class, 'facebookRedirect'])->name('auth.facebook.redirect');
-    Route::get('facebook/callback', [SocialLoginController::class, 'facebookCallback'])->name('auth.facebook.callback');
+    Route::get('{provider}/redirect', [SocialLoginController::class, 'socialLoginRedirect'])->name('auth.social.redirect');
+    Route::get('{provider}/callback', [SocialLoginController::class, 'socialLoginCallback'])->name('auth.social.callback');
 });
 
 Route::group(['prefix' => 'shop'], function () {
@@ -66,7 +63,7 @@ Route::group(['prefix' => 'shop'], function () {
     });
 });
 
-Route::group(['prefix' => 'account', 'middleware' => ['permissions.role:user,super_admin']], function () {
+Route::group(['prefix' => 'account', 'middleware' => ['permissions.role:user|super_admin']], function () {
 
     Route::get('/details', [AccountController::class, 'index'])->name('user.account.home');
     Route::get('/orders', [AccountController::class, 'orders'])->name('user.account.orders');

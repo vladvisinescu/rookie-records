@@ -1,50 +1,32 @@
-<footer class="container mx-auto mt-10 py-2 px-4 sm:px-6 lg:px-8">
-    <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
-        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
+<footer class="container mx-auto mt-8 py-2 px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap">
+        <div class="w-1/2 mb-8 lg:w-1/4">
             <h5 class="text-xl font-bold mb-6">Navigation</h5>
             <ul class="list-none footer-links">
-                <li class="mb-2">
-                    <a href="/" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Go to Home</a>
-                </li>
-                <li class="mb-2">
-                    <a href="/shop" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Shop</a>
-                </li>
+                <li class="mb-2"><a href="/" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Go to Home</a></li>
+                <li class="mb-2"><a href="/shop" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Shop</a></li>
             </ul>
         </div>
-        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
+        <div class="w-1/2 mb-8 lg:w-1/4">
             <h5 class="text-xl font-bold mb-6">Resources</h5>
             <ul class="list-none footer-links">
-                <li class="mb-2">
-                    <a href="{{ route('home.terms') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Terms & Conditions</a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('home.policy') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Privacy Policy</a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('home.cookie') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Cookie Policy</a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('home.delivery') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Delivery Policy</a>
-                </li>
+                <li class="mb-2"><a href="{{ route('home.terms') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Terms & Conditions</a></li>
+                <li class="mb-2"><a href="{{ route('home.policy') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Privacy Policy</a></li>
+                <li class="mb-2"><a href="{{ route('home.cookie') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Cookie Policy</a></li>
+                <li class="mb-2"><a href="{{ route('home.delivery') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Delivery Policy</a></li>
             </ul>
         </div>
-        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
+        <div class="w-1/2 mb-8 lg:w-1/4">
             <h5 class="text-xl font-bold mb-6">Help</h5>
             <ul class="list-none footer-links">
-                <li class="mb-2">
-                    <a href="{{ route('home.delivery') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Delivery Policy</a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('home.contact-us') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Contact Us</a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('home.faq') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">FAQ</a>
-                </li>
+                <li class="mb-2"><a href="{{ route('home.delivery') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Delivery Policy</a></li>
+                <li class="mb-2"><a href="{{ route('home.contact-us') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Contact Us</a></li>
+                <li class="mb-2"><a href="{{ route('home.faq') }}" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">FAQ</a></li>
             </ul>
         </div>
-        <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
-            <h5 class="text-xl font-bold mb-6 sm:text-center xl:text-left">Stay connected</h5>
-            <div class="flex gap-x-4 sm:justify-center xl:justify-start">
+        <div class="w-1/2 mb-8 lg:w-1/4">
+            <h5 class="text-xl font-bold mb-6 lg:text-right">Stay connected</h5>
+            <div class="flex gap-x-4 lg:justify-end">
                 <a href="https://www.instagram.com/rookierecords.uk" class="h-8 w-8 text-center py-1">
                     <svg role="img" class="h-8 w-8 inline-block m-0" style="margin: 0 !important; fill: #E4405F" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <title>Instagram</title>
