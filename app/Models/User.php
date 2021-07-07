@@ -61,8 +61,8 @@ class User extends Authenticatable
         return (new Avatar)
             ->create(strtoupper($this->full_name))
             ->setBorder(0, '#eee')
-            ->setBackground('#e5e7eb')
-            ->setForeground('#9ca3af')
+            ->setBackground('#E7E5E4')
+            ->setForeground('#78716C')
             ->toBase64();
     }
 

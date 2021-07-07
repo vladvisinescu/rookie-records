@@ -39,7 +39,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+                <div class="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
                     <template v-for="product in products" :key="product.id">
                         <BrowserItem :product="product" :loading="loading" />
                     </template>

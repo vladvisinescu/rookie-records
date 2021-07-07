@@ -3,10 +3,18 @@
 namespace App\Observers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ProductObserver
 {
+    public function __construct()
+    {
+        Cache::forget('vinyl.years');
+        Cache::forget('vinyl.countries');
+        Cache::forget('vinyl.price.range');
+    }
+
     /**
      * Handle the Product "created" event.
      *
