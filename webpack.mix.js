@@ -26,4 +26,4 @@ mix
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
-    ]);
+    ]).version();
