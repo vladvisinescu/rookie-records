@@ -33,8 +33,9 @@
             </div>
 
             <Disclosure v-slot="{ open }" :defaultOpen="isDisplayLarge">
-                <DisclosureButton class="mt-6 group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
-                    <span class="bg-gray-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
+                <DisclosureButton class="select-none mt-6 group flex lg:hidden w-full text-left font-bold rounded-md text-white focus:outline-none focus:ring-2 focus:ring-gray-500">
+                    <span v-if="!open" class="bg-gray-900 rounded-l-md px-4 py-4"><FilterIcon class="h-6 w-6" /></span>
+                    <span v-else class="bg-gray-900 rounded-l-md px-4 py-4"><XIcon class="h-6 w-6" /></span>
                     <span class="text-center flex-grow rounded-r-md bg-gray-700 px-4 py-4 group-hover:bg-gray-900">Filters</span>
                 </DisclosureButton>
 
@@ -161,14 +162,14 @@ import {
     DisclosurePanel,
 } from '@headlessui/vue'
 
-import { FilterIcon, DownloadIcon } from '@heroicons/vue/solid'
+import { FilterIcon, DownloadIcon, XIcon } from '@heroicons/vue/solid'
 import SuccessModal from "../../../../Bits/modals/SuccessModal";
 
 export default {
 
     components: {
         Slider, Disclosure, DisclosureButton, DisclosurePanel, SuccessModal,
-        FilterIcon, DownloadIcon
+        FilterIcon, DownloadIcon, XIcon
     },
 
     props: ['filters'],

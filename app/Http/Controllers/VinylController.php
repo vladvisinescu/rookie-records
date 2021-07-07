@@ -9,6 +9,7 @@ use App\Models\ProductDetails\Artist;
 use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -102,15 +103,27 @@ class VinylController extends Controller
     public function getFilterData(Request $request)
     {
         return [
-            'artists' => Artist::orderBy('name', 'ASC')->get(),
-            'genres' => Genre::orderBy('name', 'ASC')->get(),
-            'years' => Vinyl::distinct('year')->get(['year'])->pluck('year')->sort()->values()->all(),
-            'countries' => Vinyl::distinct('country')->get(['country'])->pluck('country')->sort()->values()->all(),
-            'categories' => ProductCategory::orderBy('name', 'ASC')->get(['id', 'name']),
-            'range' => [
-                floor(DB::table('products')->select(DB::raw('MIN(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
-                ceil(DB::table('products')->select(DB::raw('MAX(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
-            ]
+            'artists' => Cache::rememberForever('vinyl.artists', function () {
+                return Artist::orderBy('name', 'ASC')->get();
+            }),
+            'genres' => Cache::rememberForever('vinyl.genres', function () {
+                return Genre::orderBy('name', 'ASC')->get();
+            }),
+            'years' => Cache::rememberForever('vinyl.years', function () {
+                return  Vinyl::distinct('year')->get(['year'])->pluck('year')->sort()->values()->all();
+            }),
+            'countries' => Cache::rememberForever('vinyl.countries', function () {
+                return Vinyl::distinct('country')->get(['country'])->pluck('country')->sort()->values()->all();
+            }),
+            'categories' => Cache::rememberForever('vinyl.categories', function () {
+                return ProductCategory::orderBy('name', 'ASC')->get(['id', 'name']);
+            }),
+            'range' => Cache::rememberForever('vinyl.price.range', function () {
+                return [
+                    floor(DB::table('products')->select(DB::raw('MIN(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
+                    ceil(DB::table('products')->select(DB::raw('MAX(CAST(price AS DECIMAL(8,2))) as value'))->first('value')->value),
+                ];
+            })
         ];
     }
 }

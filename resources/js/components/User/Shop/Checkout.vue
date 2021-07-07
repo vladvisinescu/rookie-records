@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <div class="flex justify-end px-6 py-4 border-t-2">
-                        <div class="flex flex-col w-full lg:w-1/2">
+                        <div class="flex flex-col w-full md:w-1/2 lg:w-3/4">
                             <div
                                 class="flex justify-between">
                                 <span>Items: </span>
