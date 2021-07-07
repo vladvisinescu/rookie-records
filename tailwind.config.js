@@ -17,10 +17,11 @@ module.exports = {
                 current: 'currentColor',
                 gray: colors.warmGray,
                 red: colors.red,
-                blue: colors.sky,
+                blue: colors.blue,
                 yellow: colors.amber,
                 cyan: colors.cyan,
-                teal: colors.teal
+                teal: colors.teal,
+                orange: colors.orange,
             },
 
             blur: {

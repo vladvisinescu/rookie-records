@@ -14,7 +14,7 @@ class AddDiscogsPriceToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('discogs_price');
+//            $table->decimal('discogs_price');
         });
     }
 
@@ -26,7 +26,7 @@ class AddDiscogsPriceToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->removeColumn('discogs_price');
+//            $table->removeColumn('discogs_price');
         });
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialLoginController;
 use PHPHtmlParser\Dom;
 
 use App\Http\Controllers\Desktop\OrdersController;
@@ -20,9 +21,6 @@ Route::redirect('/shop', '/shop/vinyl');
 
 // Public Area
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/telegram', function () {
-    \Illuminate\Support\Facades\Notification::route('telegram', 1338175841)->notify();
-});
 
 Route::get('faq', [HomeController::class, 'faq'])->name('home.faq');
 Route::get('terms-and-conditions', [HomeController::class, 'termsAndConditions'])->name('home.terms');
@@ -33,6 +31,14 @@ Route::get('contact-us', [HomeController::class, 'contactUs'])->name('home.conta
 Route::post('contact-us', [HomeController::class, 'submitContactUs'])->name('home.contact-us.submit');
 Route::get('search', [SearchController::class, 'search'])->name('shop.search');
 
+Route::group(['prefix' => 'auth'], function () {
+
+    Route::get('google/redirect', [SocialLoginController::class, 'googleRedirect'])->name('auth.google.redirect');
+    Route::get('google/callback', [SocialLoginController::class, 'googleCallback'])->name('auth.google.callback');
+
+    Route::get('facebook/redirect', [SocialLoginController::class, 'facebookRedirect'])->name('auth.facebook.redirect');
+    Route::get('facebook/callback', [SocialLoginController::class, 'facebookCallback'])->name('auth.facebook.callback');
+});
 
 Route::group(['prefix' => 'shop'], function () {
 
