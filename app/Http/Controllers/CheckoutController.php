@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Notifications\OrderConfirmed;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Log;
 
 use Illuminate\Http\Request;
@@ -56,7 +58,8 @@ class CheckoutController extends Controller
 
             $user = auth()->user();
 
-            $user->createOrGetStripeCustomer();
+            /** @var User $user **/
+            $customer = $user->createOrGetStripeCustomer();
             $user->updateDefaultPaymentMethod($request->input('payment.id'));
 
             $payment = $user->charge(
@@ -91,6 +94,11 @@ class CheckoutController extends Controller
 
             return new OrderResource($order);
 
+        } catch (IncompletePayment $exception) {
+            return redirect()->route(
+                'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('home')]
+            );
         } catch (\Exception $e) {
 
             return response()->json([

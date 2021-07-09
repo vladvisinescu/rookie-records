@@ -130,8 +130,8 @@
                 <div class="bg-white shadow overflow-hidden rounded" v-if="hasAddresses">
                     <ul class="divide-y divide-gray-200">
                         <li v-for="address in addresses" :key="address.id" class="px-4 py-4 sm:px-6">
-                            <div class="grid grid-cols-2">
-                                <div class="flex flex-col">
+                            <div class="flex justify-between">
+                                <div class="flex flex-col w-3/4">
                                     <span v-text="address.address_1" class="font-bold font-lg"></span>
                                     <span v-text="address.address_2" class="text-sm"></span>
                                     <p>
@@ -140,16 +140,18 @@
                                     </p>
                                     <span v-text="address.country" class="text-sm"></span>
                                 </div>
-                                <div class="flex items-center justify-end">
-                                    <ul>
+                                <div class="flex items-center w-1/4">
+                                    <ul class="flex-grow">
+                                        <li v-if="!address.default">
+                                            <a href="#" @click.prevent="makeAddressDefault(address)">
+                                                <CheckIcon class="text-blue-700 h-3 w-3 inline-flex mr-2" />
+                                                <span class="text-xs font-bold text-blue-400">Make default</span>
+                                            </a>
+                                        </li>
                                         <li>
-                                            <a href="#" @click.prevent="deletesAddress = { modal: true, id: address.id }" class="text-red-700 font-bold">
-                                                <svg class="h-3 w-3 inline-flex" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                </svg>
-                                                <span class="text-xs">
-                                                    Delete
-                                                </span>
+                                            <a href="#" @click.prevent="deletesAddress = { modal: true, id: address.id }">
+                                                <TrashIcon class="text-red-700 h-3 w-3 inline-flex mr-2" />
+                                                <span class="text-xs font-bold text-red-400">Delete</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -188,10 +190,13 @@ import { mapGetters } from 'vuex'
 import AddressForm from "../User/Shop/AddressForm";
 import ConfirmModal from "../Bits/modals/ConfirmModal";
 
+import { CheckIcon, MinusSmIcon, TrashIcon } from '@heroicons/vue/solid'
+
 export default {
 
     components: {
-        AddressForm, ConfirmModal
+        AddressForm, ConfirmModal,
+        CheckIcon, TrashIcon, MinusSmIcon
     },
 
     data() {
@@ -226,6 +231,13 @@ export default {
     },
 
     methods: {
+
+        makeAddressDefault(address) {
+            this.$store.dispatch('address/updateAddress', { ...address, default: true }).then(response => {
+                this.$store.dispatch('address/getAddresses')
+            })
+        },
+
         removeAddress({ address_id }) {
             this.$store.dispatch('address/removeAddress', address_id).then(() => {
                 this.$store.dispatch('address/getAddresses')

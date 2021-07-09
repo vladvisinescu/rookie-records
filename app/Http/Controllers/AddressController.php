@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\Addresses\CreateAddressRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
+use App\Http\Requests\Addresses\UpdateAddressRequest;
+
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AddressController extends Controller
 {
@@ -17,13 +17,17 @@ class AddressController extends Controller
         return $request->user()->addresses()->get();
     }
 
-    public function toggleIsDefault(Request $request)
+    public function updateAddress(UpdateAddressRequest $request, Address $address)
     {
+        $request->user()->addresses()->update(['default' => false]);
 
+        return $address->update($request->all());
     }
 
     public function saveAddress(CreateAddressRequest $request)
     {
+        $request->user()->addresses()->update(['default' => false]);
+
         return $request->user()->addresses()->create([
             'type' => 'delivery',
             'default' => true,

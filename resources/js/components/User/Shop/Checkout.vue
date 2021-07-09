@@ -102,7 +102,7 @@
             <ul class="divide-y divide-gray-200">
                 <li v-for="address in addresses" :key="address.id" class="flex justify-between px-4 py-4 sm:px-6 cursor-pointer" @click="address_id = address.id">
                     <div class="flex flex-shrink items-center pr-4">
-                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="address.id === address_id">
+                        <input id="settings-option-0" name="privacy_setting" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300" :checked="(address.id === address_id) || address.default">
                     </div>
                     <div class="flex flex-grow">
                         <div class="flex flex-col">
@@ -269,26 +269,41 @@ export default {
         async submitOrder() {
             this.errors = {}
 
-            const { paymentMethod, error } =  await this.stripe.createPaymentMethod(
-                'card', this.cardElement, {
-                    billing_details: {
-                        name: this.user.first_name + ' ' + this.user.last_name,
-                        email: this.user.email,
-                    }
-                }
-            )
+            // const { paymentMethod, error } =  await this.stripe.createPaymentMethod(
+            //     'card', this.cardElement, {
+            //         billing_details: {
+            //             name: this.user.first_name + ' ' + this.user.last_name,
+            //             email: this.user.email,
+            //         }
+            //     }
+            // )
 
-            if (error) {
-                alert(error)
-            }
+            // const {paymentIntent, error} = await this.stripe.confirmCardPayment(
+            //     '{PAYMENT_INTENT_CLIENT_SECRET}',
+            //     {
+            //         payment_method: {
+            //             card: this.cardElement,
+            //             billing_details: {
+            //                 name: this.user.first_name + ' ' + this.user.last_name,
+            //                 email: this.user.email,
+            //             },
+            //         },
+            //     },
+            // );
+            //
+            // console.log(paymentIntent, error)
 
+            // if (error) {
+            //     alert(error)
+            // }
+            //
             this.$store.dispatch('checkout/submitOrder', {
                 address_id: this.address_id,
                 user: this.user,
-                payment: paymentMethod
+                // payment: paymentMethod
             }).then(response => {
                 this.completeOrder.modal = true
-                this.completeOrder.transaction_id = response.data.transaction_id
+                // this.completeOrder.transaction_id = response.data.transaction_id
             }).catch(errors => {
                 this.errors = errors
             })

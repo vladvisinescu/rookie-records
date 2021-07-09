@@ -6,10 +6,12 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductDetails\Artist;
 use App\Models\ProductDetails\Genre;
+use App\Models\User;
 use App\Observers\ArtistObserver;
 use App\Observers\GenreObserver;
 use App\Observers\ProductCategoryObserver;
 use App\Observers\ProductObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -34,6 +36,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
+
         Product::observe(ProductObserver::class);
         ProductCategory::observe(ProductCategoryObserver::class);
 

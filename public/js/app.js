@@ -38091,9 +38091,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _User_Shop_AddressForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../User/Shop/AddressForm */ "./resources/js/components/User/Shop/AddressForm.vue");
 /* harmony import */ var _Bits_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Bits/modals/ConfirmModal */ "./resources/js/components/Bits/modals/ConfirmModal.vue");
+/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -38103,10 +38104,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     AddressForm: _User_Shop_AddressForm__WEBPACK_IMPORTED_MODULE_0__.default,
-    ConfirmModal: _Bits_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_1__.default
+    ConfirmModal: _Bits_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_1__.default,
+    CheckIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__.CheckIcon,
+    TrashIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__.TrashIcon,
+    MinusSmIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_2__.MinusSmIcon
   },
   data: function data() {
     return {
@@ -38122,7 +38127,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
     user: 'user/getUser',
     addresses: 'address/allAddresses',
     errors: 'user/getErrors'
@@ -38135,28 +38140,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('address/getAddresses');
   },
   methods: {
-    removeAddress: function removeAddress(_ref) {
+    makeAddressDefault: function makeAddressDefault(address) {
       var _this = this;
+
+      this.$store.dispatch('address/updateAddress', _objectSpread(_objectSpread({}, address), {}, {
+        "default": true
+      })).then(function (response) {
+        _this.$store.dispatch('address/getAddresses');
+      });
+    },
+    removeAddress: function removeAddress(_ref) {
+      var _this2 = this;
 
       var address_id = _ref.address_id;
       this.$store.dispatch('address/removeAddress', address_id).then(function () {
-        _this.$store.dispatch('address/getAddresses');
+        _this2.$store.dispatch('address/getAddresses');
 
-        _this.deletesAddress.modal = false;
+        _this2.deletesAddress.modal = false;
       });
     },
     updateUser: function updateUser() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.updatesUser.loading = true;
       this.$store.dispatch('user/updateUser', this.user).then(function (response) {
-        _this2.updatesUser.result = 'Changes saved.';
-        _this2.updatesUser.success = true;
-        _this2.updatesUser.loading = false;
+        _this3.updatesUser.result = 'Changes saved.';
+        _this3.updatesUser.success = true;
+        _this3.updatesUser.loading = false;
       })["catch"](function (error) {
-        _this2.updatesUser.result = 'Please review the information you entered.';
-        _this2.updatesUser.success = false;
-        _this2.updatesUser.loading = false;
+        _this3.updatesUser.result = 'Please review the information you entered.';
+        _this3.updatesUser.success = false;
+        _this3.updatesUser.loading = false;
       });
     }
   }
@@ -39293,42 +39307,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _yield$_this3$stripe$, paymentMethod, error;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this3.errors = {};
-                _context2.next = 3;
-                return _this3.stripe.createPaymentMethod('card', _this3.cardElement, {
-                  billing_details: {
-                    name: _this3.user.first_name + ' ' + _this3.user.last_name,
-                    email: _this3.user.email
-                  }
-                });
-
-              case 3:
-                _yield$_this3$stripe$ = _context2.sent;
-                paymentMethod = _yield$_this3$stripe$.paymentMethod;
-                error = _yield$_this3$stripe$.error;
-
-                if (error) {
-                  alert(error);
-                }
+                _this3.errors = {}; // const { paymentMethod, error } =  await this.stripe.createPaymentMethod(
+                //     'card', this.cardElement, {
+                //         billing_details: {
+                //             name: this.user.first_name + ' ' + this.user.last_name,
+                //             email: this.user.email,
+                //         }
+                //     }
+                // )
+                // const {paymentIntent, error} = await this.stripe.confirmCardPayment(
+                //     '{PAYMENT_INTENT_CLIENT_SECRET}',
+                //     {
+                //         payment_method: {
+                //             card: this.cardElement,
+                //             billing_details: {
+                //                 name: this.user.first_name + ' ' + this.user.last_name,
+                //                 email: this.user.email,
+                //             },
+                //         },
+                //     },
+                // );
+                //
+                // console.log(paymentIntent, error)
+                // if (error) {
+                //     alert(error)
+                // }
+                //
 
                 _this3.$store.dispatch('checkout/submitOrder', {
                   address_id: _this3.address_id,
-                  user: _this3.user,
-                  payment: paymentMethod
+                  user: _this3.user // payment: paymentMethod
+
                 }).then(function (response) {
-                  _this3.completeOrder.modal = true;
-                  _this3.completeOrder.transaction_id = response.data.transaction_id;
+                  _this3.completeOrder.modal = true; // this.completeOrder.transaction_id = response.data.transaction_id
                 })["catch"](function (errors) {
                   _this3.errors = errors;
                 });
 
-              case 8:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -40031,52 +40051,49 @@ var _hoisted_43 = {
   "class": "divide-y divide-gray-200"
 };
 var _hoisted_44 = {
-  "class": "grid grid-cols-2"
+  "class": "flex justify-between"
 };
 var _hoisted_45 = {
-  "class": "flex flex-col"
+  "class": "flex flex-col w-3/4"
 };
 
 var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(", ");
 
 var _hoisted_47 = {
-  "class": "flex items-center justify-end"
+  "class": "flex items-center w-1/4"
+};
+var _hoisted_48 = {
+  "class": "flex-grow"
+};
+var _hoisted_49 = {
+  key: 0
 };
 
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  "class": "h-3 w-3 inline-flex",
-  xmlns: "http://www.w3.org/2000/svg",
-  fill: "none",
-  viewBox: "0 0 24 24",
-  stroke: "currentColor"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "stroke-width": "2",
-  d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-})], -1
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "text-xs font-bold text-blue-400"
+}, "Make default", -1
 /* HOISTED */
 );
 
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
-  "class": "text-xs"
-}, " Delete ", -1
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "text-xs font-bold text-red-400"
+}, "Delete", -1
 /* HOISTED */
 );
 
-var _hoisted_50 = {
+var _hoisted_52 = {
   "class": "inline-flex h-4 w-4",
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 20 20",
   fill: "currentColor"
 };
-var _hoisted_51 = {
+var _hoisted_53 = {
   key: 0,
   "fill-rule": "evenodd",
   d: "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
   "clip-rule": "evenodd"
 };
-var _hoisted_52 = {
+var _hoisted_54 = {
   key: 1,
   "fill-rule": "evenodd",
   d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
@@ -40084,6 +40101,10 @@ var _hoisted_52 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ConfirmModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmModal");
+
+  var _component_CheckIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CheckIcon");
+
+  var _component_TrashIcon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TrashIcon");
 
   var _component_AddressForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AddressForm");
 
@@ -40221,16 +40242,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "text-sm"
     }, null, 8
     /* PROPS */
-    , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    , ["textContent"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_48, [!address["default"] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+      href: "#",
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.makeAddressDefault(address);
+      }, ["prevent"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CheckIcon, {
+      "class": "text-blue-700 h-3 w-3 inline-flex mr-2"
+    }), _hoisted_50], 8
+    /* PROPS */
+    , ["onClick"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
       href: "#",
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
         return $data.deletesAddress = {
           modal: true,
           id: address.id
         };
-      }, ["prevent"]),
-      "class": "text-red-700 font-bold"
-    }, [_hoisted_48, _hoisted_49], 8
+      }, ["prevent"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TrashIcon, {
+      "class": "text-red-700 h-3 w-3 inline-flex mr-2"
+    }), _hoisted_51], 8
     /* PROPS */
     , ["onClick"])])])])])]);
   }), 128
@@ -40242,7 +40273,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     href: "javascript:;",
     "class": "inline-flex text-gray-500 text-sm cursor-pointer pt-4"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_50, [!$data.createsNewAddress ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("path", _hoisted_51)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("path", _hoisted_52))])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", _hoisted_52, [!$data.createsNewAddress ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("path", _hoisted_53)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("path", _hoisted_54))])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.createsNewAddress ? 'Hide' : 'Add address')
   }, null, 8
   /* PROPS */
@@ -44636,7 +44667,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: "privacy_setting",
       type: "radio",
       "class": "focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300",
-      checked: address.id === $data.address_id
+      checked: address.id === $data.address_id || address["default"]
     }, null, 8
     /* PROPS */
     , ["checked"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
@@ -47062,8 +47093,20 @@ var actions = {
       });
     });
   },
-  removeAddress: function removeAddress(_ref3, address) {
+  updateAddress: function updateAddress(_ref3, data) {
     var commit = _ref3.commit;
+    return new Promise(function (resolve, reject) {
+      axios.patch(route('api.addresses.update', data), data, {
+        withCredentials: true
+      }).then(function (response) {
+        resolve(response.data);
+      })["catch"](function (error) {
+        reject(error.response.data.errors);
+      });
+    });
+  },
+  removeAddress: function removeAddress(_ref4, address) {
+    var commit = _ref4.commit;
     return new Promise(function (resolve, reject) {
       axios["delete"](route('api.addresses.delete', address), {
         withCredentials: true

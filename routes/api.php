@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AddressController;
-use App\Http\Controllers\ContactDetailsController;
 use App\Http\Controllers\Desktop\ArtistsController;
 use App\Http\Controllers\Desktop\CategoriesController;
 use App\Http\Controllers\Desktop\GenresController;
@@ -62,6 +61,7 @@ Route::group(['prefix' => 'addresses', 'middleware' => 'auth:sanctum'], function
     Route::get('/postcode/{postcode}', [AddressController::class, 'postcodeLookup'])->name('api.addresses.lookup');
     Route::get('/', [AddressController::class, 'getAllAddresses']);
     Route::post('/', [AddressController::class, 'saveAddress']);
+    Route::patch('/{address}', [AddressController::class, 'updateAddress'])->name('api.addresses.update');
     Route::delete('/{address}', [AddressController::class, 'deleteAddress'])->name('api.addresses.delete');
 });
 
