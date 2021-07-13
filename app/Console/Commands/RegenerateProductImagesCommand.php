@@ -47,7 +47,8 @@ class RegenerateProductImagesCommand extends Command
 
             if ($product->vinyls->count() > 0 ) {
                 $url = collect($product->vinyls->first()->images)
-                    ->where('type', '=', 'primary')->first();
+                    ->whereIn('type', ['primary', 'secondary'])
+                    ->first();
 
                 if ($url) {
                     $product->addMediaFromUrl($url->resource_url)->toMediaCollection('vinyls', 'products');

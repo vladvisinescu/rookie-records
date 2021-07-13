@@ -13,7 +13,7 @@ class Order extends Model
 
     public $timestamps = ['created_at', 'updated_at', 'dispatched_at', 'confirmed_at'];
 
-    protected $fillable = ['transaction_id', 'total', 'address_id', 'confirmed_at'];
+    protected $fillable = ['transaction_id', 'total', 'address_id', 'confirmed_at', 'stripe_id', 'payed_at'];
 
     public function user()
     {

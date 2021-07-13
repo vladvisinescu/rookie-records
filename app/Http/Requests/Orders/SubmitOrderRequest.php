@@ -15,10 +15,10 @@ class SubmitOrderRequest extends FormRequest
     {
         return [
             'address_id' => ['required'],
-            'user.first_name' => ['required', 'string'],
-            'user.last_name' => ['required', 'string'],
-            'user.email' => ['required', 'email'],
-            'user.phone' => ['required'],
+//            'user.first_name' => ['required', 'string'],
+//            'user.last_name' => ['required', 'string'],
+//            'user.email' => ['required', 'email'],
+//            'user.phone' => ['required'],
         ];
     }
 }

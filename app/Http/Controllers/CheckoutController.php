@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Notifications\OrderConfirmed;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Log;
 
 use Illuminate\Http\Request;
@@ -15,6 +17,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 use App\Http\Resources\OrderResource;
 use App\Http\Requests\Orders\SubmitOrderRequest;
+use Stripe\BaseStripeClient;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
+use Stripe\StripeClient;
 
 class CheckoutController extends Controller
 {
@@ -26,6 +32,18 @@ class CheckoutController extends Controller
         }
 
         return view('shop.checkout.index');
+    }
+
+    public function getClientStripeSecret(Request $request)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $paymentIntent = PaymentIntent::create([
+            'amount' => Cart::instance('shopping')->priceTotal() * 100,
+            'currency' => 'gbp',
+        ]);
+
+        return response()->json(['paymentIntent' => $paymentIntent]);
     }
 
     public function getAllProducts(Request $request)
@@ -45,59 +63,46 @@ class CheckoutController extends Controller
 
     public function submitOrder(SubmitOrderRequest $request)
     {
+        $total = Cart::instance('shopping')->priceTotal();
 
-        try {
-            $total = Cart::instance('shopping')->priceTotal();
+        if ($total < 30) {
+            $total += 5;
+        }
 
-            // delivery fee?
-            if ($total < 30) {
-                $total += 5;
-            }
+        $payment = $request->input('payment');
+        $user = auth()->user();
 
-            $user = auth()->user();
+        $stripe = new StripeClient(config('services.stripe.secret'));
+        $intent = $stripe->paymentIntents->retrieve($payment['id']);
 
-            $user->createOrGetStripeCustomer();
-            $user->updateDefaultPaymentMethod($request->input('payment.id'));
-
-            $payment = $user->charge(
-                $total * 100,
-                $request->input('payment.id')
-            );
-
-            $payment = $payment->asStripePaymentIntent();
-
+        if ($intent['status'] === 'succeeded') {
             $order = $user->orders()->create([
                 'transaction_id' => Str::uuid(),
-                'stripe_id' => $request->input('payment.id'),
-                'total' => $payment->charges->data[0]->amount / 100,
+                'stripe_id' => $intent['id'],
+                'total' => $total,
                 'payed_at' => now(),
-                'address_id' => $request->input('address_id')
+                'address_id' => $request->input('address_id'),
             ]);
 
-            foreach (Cart::content() as $product) {
-                $product->model->update([ 'sold_at' => now() ]);
-
-                $order->products()->attach($product->model->id, [
-                    'quantity' => $product->qty
-                ]);
+            foreach (Cart::instance('shopping')->content() as $product) {
+                $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
+                $product->model->published_at = null;
+                $product->model->save();
             }
-
-            // comment for testing
-//            Cart::destroy();
-
-            $order->load(['products', 'user', 'address']);
 
             Auth::user()->notify(new OrderConfirmed($order));
 
+            Cart::instance('shopping')->destroy();
+
+            $order->load(['products', 'user', 'address']);
+
             return new OrderResource($order);
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage()
-            ], 402);
         }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Looks like something went wrong. Call us maybe?'
+        ], 400);
     }
 
     public function orderDetails($orderID)

@@ -36,6 +36,19 @@ const actions = {
         })
     },
 
+    updateAddress({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            axios
+                .patch(route('api.addresses.update', data), data, { withCredentials: true })
+                .then(response => {
+                    resolve(response.data)
+                })
+                .catch(error => {
+                    reject(error.response.data.errors)
+                })
+        })
+    },
+
     removeAddress({ commit }, address) {
         return new Promise((resolve, reject) => {
             axios

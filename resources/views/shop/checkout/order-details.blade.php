@@ -25,9 +25,15 @@
             <div class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-5">
                 @foreach($order->products as $product)
 
-                    <?php /* @var \App\Models\ProductTypes\Vinyl $vinyl */ $vinyl = $product->vinyls->first() ?>
+                    <?php
+                        /* @var \App\Models\Product $product */
+                        /* @var \App\Models\ProductTypes\Vinyl $vinyl */
+
+                        $vinyl = $product->vinyls->first();
+                    ?>
 
                     <div class="relative" style="padding-bottom: 100%;">
+{{--                        {{ $product->getKey() }}--}}
                         <img class="absolute w-full h-full object-cover object-center" src="{{ $product->getMedia('vinyls')->first()->getUrl('thumb') }}" alt="{{ $product->title }} Record Cover">
                     </div>
                 @endforeach

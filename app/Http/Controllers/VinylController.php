@@ -33,7 +33,7 @@ class VinylController extends Controller
     public function getVinyls(Request $request)
     {
 
-        $products = Product::query()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
+        $products = Product::query()->published()->with(['vinyls', 'vinyls.genres', 'vinyls.artists']);
 
         if ($request->input('term')) {
             $products = $products->where('title', 'LIKE', '%'.$request->input('term').'%');
