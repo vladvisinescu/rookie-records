@@ -17,6 +17,7 @@ import Account from './components/Account/UserAccount';
 import Orders from './components/Account/UserOrders';
 
 import Checkout from './components/User/Shop/Checkout';
+import Payment from './components/User/Shop/Payment';
 import MenuCart from './components/User/Shop/MenuCart';
 import MenuUser from './components/User/Shop/MenuUser';
 import VinylShow from './components/User/Shop/Vinyl/VinylShow';
@@ -52,6 +53,7 @@ app.component('faq', Faq);
 app.component('contact-us', ContactUs);
 
 app.component('checkout', Checkout);
+app.component('payment', Payment);
 app.component('menu-cart', MenuCart);
 app.component('menu-user', MenuUser);
 app.component('vinyl-show', VinylShow);

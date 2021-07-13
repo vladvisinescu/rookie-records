@@ -36,9 +36,11 @@ class OrderConfirmed extends Notification
 
     public function toTelegram($notifiable)
     {
+        $prefix = app()->environment() === 'local' ? '[TEST]' : '';
+
         return TelegramMessage::create()
             ->to('-330403026')
-            ->content("New Order On Rookie Records")
+            ->content("$prefix New Order On Rookie Records")
             ->button('Visit Website', url('/'));
     }
 

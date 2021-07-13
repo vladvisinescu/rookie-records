@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\SocialLoginController;
-use PHPHtmlParser\Dom;
 
 use App\Http\Controllers\Desktop\OrdersController;
 use App\Http\Controllers\SearchController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\CheckoutController;
 
 use App\Http\Controllers\Desktop\DesktopController;
 use App\Http\Controllers\Desktop\ProductsController;
-use Illuminated\Wikipedia\Wikipedia;
 
 Route::redirect('/shop', '/shop/vinyl');
 
@@ -32,7 +30,6 @@ Route::post('contact-us', [HomeController::class, 'submitContactUs'])->name('hom
 Route::get('search', [SearchController::class, 'search'])->name('shop.search');
 
 Route::group(['prefix' => 'auth'], function () {
-
     Route::get('{provider}/redirect', [SocialLoginController::class, 'socialLoginRedirect'])->name('auth.social.redirect');
     Route::get('{provider}/callback', [SocialLoginController::class, 'socialLoginCallback'])->name('auth.social.callback');
 });
@@ -41,8 +38,10 @@ Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['prefix' => 'checkout', 'middleware' => ['auth']], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
-        Route::get('/order/{orderID}', [CheckoutController::class, 'orderDetails'])->name('shop.checkout.order.details');
         Route::post('/submit', [CheckoutController::class, 'submitOrder'])->name('shop.checkout.submit');
+        Route::post('/order/secret', [CheckoutController::class, 'getClientStripeSecret'])->name('shop.checkout.payment.secret');
+        Route::patch('/order/{order}/confirm', [CheckoutController::class, 'confirmPayment'])->name('shop.checkout.payment.confirm');
+        Route::get('/order/{orderID}', [CheckoutController::class, 'orderDetails'])->name('shop.checkout.order.details');
     });
 
     Route::group(['prefix' => 'cart'], function () {

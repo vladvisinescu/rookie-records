@@ -14,7 +14,7 @@ class AddPaymentLinkToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->text('payment_link')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddPaymentLinkToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->removeColumn('payment_link');
         });
     }
 }

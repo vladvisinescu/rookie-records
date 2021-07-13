@@ -50,7 +50,7 @@ class Product extends Model implements Buyable, HasMedia
         'published', 'date_created_human', 'date_created_diff', 'category_name', 'images'
     ];
 
-    protected $fillable = ['sold_at'];
+    protected $fillable = ['sold_at', 'published_at'];
 
     protected $casts = ['price' => 'float'];
 
@@ -79,6 +79,17 @@ class Product extends Model implements Buyable, HasMedia
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_product',  'order_id', 'product_id');
+    }
+
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
     }
 
     public function getRelated($count = 8)
