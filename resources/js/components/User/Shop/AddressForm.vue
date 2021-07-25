@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded overflow-hidden mt-4" v-if="hasAddresses">
+            <div class="bg-white rounded overflow-hidden mt-4" v-if="hasAddresses && resultsOpen">
                 <ul class="divide-y divide-gray-200 max-h-60 overflow-y-scroll">
                     <li
                         v-for="result in lookupResults.addresses"
@@ -51,7 +51,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="mt-4" v-else>
+            <div class="mt-4" v-if="!hasAddresses">
                 <div class="rounded-md bg-blue-50 border border-blue-200 p-4">
                     <div class="flex">
                         <div class="flex-shrink-0">
@@ -139,7 +139,8 @@ export default {
                 description: '',
             },
             errors: [],
-            searching: false
+            searching: false,
+            resultsOpen: false
         }
     },
 
@@ -183,8 +184,16 @@ export default {
         },
 
         postcodeLookup() {
+
+            if (this.address.lookup === '') {
+                return
+            }
+
             this.searching = true
-            this.$store.dispatch('postcodes/getAddressesForPostcode', this.address.lookup).then(() => this.searching = false)
+            this.$store.dispatch('postcodes/getAddressesForPostcode', this.address.lookup).then(() => {
+                this.searching = false
+                this.resultsOpen = true
+            })
         },
 
         populateAfterLookup(result) {
@@ -195,11 +204,12 @@ export default {
                 town: result.town_or_city,
                 county: result.county,
                 country: result.country,
-                postcode: this.lookupResults.postcode
+                postcode: this.lookupResults.postcode,
+                lookup: ''
             }
 
             this.$store.dispatch('postcodes/clearResults')
-
+            this.resultsOpen = false
             this.errors = []
         }
     }

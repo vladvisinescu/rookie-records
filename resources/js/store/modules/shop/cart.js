@@ -1,3 +1,5 @@
+import analytics from "../../../lib/analytics";
+
 const state = () => ({
     products: [],
 });
@@ -19,7 +21,10 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .post('/shop/cart', data, { withCredentials: true })
-                .then(response => resolve(response.data))
+                .then(response => {
+                    analytics.gAddToCart(response.data.product)
+                    resolve(response.data)
+                })
                 .catch(error => reject(error.response))
         })
     },
@@ -28,7 +33,10 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .delete('/shop/cart/' + id, { withCredentials: true })
-                .then(response => resolve(response.data))
+                .then(response => {
+                    analytics.gRemoveFromCart(response.data.product)
+                    resolve(response.data)
+                })
                 .catch(error => reject(error.response))
         })
     },

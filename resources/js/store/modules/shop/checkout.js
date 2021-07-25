@@ -1,3 +1,5 @@
+import analytics from "../../../lib/analytics";
+
 const state = () => ({
     products: [],
 });
@@ -11,25 +13,10 @@ const actions = {
         return new Promise((resolve, reject) => {
             axios
                 .post(route('shop.checkout.submit'), data, { withCredentials: true })
-                .then(response => resolve(response.data))
-                .catch(error => reject(error.response.data.errors))
-        })
-    },
-
-    // submitPayment({ commit }, data) {
-    //     return new Promise((resolve, reject) => {
-    //         axios
-    //             .post(route('shop.checkout.payment.submit', { order: data.order.transaction_id }), data, { withCredentials: true })
-    //             .then(response => resolve(response.data))
-    //             .catch(error => reject(error.response.data.errors))
-    //     })
-    // },
-
-    confirmPayment({ commit }, { order, payment }) {
-        return new Promise((resolve, reject) => {
-            axios
-                .patch(route('shop.checkout.payment.confirm', { order: order.transaction_id }), { order, payment }, { withCredentials: true })
-                .then(response => resolve(response.data))
+                .then(response => {
+                    analytics.gPurchase(response.data.data)
+                    resolve(response.data)
+                })
                 .catch(error => reject(error.response.data.errors))
         })
     },
@@ -45,7 +32,7 @@ const actions = {
 };
 
 const mutations = {
-    //
+
 };
 
 export default {

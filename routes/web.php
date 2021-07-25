@@ -32,6 +32,7 @@ Route::get('search', [SearchController::class, 'search'])->name('shop.search');
 Route::group(['prefix' => 'auth'], function () {
     Route::get('{provider}/redirect', [SocialLoginController::class, 'socialLoginRedirect'])->name('auth.social.redirect');
     Route::get('{provider}/callback', [SocialLoginController::class, 'socialLoginCallback'])->name('auth.social.callback');
+    Route::get('{provider}/delete', [SocialLoginController::class, 'socialLoginDelete'])->name('auth.social.delete');
 });
 
 Route::group(['prefix' => 'shop'], function () {
@@ -40,7 +41,6 @@ Route::group(['prefix' => 'shop'], function () {
         Route::get('/', [CheckoutController::class, 'index'])->name('shop.checkout.index');
         Route::post('/submit', [CheckoutController::class, 'submitOrder'])->name('shop.checkout.submit');
         Route::post('/order/secret', [CheckoutController::class, 'getClientStripeSecret'])->name('shop.checkout.payment.secret');
-        Route::patch('/order/{order}/confirm', [CheckoutController::class, 'confirmPayment'])->name('shop.checkout.payment.confirm');
         Route::get('/order/{orderID}', [CheckoutController::class, 'orderDetails'])->name('shop.checkout.order.details');
     });
 
