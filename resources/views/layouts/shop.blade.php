@@ -11,6 +11,10 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#333333">
 
+        <!-- TrustBox script -->
+        <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+        <!-- End TrustBox script -->
+
         <!-- Google Tag Manager -->
         <script>
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

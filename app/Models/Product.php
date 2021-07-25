@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\ProductDetails\Genre;
 use App\Models\ProductTypes\Vinyl;
 
 use Laravel\Scout\Searchable;
 use Ramsey\Uuid\UuidInterface;
 
-use Gloudemans\Shoppingcart\CanBeBought;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -81,15 +79,14 @@ class Product extends Model implements Buyable, HasMedia
         return $this->belongsToMany(Order::class, 'order_product',  'order_id', 'product_id');
     }
 
-    /**
-     * Scope a query to only include popular users.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
+    }
+
+    public function scopeAvailableForPurchase($query)
+    {
+        return $query->whereNull('sold_at');
     }
 
     public function getRelated($count = 8)
