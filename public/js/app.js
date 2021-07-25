@@ -44880,9 +44880,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.submitOrder && $options.submitOrder.apply($options, arguments);
     }, ["prevent"])),
-    type: "button",
-    "class": "w-full md:w-1/2 text-right inline-flex justify-between items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-  }, [_hoisted_57, _hoisted_58])])])], 64
+    "class": [$data.loading ? 'pointer-events-none opacity-50' : 'pointer-events-auto', "w-full md:w-1/2 text-right inline-flex justify-between items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"],
+    type: "button"
+  }, [_hoisted_57, _hoisted_58], 2
+  /* CLASS */
+  )])])], 64
   /* STABLE_FRAGMENT */
   );
 }

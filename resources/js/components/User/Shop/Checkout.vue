@@ -223,6 +223,7 @@
         <div class="flex justify-end mt-4 lg:pl-3">
             <button
                 @click.prevent="submitOrder"
+                :class="loading ? 'pointer-events-none opacity-50' : 'pointer-events-auto'"
                 type="button"
                 class="w-full md:w-1/2 text-right inline-flex justify-between items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 border border-transparent shadow-sm text-base font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Submit order

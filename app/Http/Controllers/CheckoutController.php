@@ -38,8 +38,14 @@ class CheckoutController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
+        $amount = Cart::instance('shopping')->priceTotal();
+
+        if ($amount < 30) {
+            $amount += 5;
+        }
+
         $paymentIntent = PaymentIntent::create([
-            'amount' => Cart::instance('shopping')->priceTotal() * 100,
+            'amount' => $amount * 100,
             'currency' => 'gbp',
         ]);
 
@@ -86,7 +92,7 @@ class CheckoutController extends Controller
 
             foreach (Cart::instance('shopping')->content() as $product) {
                 $order->products()->attach($product->model->id, ['quantity' => $product->qty]);
-                $product->model->published_at = null;
+                $product->model->sold_at = now();
                 $product->model->save();
             }
 
