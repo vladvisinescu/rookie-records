@@ -41,6 +41,11 @@
                     </a>
                 </div>
             </div>
+            <!-- TrustBox widget - Micro Review Count -->
+            <div class="trustpilot-widget" data-locale="en-GB" data-template-id="5419b6a8b0d04a076446a9ad" data-businessunit-id="60fd6684846d6b000125a9aa" data-style-height="24px" data-style-width="100%" data-theme="light">
+                <a href="https://uk.trustpilot.com/review/rookie-records.co.uk" target="_blank" rel="noopener">Trustpilot</a>
+            </div>
+            <!-- End TrustBox widget -->
             <form @submit.prevent="submitContactForm" action="" class="flex flex-col space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700">Name <span v-if="formErrors.name" v-html="formErrors.name[0]" class="text-xs font-bold uppercase text-red-400"></span></label>
