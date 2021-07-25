@@ -28,13 +28,9 @@
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Vinyl/VinylShow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/lib/analytics.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/lib/analytics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/shop/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/shop/checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/shop/checkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/AddressForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/AddressForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Checkout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/User/Shop/Payment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/User/Shop/Payment.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +343,8 @@
       <workItem from="1626216127593" duration="131000" />
       <workItem from="1626906396579" duration="12000" />
       <workItem from="1626906424493" duration="490000" />
-      <workItem from="1626907062019" duration="723000" />
+      <workItem from="1626907062019" duration="1006000" />
+      <workItem from="1627211645027" duration="3100000" />
     </task>
     <servers />
   </component>
